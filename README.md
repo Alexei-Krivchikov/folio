@@ -1,6 +1,6 @@
 # folio
 
-Creative portfolio / lab — `Alexey Krivcikov`.
+Creative portfolio / lab — `Alexei Krivchikov`.
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)

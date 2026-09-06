@@ -21,14 +21,10 @@
 /coverage
 
 # next.js
-/.next/
-/out/
-/build
-/apps/*/.next
-/apps/*/out
-
-# turbo
-/.turbo
+.next/
+out/
+build
+.turbo/
 
 # local files
 /local/
