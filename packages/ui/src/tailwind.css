@@ -1,0 +1,4 @@
+/* Registers this package's sources with the Tailwind compiler of any
+   consuming app. Relative to this file, so it resolves to the real
+   package directory on any machine (local + Vercel). */
+@source "./**/*.{ts,tsx}";

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@folio/ui/src/tailwind.css";
 
 @theme inline {
   --color-background: var(--background);
