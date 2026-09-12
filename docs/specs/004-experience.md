@@ -4,12 +4,12 @@ Status: In Review (Phase 3b)
 
 ## Problem
 
-Нужна секция опыта по рефу tajmirul, но без палева NDA: названия и ссылки светить нельзя.
+Нужна секция опыта по рефу tajmirul: название компании + должность, без ссылок и деталей под NDA.
 
 ## Solution
 
 - `apps/web/components/experience/experience.tsx` — `"use client"`, вертикальный таймлайн (граница + точки), данные `jobs` рядом с компонентом
-- Commercial-режим: `org: "Commercial · NDA"`, роль/период реальные, пункты вклада — TODO на заполнение владельцем (не выдумываем)
+- Открытый режим: `org: "Anthill"`, роль/период реальные, без ссылок; пункты вклада — TODO на заполнение владельцем (не выдумываем)
 - Анимация: `fadeUp` + `whileInView once`, единый словарь с About/Stack
 - `apps/web/app/page.tsx` — `<Experience />` после `<Stack />`
 

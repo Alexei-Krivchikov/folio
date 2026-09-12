@@ -9,16 +9,11 @@ const fadeUp = {
 
 const viewportOnce = { once: true, margin: "-80px" } as const;
 
-const jobs: { role: string; org: string; period: string; points: string[] }[] = [
+const jobs: { role: string; org: string; period: string }[] = [
   {
     role: "Frontend / FullStack Developer",
-    org: "Commercial · NDA",
+    org: "Anthill",
     period: "2023 — Present",
-    points: [
-      "TODO: вклад №1 (например: что построил, стек, метрика)",
-      "TODO: вклад №2 (например: оптимизация, −N% загрузки)",
-      "TODO: вклад №3 (например: зона ответственности)",
-    ],
   },
 ];
 
@@ -36,13 +31,6 @@ export function Experience() {
               <p className="text-sm text-zinc-500">{job.period}</p>
               <h3 className="mt-1 text-xl font-semibold text-white">{job.role}</h3>
               <p className="mt-0.5 text-sm text-zinc-400">{job.org}</p>
-              <ul className="mt-4 space-y-2">
-                {job.points.map((point) => (
-                  <li key={point} className="text-sm leading-relaxed text-zinc-400">
-                    — {point}
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>
