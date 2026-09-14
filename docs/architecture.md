@@ -55,7 +55,7 @@ Phase 2: add PG + Drizzle + Route Handlers for guestbook/views (opt-in).
 
 - Imports via `@/*` (web) and `@folio/*` (packages)
 - Commits: conventional (`feat:`, `fix:`, `docs:`) + Commitlint
-- Specs: `docs/specs/00X-*.md` per feature, ADR for stack decisions
+- Specs: `docs/specs/00X-<slug>/spec.md` per feature (tickets in `issues/`), ADR for stack decisions
 
 ## Verification
 
