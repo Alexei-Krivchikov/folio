@@ -1,0 +1,43 @@
+---
+slug: folio
+order: 3
+name: folio
+type: personal
+year: "2026"
+summary: The portfolio you're looking at — a statically generated Next.js 16 site with MDX Case studies and Motion animations.
+stack:
+  - Next.js 16
+  - React 19
+  - TypeScript
+  - Tailwind CSS 4
+  - Motion
+  - Lenis
+  - content-collections
+  - Turborepo
+  - pnpm
+  - Biome
+cover: /projects/folio/cover.png
+---
+
+## About
+
+folio is my personal portfolio: one place that shows a recruiter who I am, what I've built, and how to reach me. It's intentionally static — no database and no API — so it's fast, cheap to host, and has nothing to break.
+
+## Tech stack
+
+The site is a Next.js 16 App Router app on React 19 and TypeScript in strict mode, styled with Tailwind CSS 4. Animations use Motion, and smooth scrolling uses Lenis. Case studies are MDX files loaded through content-collections and validated with a zod schema. The repository is a pnpm + Turborepo monorepo, linted and formatted with Biome.
+
+## Key features
+
+- A single home page with Hero, About, Stack, Experience, Projects, and Contact sections
+- A Case study page for every Project, generated at build time from MDX
+- Scroll-triggered animations that play once, in one consistent motion vocabulary
+- Content that fails the build if a Project's data is invalid, so broken cards never ship
+
+## My role and technical highlights
+
+I designed and built folio end to end, and ran it like a small product: every feature starts as a written spec with user stories and acceptance criteria, gets broken into small vertical tickets, and lands through focused commits. Stack decisions are recorded as architecture decision records.
+
+- **Content as typed data.** Project frontmatter is validated by a schema at build time, and cards and Case study headers read from the same source, so they can't drift apart.
+- **Static by design.** Every page is pre-rendered; unknown Project URLs return 404 instead of rendering empty pages.
+- **Monorepo from day one.** Shared TypeScript and Biome configuration and internal packages keep the web app lean and leave room for future apps.

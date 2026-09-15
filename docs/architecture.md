@@ -32,12 +32,13 @@ app/
   page.tsx           # Hero + About + Stack + Experience + Projects + Contact
   projects/[slug]/page.tsx  # MDX case study
   globals.css        # Tailwind 4
-components/
+  content-collections.ts  # projects collection + zod frontmatter schema
+  components/
   hero/ about/ stack/ experience/ projects/ contact/ ui/
-content/
+  content/
   projects/*.mdx     # 3 case studies (static)
-lib/
-  mdx.ts             # content-collections helper
+  lib/
+  projects.ts        # Projects query module over content-collections
 ```
 
 Data flow MVP: **Static** — MDX files → Server Components. No DB. Contact via `mailto:` + external links.

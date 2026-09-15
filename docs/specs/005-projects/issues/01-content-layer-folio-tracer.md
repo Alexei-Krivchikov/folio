@@ -4,7 +4,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -18,10 +18,10 @@ The thinnest complete path from an MDX file to what a recruiter sees. After this
 
 ## Acceptance criteria
 
-- [ ] `pnpm dev` → `/` shows the Projects Section between Experience and Contact, with a folio card
-- [ ] Clicking the card opens `/projects/folio` with Back link, title, type, year, and the four MDX sections in order
-- [ ] The Back link returns to the home page Projects Section
-- [ ] `/projects/unknown` returns 404
-- [ ] Temporarily setting `type: client` in folio's frontmatter makes the build fail with a readable schema error; reverting it makes the build pass
-- [ ] Section and page copy use the `CONTEXT.md` terms (Project, Personal project, Case study)
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] `pnpm dev` → `/` shows the Projects Section between Experience and Contact, with a folio card
+- [x] Clicking the card opens `/projects/folio` with Back link, title, type, year, and the four MDX sections in order
+- [x] The Back link returns to the home page Projects Section
+- [x] `/projects/unknown` returns 404
+- [x] Temporarily setting `type: client` in folio's frontmatter makes the build fail with a readable schema error; reverting it makes the build pass
+- [x] Section and page copy use the `CONTEXT.md` terms (Project, Personal project, Case study)
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass

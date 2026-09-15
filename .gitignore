@@ -25,6 +25,7 @@
 out/
 build
 .turbo/
+.content-collections/
 
 # local files
 /local/

@@ -5,7 +5,8 @@
     "paths": {
       "@/*": ["./*"],
       "@folio/ui": ["../../packages/ui/src"],
-      "@folio/shared": ["../../packages/shared/src"]
+      "@folio/shared": ["../../packages/shared/src"],
+      "content-collections": ["./.content-collections/generated"]
     },
     "plugins": [{ "name": "next" }],
     "types": ["node"]
