@@ -4,7 +4,7 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -17,9 +17,9 @@ A second Personal project and navigation between Case studies. With more than on
 
 ## Acceptance criteria
 
-- [ ] `/` shows cards in `order` order: Book Tracker (`_02.`) before folio (`_03.`)
-- [ ] `/projects/book-tracker` renders with the four MDX sections
-- [ ] The next-project link on Book Tracker goes to folio; folio's link wraps to the first Project by `order`
-- [ ] Temporarily giving two Projects the same `order` (or `slug`) fails the build with a readable error; reverting it makes the build pass
-- [ ] The Book Tracker text has no claims that aren't backed by its READMEs or code
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] `/` shows cards in `order` order: Book Tracker (`_02.`) before folio (`_03.`)
+- [x] `/projects/book-tracker` renders with the four MDX sections
+- [x] The next-project link on Book Tracker goes to folio; folio's link wraps to the first Project by `order`
+- [x] Temporarily giving two Projects the same `order` (or `slug`) fails the build with a readable error; reverting it makes the build pass
+- [x] The Book Tracker text has no claims that aren't backed by its READMEs or code
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass

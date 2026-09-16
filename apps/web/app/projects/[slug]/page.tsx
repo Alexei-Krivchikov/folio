@@ -2,7 +2,7 @@ import { MDXContent } from "@content-collections/mdx/react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ComponentProps } from "react";
-import { getProject, getProjects, projectTypeLabel } from "@/lib/projects";
+import { getNextProject, getProject, getProjects, projectTypeLabel } from "@/lib/projects";
 
 export const dynamicParams = false;
 
@@ -22,6 +22,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
+  const nextProject = getNextProject(slug);
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -36,6 +37,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </p>
 
         <MDXContent code={project.body} components={mdxComponents} />
+
+        {nextProject && (
+          <nav className="mt-16 border-t border-zinc-800 pt-8">
+            <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">Next project</p>
+            <Link
+              href={`/projects/${nextProject.slug}`}
+              className="mt-3 inline-block text-2xl font-semibold text-white transition-colors hover:text-zinc-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              {nextProject.name} →
+            </Link>
+          </nav>
+        )}
       </article>
     </main>
   );

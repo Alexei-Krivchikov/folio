@@ -1,0 +1,60 @@
+---
+slug: book-tracker
+order: 2
+name: Book Tracker
+type: personal
+year: "2026"
+summary: A full-stack reading tracker — search books, build a personal library, set a reading status and a rating. Next.js frontend and NestJS API, both written from scratch.
+stack:
+  - Next.js 16
+  - React 19
+  - TypeScript
+  - TanStack Query
+  - NextAuth
+  - Tailwind CSS
+  - shadcn/ui
+  - Feature-Sliced Design
+  - NestJS
+  - Prisma
+  - PostgreSQL
+  - JWT
+  - Passport
+links:
+  github:
+    - label: UI
+      url: https://github.com/Alexey-Krivcikov/book-tracker-ui
+    - label: API
+      url: https://github.com/Alexey-Krivcikov/book-tracker-api
+  website: https://book-tracker-ui.vercel.app
+cover: /projects/book-tracker/cover.png
+---
+
+## About
+
+Book Tracker is an app for readers who want one place for the books they plan to read, are reading, or have finished. You sign in, search for a book, add it to your personal library, give it a reading status and a rating, and remove it when you no longer need it.
+
+I built both sides of it: the frontend app and the API behind it. It's a personal project, so it was also the place to practise a full vertical slice — from the database schema up to the rendered list.
+
+## Tech stack
+
+The frontend is a Next.js App Router app on React 19 and TypeScript, styled with Tailwind CSS and shadcn/ui. Server state goes through TanStack Query, so requests are cached and shared between screens, and authentication is handled by NextAuth. The codebase follows Feature-Sliced Design, with `app`, `pages`, `widgets`, `features`, `entities` and `shared` layers.
+
+The API is a NestJS service in TypeScript. Data lives in PostgreSQL behind Prisma ORM, incoming payloads are validated with DTOs and `class-validator`, and authentication uses Passport with JWT access and refresh tokens, with passwords hashed by bcrypt. Book search is proxied through the Google Books API, so the client never talks to it directly.
+
+## Key features
+
+- Registration and login with JWT access and refresh tokens
+- Book search backed by an external books API
+- A personal library: add a book, remove it, keep it per user
+- Reading status for every book — planned, reading, completed or dropped
+- Ratings for books in the library
+- Cached requests on the client with TanStack Query
+
+## My role and technical highlights
+
+I designed and wrote the whole stack myself, and kept the two repositories as one product rather than two exercises.
+
+- **One contract, two repos.** The API owns the data model and the DTOs, and the frontend mirrors it in typed entities, so a change in the backend shape surfaces as a type error on the client instead of a runtime bug.
+- **Server state as a cache, not as component state.** TanStack Query holds the library and search results, which keeps the components free of loading flags and makes repeat requests cheap.
+- **Auth that survives a reload.** Short-lived access tokens with refresh tokens on the API, wired into a NextAuth session on the frontend.
+- **Layered by rule, not by habit.** Feature-Sliced Design gives every module a place, which matters more the longer a side project lives.
