@@ -20,11 +20,8 @@ function assertUnique<TField extends "slug" | "order">(
   }
 }
 
-const projects = defineCollection({
-  name: "projects",
-  directory: "content/projects",
-  include: "*.mdx",
-  schema: z.object({
+const projectSchema = z
+  .object({
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "slug must be kebab-case"),
     order: z.number().int().positive(),
     name: z.string().min(1),
@@ -42,7 +39,40 @@ const projects = defineCollection({
     cover: z.string().startsWith("/"),
     gallery: z.array(z.object({ src: z.string().startsWith("/"), alt: z.string().min(1) })).default([]),
     content: z.string(),
-  }),
+  })
+  .superRefine((project, ctx) => {
+    if (project.type === "commercial") {
+      if (!project.employer) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["employer"],
+          message: 'A commercial project requires "employer"',
+        });
+      }
+      if (project.links.github) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["links", "github"],
+          message: 'A commercial project must not have "links.github"',
+        });
+      }
+      return;
+    }
+
+    if (project.employer) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["employer"],
+        message: 'A personal project must not have "employer"',
+      });
+    }
+  });
+
+const projects = defineCollection({
+  name: "projects",
+  directory: "content/projects",
+  include: "*.mdx",
+  schema: projectSchema,
   transform: async (document, context) => {
     const documents = await context.collection.documents();
     assertUnique(documents, "slug", document.slug);

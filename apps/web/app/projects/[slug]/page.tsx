@@ -2,7 +2,7 @@ import { MDXContent } from "@content-collections/mdx/react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ComponentProps } from "react";
-import { getNextProject, getProject, getProjects, projectTypeLabel } from "@/lib/projects";
+import { formatProjectMeta, getNextProject, getProject, getProjectLinks, getProjects } from "@/lib/projects";
 
 export const dynamicParams = false;
 
@@ -23,6 +23,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const project = getProject(slug);
   if (!project) notFound();
   const nextProject = getNextProject(slug);
+  const links = getProjectLinks(project);
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -32,9 +33,24 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </Link>
 
         <h1 className="mt-8 text-4xl font-bold text-white md:text-5xl">{project.name}</h1>
-        <p className="mt-3 text-sm text-zinc-500">
-          {projectTypeLabel[project.type]} · {project.year}
-        </p>
+        <p className="mt-3 text-sm text-zinc-500">{formatProjectMeta(project)}</p>
+
+        {links.length > 0 && (
+          <ul className="mt-6 flex flex-wrap gap-3">
+            {links.map((link) => (
+              <li key={link.url}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block rounded-lg border border-zinc-800 px-4 py-2 text-sm text-zinc-200 transition-colors hover:border-zinc-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  {link.label} ↗
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
 
         <MDXContent code={project.body} components={mdxComponents} />
 

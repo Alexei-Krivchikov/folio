@@ -1,0 +1,52 @@
+---
+slug: dominocrm
+order: 1
+name: DominoCRM
+type: commercial
+employer: Anthill
+year: "2023 — Present"
+summary: A no-code chatbot builder and multichannel CRM for Telegram, Web and VK — build bot scenarios visually, then run sales and support conversations from one inbox.
+stack:
+  - React
+  - TypeScript
+  - Redux Toolkit
+  - Redux Saga
+  - Chakra UI
+  - SignalR
+  - i18next
+  - Telegram Mini Apps
+links:
+  website: https://domino-crm.com
+cover: /projects/dominocrm/cover.png
+---
+
+## About
+
+DominoCRM is a no-code platform for automating sales and customer support in messengers. A business builds a chatbot without writing any code — from a template, from an AI-generated draft, or from scratch in a visual editor — and publishes it to Telegram, the web and VK at once.
+
+The other half of the product is the CRM: every conversation the bots start lands in a shared inbox, where operators reply in real time, work with contacts, and take over from the bot when a customer needs a human. It's aimed at small and mid-sized teams doing lead generation, marketing, sales and support in messengers, where a developer isn't available for every change to the script.
+
+## Tech stack
+
+The web client is a React single-page application in TypeScript. Application state is handled by Redux Toolkit, with Redux Saga for asynchronous flows and long-running side effects. The interface is built on Chakra UI. Live data — incoming messages, conversation updates and operator presence — arrives over SignalR. The product is localised into four languages with i18next, and part of it also runs inside Telegram as a Telegram Mini App.
+
+## Key features
+
+- A visual flow builder for bots: scenarios assembled on a canvas from connected steps, with no code
+- Multichannel delivery — one bot for Telegram, the web widget and VK
+- A real-time inbox for conversations, so operators and bots share the same thread
+- Group chats with topics, for teams that run support in shared rooms
+- Broadcasts and scheduled auto-broadcasts to segments of contacts
+- AI assistants that answer from the company's own materials and hand off to a manager
+- Contact management with complex, combinable filters
+- Interface localised into four languages
+
+## My role and technical highlights
+
+I work on DominoCRM as a Frontend / FullStack Developer at Anthill, on the product team that builds and maintains the platform. My work has concentrated on the parts of the product that users spend the most time in: the flow builder, conversations and group chats, broadcasts and automation.
+
+- **A visual editor as a first-class interface.** Building bot scenarios on a canvas means keeping a graph of steps and connections in sync with the UI while it is being dragged, edited and validated — the hardest state problem in the product, and the feature the whole platform is judged by.
+- **Real-time conversations.** Chats and group chats update live over a persistent connection. Messages, status changes and hand-offs between a bot and an operator have to land in the right thread, in order, without a refresh, and without the UI drifting out of sync after a reconnect.
+- **Complex forms and filters that stay usable.** Broadcasts, automation rules and contact filters are deep, conditional forms; the work there is mostly about keeping them predictable rather than adding options.
+- **Consistent loading and skeleton states.** A CRM is a screen people keep open all day, so I pushed the app towards one shared vocabulary for loading, empty and error states instead of each screen inventing its own.
+- **Localisation from the inside out.** Four languages across a large interface only stay maintainable if translation keys are structured and no copy is hard-coded.

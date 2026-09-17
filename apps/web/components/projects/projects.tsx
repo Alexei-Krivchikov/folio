@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatProjectNumber, getProjects, projectTypeLabel } from "@/lib/projects";
+import { formatProjectMeta, formatProjectNumber, getProjects } from "@/lib/projects";
 
 export function Projects() {
   const projects = getProjects();
@@ -18,9 +18,7 @@ export function Projects() {
             >
               <p className="font-mono text-sm text-zinc-500">{formatProjectNumber(project.order)}</p>
               <h3 className="mt-2 text-xl font-semibold text-white">{project.name}</h3>
-              <p className="mt-1 text-sm text-zinc-500">
-                {projectTypeLabel[project.type]} · {project.year}
-              </p>
+              <p className="mt-1 text-sm text-zinc-500">{formatProjectMeta(project)}</p>
               <p className="mt-3 text-zinc-400">{project.summary}</p>
             </Link>
           </li>

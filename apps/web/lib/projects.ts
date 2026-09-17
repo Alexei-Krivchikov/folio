@@ -25,3 +25,18 @@ export const projectTypeLabel: Record<Project["type"], string> = {
   commercial: "Commercial",
   personal: "Personal",
 };
+
+export type ProjectLink = { label: string; url: string };
+
+export function getProjectLinks(project: Project): ProjectLink[] {
+  const github = (project.links.github ?? []).map((repo) => ({
+    label: `GitHub — ${repo.label}`,
+    url: repo.url,
+  }));
+  return project.links.website ? [...github, { label: "Website", url: project.links.website }] : github;
+}
+
+export function formatProjectMeta(project: Project): string {
+  const type = projectTypeLabel[project.type];
+  return [project.employer ? `${type} · ${project.employer}` : type, project.year].join(" · ");
+}
