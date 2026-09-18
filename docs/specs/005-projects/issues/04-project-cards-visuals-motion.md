@@ -4,7 +4,7 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -19,10 +19,10 @@ Turn the plain card links into the cards from the spec (sayedanowar-style), with
 
 ## Acceptance criteria
 
-- [ ] Every card on `/` shows number, name, type, year, summary, stack tags, and preview
-- [ ] Cards cascade in once when the Section scrolls into view, and don't replay on scroll back
-- [ ] Hovering a card lifts it and zooms the preview slightly, without layout shift
-- [ ] Tab reaches each card with a visible focus ring; Enter opens its Case study
-- [ ] At a narrow viewport the cards are a single column, with no horizontal scroll
-- [ ] Replacing a placeholder with a real image in a Project's folder needs only the file and its frontmatter path, no code changes
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] Every card on `/` shows number, name, type, year, summary, stack tags, and preview
+- [x] Cards cascade in once when the Section scrolls into view, and don't replay on scroll back
+- [x] Hovering a card lifts it and zooms the preview slightly, without layout shift
+- [x] Tab reaches each card with a visible focus ring; Enter opens its Case study
+- [x] At a narrow viewport the cards are a single column, with no horizontal scroll
+- [x] Replacing a placeholder with a real image in a Project's folder needs only the file and its frontmatter path, no code changes
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
