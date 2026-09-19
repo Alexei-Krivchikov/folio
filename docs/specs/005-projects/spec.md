@@ -1,6 +1,6 @@
 # Spec 005 — Projects and Case studies
 
-Status: ready-for-agent
+Status: Done
 
 ## Problem Statement
 

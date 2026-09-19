@@ -4,7 +4,7 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -26,5 +26,5 @@ The first Project, shown under the Commercial project rules. The content schema 
 - [x] `/projects/dominocrm` shows the type with Employer Anthill, year `2023 — Present`, the landing page link, and no repository link
 - [x] Temporarily adding a `github` link to DominoCRM, or removing `employer`, fails the build; adding `employer` to a Personal project also fails; reverting makes the build pass
 - [x] The page has no code, internal details, or non-public images
-- [ ] The developer has read the text for NDA compliance and accuracy of their role
+- [x] The developer has read the text for NDA compliance and accuracy of their role
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass

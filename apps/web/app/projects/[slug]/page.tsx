@@ -1,4 +1,6 @@
 import { MDXContent } from "@content-collections/mdx/react";
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ComponentProps } from "react";
@@ -8,6 +10,16 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getProjects().map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProject(slug);
+  if (!project) return {};
+  return {
+    title: `${project.name} — Alexei Krivchikov`,
+    description: project.summary,
+  };
 }
 
 const mdxComponents = {
@@ -53,6 +65,25 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         )}
 
         <MDXContent code={project.body} components={mdxComponents} />
+
+        {project.gallery.length > 0 && (
+          <section aria-label="Screenshots" className="mt-12 grid gap-4 sm:grid-cols-2">
+            {project.gallery.map((image) => (
+              <div
+                key={`${image.src}#${image.alt}`}
+                className="relative aspect-[16/10] overflow-hidden rounded-xl border border-zinc-800"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(min-width: 768px) 360px, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </section>
+        )}
 
         {nextProject && (
           <nav className="mt-16 border-t border-zinc-800 pt-8">

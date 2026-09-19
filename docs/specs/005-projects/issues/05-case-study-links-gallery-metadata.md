@@ -4,7 +4,7 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -17,9 +17,9 @@ Complete the Case study page around the MDX body: links to code and the live pro
 
 ## Acceptance criteria
 
-- [ ] A Project with GitHub and Website shows both links; a Project without GitHub shows only Website; a Project with no links shows no links row
-- [ ] External links open in a new tab
-- [ ] The gallery shows images with alt text, and is hidden when `gallery` is empty
-- [ ] Each `/projects/<slug>` has its own `<title>` and meta description
-- [ ] No horizontal scroll at a narrow viewport
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] A Project with GitHub and Website shows both links; a Project without GitHub shows only Website; a Project with no links shows no links row
+- [x] External links open in a new tab
+- [x] The gallery shows images with alt text, and is hidden when `gallery` is empty
+- [x] Each `/projects/<slug>` has its own `<title>` and meta description
+- [x] No horizontal scroll at a narrow viewport
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
