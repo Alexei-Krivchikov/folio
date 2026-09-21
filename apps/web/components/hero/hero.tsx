@@ -1,7 +1,8 @@
 "use client";
 
-import { Button } from "@folio/ui";
+import { buttonVariants } from "@folio/ui";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 const container = {
   hidden: {},
@@ -15,7 +16,7 @@ const item = {
 
 export function Hero() {
   return (
-    <section className="mx-auto flex min-h-[90vh] w-full max-w-5xl flex-col justify-center px-6 py-20">
+    <section id="hero" className="mx-auto flex min-h-[90vh] w-full max-w-5xl flex-col justify-center px-6 py-20">
       <motion.div variants={container} initial="hidden" animate="show">
         <motion.p
           variants={item}
@@ -43,8 +44,12 @@ export function Hero() {
         </motion.p>
 
         <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
-          <Button>Let&apos;s Talk</Button>
-          <Button variant="outline">View Projects</Button>
+          <Link href="#contact" className={buttonVariants()}>
+            Let&apos;s Talk
+          </Link>
+          <Link href="#projects" className={buttonVariants({ variant: "outline" })}>
+            View Projects
+          </Link>
         </motion.div>
       </motion.div>
     </section>

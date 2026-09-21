@@ -40,7 +40,7 @@ const viewportOnce = { once: true, margin: "-80px" } as const;
 
 export function Stack() {
   return (
-    <section className="mx-auto w-full max-w-5xl px-6 py-16">
+    <section id="stack" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>
         <motion.p variants={groupAnim} className="text-sm uppercase tracking-[0.3em] text-zinc-500">
           Toolbox

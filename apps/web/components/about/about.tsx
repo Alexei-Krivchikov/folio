@@ -11,7 +11,7 @@ const viewportOnce = { once: true, margin: "-80px" } as const;
 
 export function About() {
   return (
-    <section className="mx-auto w-full max-w-5xl px-6 py-16">
+    <section id="about" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce}>
         <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">This is me.</p>
         <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">About</h2>

@@ -19,7 +19,7 @@ const jobs: { role: string; org: string; period: string }[] = [
 
 export function Experience() {
   return (
-    <section className="mx-auto w-full max-w-5xl px-6 py-16">
+    <section id="experience" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce}>
         <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">Career</p>
         <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">My Experience</h2>
