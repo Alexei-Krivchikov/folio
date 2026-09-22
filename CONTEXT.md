@@ -14,6 +14,10 @@ _Avoid_: portfolio site, website
 One block of the home page (Hero, About, Stack, Experience, Projects, Contact).
 _Avoid_: block, screen
 
+**Header**:
+The fixed bar with links to the Sections, shown once Hero has scrolled off.
+_Avoid_: navbar, top bar
+
 **Lab**:
 A separate area for animation and 3D experiments, planned after the MVP.
 _Avoid_: playground, sandbox
