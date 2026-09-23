@@ -2,11 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { useLenis, useLenisReady } from "@/components/providers/lenis-provider";
-import { HEADER_OFFSET, isSectionHash } from "@/lib/navigation";
-
-function scrollTargetFor(section: HTMLElement): number {
-  return section.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
-}
+import { isSectionHash } from "@/lib/navigation";
+import { scrollToSection, skipsAnchorScroll } from "./scroll-to-section";
 
 export function useAnchorScroll() {
   const lenis = useLenis();
@@ -20,7 +17,7 @@ export function useAnchorScroll() {
 
       const target = event.target as HTMLElement | null;
       const anchor = target?.closest<HTMLAnchorElement>('a[href^="#"]');
-      if (!anchor) return;
+      if (!anchor || skipsAnchorScroll(anchor)) return;
 
       const hash = anchor.getAttribute("href");
       if (!hash || hash === "#") return;
@@ -29,12 +26,7 @@ export function useAnchorScroll() {
       if (!section) return;
 
       event.preventDefault();
-      const top = scrollTargetFor(section);
-      if (lenis) {
-        lenis.scrollTo(top);
-      } else {
-        window.scrollTo({ top });
-      }
+      scrollToSection(lenis, section);
     }
 
     document.addEventListener("click", handleClick, true);
@@ -53,13 +45,8 @@ export function useAnchorScroll() {
 
     const frame = requestAnimationFrame(() => {
       didHashScroll.current = true;
-      const top = scrollTargetFor(section);
-      if (lenis) {
-        lenis.resize();
-        lenis.scrollTo(top, { immediate: true });
-      } else {
-        window.scrollTo({ top });
-      }
+      lenis?.resize();
+      scrollToSection(lenis, section, { immediate: true });
     });
     return () => cancelAnimationFrame(frame);
   }, [lenis, lenisReady]);

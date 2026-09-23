@@ -18,6 +18,10 @@ _Avoid_: block, screen
 The fixed bar with links to the Sections, shown once Hero has scrolled off.
 _Avoid_: navbar, top bar
 
+**Nav overlay**:
+The full-screen mobile menu opened from the Header.
+_Avoid_: drawer, burger menu
+
 **Lab**:
 A separate area for animation and 3D experiments, planned after the MVP.
 _Avoid_: playground, sandbox
