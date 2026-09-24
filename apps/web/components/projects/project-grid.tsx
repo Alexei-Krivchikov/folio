@@ -43,7 +43,7 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
             <motion.li key={project.slug} variants={fadeUp} whileHover={cardHover}>
               <Link
                 href={`/projects/${project.slug}`}
-                className="group block h-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/40 transition-colors hover:border-zinc-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/40 transition-colors hover:border-zinc-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 <div className="relative aspect-[16/10] overflow-hidden border-b border-zinc-800">
                   <Image
@@ -60,13 +60,13 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
                   />
                 </div>
 
-                <div className="p-6">
+                <div className="flex flex-col flex-1 p-6">
                   <p className="font-mono text-sm text-zinc-500">{project.number}</p>
                   <h3 className="mt-2 text-xl font-semibold text-white">{project.name}</h3>
                   <p className="mt-1 text-sm text-zinc-500">{project.meta}</p>
                   <p className="mt-3 text-zinc-400">{project.summary}</p>
 
-                  <ul className="mt-5 flex flex-wrap gap-2">
+                  <ul className="mt-auto flex flex-wrap gap-2 pt-5">
                     {tags.map((tag) => (
                       <li
                         key={tag}
