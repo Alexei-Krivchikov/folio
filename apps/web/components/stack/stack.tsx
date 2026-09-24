@@ -1,6 +1,14 @@
 "use client";
 
 import { motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
+import {
+  fadeUpVariants,
+  liftOnHover,
+  scaleInVariants,
+  staggerVariants,
+  viewportOnce,
+} from "@/components/motion/variants";
 
 const groups: { title: string; items: string[] }[] = [
   {
@@ -21,24 +29,13 @@ const groups: { title: string; items: string[] }[] = [
   },
 ];
 
-const section = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-};
-
-const groupAnim = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-};
-
-const tileAnim = {
-  hidden: { opacity: 0, scale: 0.92 },
-  show: { opacity: 1, scale: 1, transition: { duration: 0.35, ease: "easeOut" as const } },
-};
-const tileHover = { y: -4, transition: { duration: 0.2 } };
-const viewportOnce = { once: true, margin: "-80px" } as const;
-
 export function Stack() {
+  const reduced = usePrefersReducedMotion();
+  const section = staggerVariants(reduced, { staggerChildren: 0.1 });
+  const groupAnim = fadeUpVariants(reduced, { y: 24, duration: 0.5 });
+  const tileAnim = scaleInVariants(reduced, { scale: 0.92, duration: 0.35 });
+  const tileHover = liftOnHover(reduced, -4);
+
   return (
     <section id="stack" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>

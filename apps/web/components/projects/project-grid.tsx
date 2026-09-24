@@ -1,8 +1,11 @@
 "use client";
 
+import { cn } from "@folio/ui";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
+import { fadeUpVariants, liftOnHover, staggerVariants, viewportOnce } from "@/components/motion/variants";
 
 export type ProjectCard = {
   slug: string;
@@ -16,20 +19,12 @@ export type ProjectCard = {
 
 const MAX_TAGS = 4;
 
-const section = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-};
-
-const cardHover = { y: -6, transition: { duration: 0.2 } };
-const viewportOnce = { once: true, margin: "-80px" } as const;
-
 export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
+  const reduced = usePrefersReducedMotion();
+  const section = staggerVariants(reduced, { staggerChildren: 0.12 });
+  const fadeUp = fadeUpVariants(reduced, { y: 24, duration: 0.5 });
+  const cardHover = liftOnHover(reduced, -6);
+
   return (
     <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>
       <motion.p variants={fadeUp} className="text-sm uppercase tracking-[0.3em] text-zinc-500">
@@ -57,7 +52,11 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
                     fill
                     sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
                     priority={index === 0}
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-focus-visible:scale-105"
+                    className={cn(
+                      "object-cover",
+                      !reduced &&
+                        "transition-transform duration-500 ease-out group-hover:scale-105 group-focus-visible:scale-105",
+                    )}
                   />
                 </div>
 

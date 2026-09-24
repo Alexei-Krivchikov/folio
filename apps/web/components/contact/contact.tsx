@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
+import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
+import { fadeUpVariants, staggerVariants, viewportOnce } from "@/components/motion/variants";
 
 const links = [
   { label: "GitHub", href: "https://github.com/Alexey-Krivcikov", external: true },
@@ -8,20 +10,14 @@ const links = [
   { label: "Email", href: "mailto:krivchikov.alexei@gmail.com", external: false },
 ] as const;
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-};
-
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
 export function Contact() {
+  const reduced = usePrefersReducedMotion();
+  const fadeUp = fadeUpVariants(reduced, { y: 16, duration: 0.5 });
+  const stagger = staggerVariants(reduced, { staggerChildren: 0.08 });
+
   return (
     <section id="contact" className="mx-auto w-full max-w-5xl px-6 py-16">
-      <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}>
+      <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce}>
         <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">Contact</p>
         <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">Get in touch</h2>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-zinc-400">
@@ -33,7 +29,7 @@ export function Contact() {
         variants={stagger}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={viewportOnce}
         className="mt-8 flex flex-wrap gap-3"
       >
         {links.map((link) => (

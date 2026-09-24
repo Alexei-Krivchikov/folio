@@ -4,7 +4,7 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -18,9 +18,20 @@ Right now nothing on the site honours `prefers-reduced-motion`: Lenis always run
 
 ## Acceptance criteria
 
-- [ ] With reduced motion enabled at the OS level, the page loads with every Section fully visible and readable, nothing faded or offset
-- [ ] Anchor clicks jump instantly instead of gliding, and still land on the right Section clear of the Header
-- [ ] Hovering a Project card, a Stack tile or a cover produces no movement
-- [ ] Toggling the OS setting and reloading switches behaviour both ways
-- [ ] With the preference off, all existing motion is unchanged from before this ticket
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] With reduced motion enabled at the OS level, the page loads with every Section fully visible and readable, nothing faded or offset
+- [x] Anchor clicks jump instantly instead of gliding, and still land on the right Section clear of the Header
+- [x] Hovering a Project card, a Stack tile or a cover produces no movement
+- [x] Toggling the OS setting and reloading switches behaviour both ways
+- [x] With the preference off, all existing motion is unchanged from before this ticket
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+
+## Comments
+
+Implemented as `apps/web/components/motion/`:
+
+- `use-prefers-reduced-motion.ts` — `useSyncExternalStore` over `(prefers-reduced-motion: reduce)`; the server snapshot is `false`, so SSR keeps the full-motion markup and the hook flips after hydration.
+- `variants.ts` — `staggerVariants` / `fadeUpVariants` / `scaleInVariants` / `liftOnHover` factories take the flag and the component's own distances and durations, so motion with the preference off is byte-identical to before; with it on they collapse to `opacity: 1, y: 0, scale: 1` with `duration: 0`, no stagger, and `liftOnHover` returns `undefined` so `whileHover` is dropped. `viewportOnce` moved here too.
+- `LenisProvider` skips `new Lenis()` under the preference and still reports `ready: true`, so the hash-on-load effect runs and falls back to `window.scrollTo`.
+- Cover zoom: the `transition-transform … group-hover:scale-105` classes are omitted under the preference. The Hero availability dot's `animate-pulse` is dropped too — not listed in the ticket, but it is the one other piece of always-on motion on the page.
+
+Verified in the dev server by temporarily forcing the hook to `true`: every Section rendered at `opacity: 1` with `transform: none`, the `lenis` class was absent from `<html>`, the cover image carried no transition, the pulse animation was `none`, and an anchor click jumped in one frame landing `#contact` at 72px (`HEADER_OFFSET`). With the force removed, the earlier behaviour returned (`lenis` class present, off-screen Sections back at `opacity: 0`).

@@ -2,6 +2,7 @@
 
 import Lenis from "lenis";
 import { createContext, useContext, useEffect, useState } from "react";
+import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 
 type LenisState = {
   instance: Lenis | null;
@@ -20,8 +21,14 @@ export function useLenisReady(): boolean {
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<LenisState>({ instance: null, ready: false });
+  const reducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
+    if (reducedMotion) {
+      setState({ instance: null, ready: true });
+      return;
+    }
+
     const instance = new Lenis({
       autoRaf: true,
       stopInertiaOnNavigate: true,
@@ -32,7 +39,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
       instance.destroy();
       setState({ instance: null, ready: false });
     };
-  }, []);
+  }, [reducedMotion]);
 
   return <LenisContext.Provider value={state}>{children}</LenisContext.Provider>;
 }

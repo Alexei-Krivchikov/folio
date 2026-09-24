@@ -1,13 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-};
-
-const viewportOnce = { once: true, margin: "-80px" } as const;
+import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
+import { fadeUpVariants, viewportOnce } from "@/components/motion/variants";
 
 const jobs: { role: string; org: string; period: string }[] = [
   {
@@ -18,6 +13,9 @@ const jobs: { role: string; org: string; period: string }[] = [
 ];
 
 export function Experience() {
+  const reduced = usePrefersReducedMotion();
+  const fadeUp = fadeUpVariants(reduced, { y: 24, duration: 0.5 });
+
   return (
     <section id="experience" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce}>

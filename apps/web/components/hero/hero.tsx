@@ -1,20 +1,16 @@
 "use client";
 
-import { buttonVariants } from "@folio/ui";
+import { buttonVariants, cn } from "@folio/ui";
 import { motion } from "motion/react";
 import Link from "next/link";
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 25 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
-};
+import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
+import { fadeUpVariants, staggerVariants } from "@/components/motion/variants";
 
 export function Hero() {
+  const reduced = usePrefersReducedMotion();
+  const container = staggerVariants(reduced, { staggerChildren: 0.12, delayChildren: 0.15 });
+  const item = fadeUpVariants(reduced, { y: 25, duration: 0.6 });
+
   return (
     <section id="hero" className="mx-auto flex min-h-[90vh] w-full max-w-5xl flex-col justify-center px-6 py-20">
       <motion.div variants={container} initial="hidden" animate="show">
@@ -22,7 +18,7 @@ export function Hero() {
           variants={item}
           className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/60 px-4 py-1.5 text-xs text-zinc-300"
         >
-          <span className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
+          <span className={cn("h-2 w-2 rounded-full bg-green-500", !reduced && "animate-pulse")} />
           Available for full-time opportunities
         </motion.p>
 
