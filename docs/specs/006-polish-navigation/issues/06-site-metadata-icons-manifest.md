@@ -4,7 +4,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -19,10 +19,10 @@ The site currently has a title, a description, and nothing else: no favicon, no 
 
 ## Acceptance criteria
 
-- [ ] The browser tab shows the monogram favicon on the home page and on a Case study
-- [ ] `/icon` and `/apple-icon` return PNGs
-- [ ] `/manifest.webmanifest` returns the site name, short name and icons as JSON
-- [ ] The rendered HTML of `/` contains `og:title`, `og:description`, `og:site_name` and `twitter:card`
-- [ ] With `NEXT_PUBLIC_SITE_URL` unset the build works against `localhost`; setting it changes the absolute URLs in the metadata with no code edit
-- [ ] A new ADR exists under `docs/adr/` and is numbered after the highest existing one
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] The browser tab shows the monogram favicon on the home page and on a Case study
+- [x] `/icon` and `/apple-icon` return PNGs
+- [x] `/manifest.webmanifest` returns the site name, short name and icons as JSON
+- [x] The rendered HTML of `/` contains `og:title`, `og:description`, `og:site_name` and `twitter:card`
+- [x] With `NEXT_PUBLIC_SITE_URL` unset the build works against `localhost`; setting it changes the absolute URLs in the metadata with no code edit
+- [x] A new ADR exists under `docs/adr/` and is numbered after the highest existing one
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
