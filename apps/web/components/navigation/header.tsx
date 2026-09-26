@@ -2,7 +2,10 @@
 
 import { cn } from "@folio/ui";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
+import { useLenis } from "@/components/providers/lenis-provider";
 import { HEADER_OFFSET, NAV_LINKS } from "@/lib/navigation";
 import { NavOverlay } from "./nav-overlay";
 import { useCloseOnDesktop } from "./use-close-on-desktop";
@@ -45,6 +48,9 @@ export function Header() {
   const active = useActiveSection();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const pathname = usePathname();
+  const lenis = useLenis();
+  const reducedMotion = usePrefersReducedMotion();
 
   const closeMenu = useCallback(() => {
     setMenuOpen(false);
@@ -52,6 +58,19 @@ export function Header() {
   }, []);
 
   useCloseOnDesktop(closeMenu);
+
+  const handleLogoClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (pathname !== "/") return;
+      event.preventDefault();
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: reducedMotion });
+      } else {
+        window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+      }
+    },
+    [pathname, lenis, reducedMotion],
+  );
 
   return (
     <>
@@ -64,7 +83,7 @@ export function Header() {
         inert={!visible}
       >
         <nav className="mx-auto flex h-full w-full max-w-5xl items-center justify-between px-6">
-          <Link href="/" className={cn("text-sm font-semibold text-white", focusRing)}>
+          <Link href="/" onClick={handleLogoClick} className={cn("text-sm font-semibold text-white", focusRing)}>
             Alexei Krivchikov
           </Link>
 
