@@ -4,7 +4,7 @@
 
 **Blocked by:** 06
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -19,10 +19,10 @@ A shared 1200×630 preview image, generated as code, for the home page and for e
 
 ## Acceptance criteria
 
-- [ ] `curl -I http://localhost:3000/opengraph-image` returns `content-type: image/png`
-- [ ] `curl -I http://localhost:3000/projects/dominocrm/opengraph-image` returns `content-type: image/png`
-- [ ] Both images are 1200×630 and legible when opened in a browser
-- [ ] The rendered HTML of `/` and of `/projects/dominocrm` each contain an absolute `og:image` URL built from `metadataBase`
-- [ ] The DominoCRM image shows its Employer and no repository link, consistent with the Case study's NDA rules
-- [ ] The three Case study images differ from each other and from the home page image
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] `curl -I http://localhost:3000/opengraph-image` returns `content-type: image/png`
+- [x] `curl -I http://localhost:3000/projects/dominocrm/opengraph-image` returns `content-type: image/png`
+- [x] Both images are 1200×630 and legible when opened in a browser
+- [x] The rendered HTML of `/` and of `/projects/dominocrm` each contain an absolute `og:image` URL built from `metadataBase`
+- [x] The DominoCRM image shows its Employer and no repository link, consistent with the Case study's NDA rules
+- [x] The three Case study images differ from each other and from the home page image
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
