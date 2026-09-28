@@ -4,7 +4,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -17,9 +17,9 @@ The Case study route already sets `dynamicParams = false`, so an unknown slug 40
 
 ## Acceptance criteria
 
-- [ ] `/does-not-exist` renders the site's own 404, dark and consistent with the rest of the site
-- [ ] `/projects/unknown` renders the same page
-- [ ] Both return HTTP 404, not 200
-- [ ] The link back to `/` works and is reachable by keyboard with a visible focus ring
-- [ ] The page carries a sensible title in the tab
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] `/does-not-exist` renders the site's own 404, dark and consistent with the rest of the site
+- [x] `/projects/unknown` renders the same page
+- [x] Both return HTTP 404, not 200
+- [x] The link back to `/` works and is reachable by keyboard with a visible focus ring
+- [x] The page carries a sensible title in the tab
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
