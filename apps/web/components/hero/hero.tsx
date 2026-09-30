@@ -40,10 +40,10 @@ export function Hero() {
         </motion.p>
 
         <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
-          <Link href="#contact" className={buttonVariants()}>
+          <Link href="#contact" className={cn(buttonVariants(), "max-md:h-11")}>
             Let&apos;s Talk
           </Link>
-          <Link href="#projects" className={buttonVariants({ variant: "outline" })}>
+          <Link href="#projects" className={cn(buttonVariants({ variant: "outline" }), "max-md:h-11")}>
             View Projects
           </Link>
         </motion.div>

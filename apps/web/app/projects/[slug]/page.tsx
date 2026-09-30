@@ -40,7 +40,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   return (
     <main className="min-h-screen bg-background text-foreground">
       <article className="mx-auto w-full max-w-3xl px-6 py-16">
-        <Link href="/#projects" className="text-sm text-zinc-500 transition-colors hover:text-white">
+        <Link
+          href="/#projects"
+          className="inline-flex h-11 items-center text-sm text-zinc-500 transition-colors hover:text-white md:h-auto"
+        >
           ← Back
         </Link>
 
@@ -55,7 +58,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block rounded-lg border border-zinc-800 px-4 py-2 text-sm text-zinc-200 transition-colors hover:border-zinc-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="inline-block rounded-lg border border-zinc-800 px-4 py-3 text-sm text-zinc-200 md:py-2 transition-colors hover:border-zinc-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   {link.label} ↗
                 </a>
@@ -90,7 +93,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">Next project</p>
             <Link
               href={`/projects/${nextProject.slug}`}
-              className="mt-3 inline-block text-2xl font-semibold text-white transition-colors hover:text-zinc-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="mt-3 inline-flex min-h-11 items-center text-2xl font-semibold text-white transition-colors hover:text-zinc-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               {nextProject.name} →
             </Link>

@@ -16,7 +16,7 @@ export default function NotFound() {
       <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-400">
         The page you&apos;re looking for was moved, renamed, or never existed.
       </p>
-      <Link href="/" className={`${buttonVariants()} mt-8`}>
+      <Link href="/" className={`${buttonVariants()} mt-8 max-md:h-11`}>
         Back to home
       </Link>
     </main>

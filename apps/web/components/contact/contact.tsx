@@ -39,7 +39,7 @@ export function Contact() {
             href={link.href}
             target={link.external ? "_blank" : undefined}
             rel={link.external ? "noreferrer" : undefined}
-            className="rounded-full border border-zinc-800 bg-zinc-900/60 px-5 py-2.5 text-sm text-zinc-200 transition hover:border-zinc-600 hover:text-white"
+            className="rounded-full border border-zinc-800 bg-zinc-900/60 px-5 py-3 text-sm md:py-2.5 text-zinc-200 transition hover:border-zinc-600 hover:text-white"
           >
             {link.label}
           </motion.a>

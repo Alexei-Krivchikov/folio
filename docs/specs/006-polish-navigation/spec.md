@@ -1,6 +1,6 @@
 # Spec 006 — Navigation and polish
 
-Status: ready-for-agent
+Status: Done
 
 ## Problem Statement
 

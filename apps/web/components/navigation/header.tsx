@@ -83,7 +83,11 @@ export function Header() {
         inert={!visible}
       >
         <nav className="mx-auto flex h-full w-full max-w-5xl items-center justify-between px-6">
-          <Link href="/" onClick={handleLogoClick} className={cn("text-sm font-semibold text-white", focusRing)}>
+          <Link
+            href="/"
+            onClick={handleLogoClick}
+            className={cn("flex h-11 items-center text-sm md:h-auto font-semibold text-white", focusRing)}
+          >
             Alexei Krivchikov
           </Link>
 
