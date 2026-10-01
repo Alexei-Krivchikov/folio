@@ -28,7 +28,7 @@ export function Hero() {
 
         <motion.h1
           variants={item}
-          className="mt-4 text-5xl font-extrabold leading-[1.05] tracking-tight text-white md:text-7xl"
+          className="mt-4 font-extrabold leading-[1.05] tracking-tight text-white text-[clamp(3rem,2.187rem+3.614vw,4.5rem)]"
         >
           FRONTEND
           <br />
