@@ -4,7 +4,7 @@
 
 **Blocked by:** 07 (already Done — can start immediately)
 
-**Status:** ready-for-human
+**Status:** Done
 
 ## What to build
 
