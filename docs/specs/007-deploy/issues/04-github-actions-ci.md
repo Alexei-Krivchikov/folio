@@ -4,7 +4,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -21,10 +21,10 @@ Biome, `tsc` and the build run only on the developer's machine today. Vercel wil
 - [x] `.github/workflows/ci.yml` exists and runs on `push` to `main` and on `pull_request`
 - [x] The workflow's Node version satisfies `engines.node` in the root `package.json`, and the pnpm version is read from `packageManager`, not written in the workflow
 - [x] The job runs `pnpm install --frozen-lockfile` followed by `pnpm check`
-- [ ] A run of the workflow on GitHub finishes green for the commit that adds it
-- [ ] A deliberately broken change (a Biome error on a throwaway branch) makes the workflow fail, then the branch is deleted
+- [x] A run of the workflow on GitHub finishes green for the commit that adds it
+- [x] A deliberately broken change (a Biome error on a throwaway branch) makes the workflow fail, then the branch is deleted
 - [x] `npx biome check .` passes on the workflow file's repository state
 
 ## Comments
 
-`packages/config` and `packages/shared` had no `tsconfig.json`, so `tsc --noEmit` there resolved the root one and failed on `apps/web` path aliases. Added both, mirroring `packages/ui`, so `pnpm check` passes on a clean checkout. The first green run on GitHub and the deliberate-failure check are still open.
+`packages/config` and `packages/shared` had no `tsconfig.json`, so `tsc --noEmit` there resolved the root one and failed on `apps/web` path aliases. Added both, mirroring `packages/ui`, so `pnpm check` passes on a clean checkout. The first green run on GitHub and the deliberate-failure check (a Biome error on a throwaway branch) were both confirmed; the actions were then bumped to their Node 24 majors.
