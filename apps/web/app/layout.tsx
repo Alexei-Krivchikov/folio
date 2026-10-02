@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { LenisProvider } from "@/components/providers/lenis-provider";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const title = "Alexei Krivchikov — Frontend Developer";
 const description = "Creative frontend developer — folio. Next.js, TypeScript, Motion.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: siteUrl,
   title,
   description,
   openGraph: {

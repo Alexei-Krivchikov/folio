@@ -4,7 +4,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -16,11 +16,11 @@ The site has nothing for search engines to follow. Add `robots.txt` and `sitemap
 
 ## Acceptance criteria
 
-- [ ] `/robots.txt` returns 200, allows all crawlers, and its `Sitemap:` line is an absolute URL
-- [ ] `/sitemap.xml` returns 200 and lists `/` and `/projects/dominocrm`, `/projects/book-tracker`, `/projects/folio`, all absolute
-- [ ] With `NEXT_PUBLIC_SITE_URL` set, every URL in both files uses that origin; with it unset they fall back to `http://localhost:3000`
-- [ ] The origin and its fallback live in one shared module imported by `layout.tsx`, `robots.ts` and `sitemap.ts`
-- [ ] No new file appears in `public/`
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] `/robots.txt` returns 200, allows all crawlers, and its `Sitemap:` line is an absolute URL
+- [x] `/sitemap.xml` returns 200 and lists `/` and `/projects/dominocrm`, `/projects/book-tracker`, `/projects/folio`, all absolute
+- [x] With `NEXT_PUBLIC_SITE_URL` set, every URL in both files uses that origin; with it unset they fall back to `http://localhost:3000`
+- [x] The origin and its fallback live in one shared module imported by `layout.tsx`, `robots.ts` and `sitemap.ts`
+- [x] No new file appears in `public/`
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
