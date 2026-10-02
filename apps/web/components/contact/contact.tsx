@@ -6,7 +6,7 @@ import { fadeUpVariants, staggerVariants, viewportOnce } from "@/components/moti
 
 const links = [
   { label: "GitHub", href: "https://github.com/Alexey-Krivcikov", external: true },
-  { label: "Telegram", href: "https://t.me/AlexeiKrivchikov", external: true },
+  { label: "Telegram", href: "https://t.me/A1exe1ch", external: true },
   { label: "Email", href: "mailto:krivchikov.alexei@gmail.com", external: false },
 ] as const;
 

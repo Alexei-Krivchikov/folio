@@ -4,7 +4,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -17,9 +17,9 @@ The Contact Section links `https://t.me/AlexeiKrivchikov`, which is not the deve
 
 ## Acceptance criteria
 
-- [ ] The Telegram pill opens `https://t.me/A1exe1ch` in a new tab
-- [ ] `grep -r "AlexeiKrivchikov" apps docs README.md` (excluding `node_modules`, `.next`, `.content-collections`) returns no link to `t.me`
-- [ ] The Email link and the GitHub link are unchanged, and Contact still has exactly three links
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] The Telegram pill opens `https://t.me/A1exe1ch` in a new tab
+- [x] `grep -r "AlexeiKrivchikov" apps docs README.md` (excluding `node_modules`, `.next`, `.content-collections`) returns no link to `t.me`
+- [x] The Email link and the GitHub link are unchanged, and Contact still has exactly three links
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
