@@ -10,7 +10,7 @@
 
 Put the site on the internet. This is the developer's work in the Vercel dashboard, not code: it needs the developer's Vercel account. It is blocked by the code tickets so that the first public build already has the right Telegram link, `robots.txt`, sitemap, analytics, CI and README.
 
-1. Import `Alexey-Krivcikov/folio` into Vercel and name the project `alexei-krivchikov`. If that name is taken, pick the closest free one, record it in the comments below, and use it everywhere this spec says `alexei-krivchikov.vercel.app` (the variable below, ticket 05's README link, ticket 07's checks and the folio Case study links).
+1. Import `Alexei-Krivchikov/folio` into Vercel and name the project `alexei-krivchikov`. If that name is taken, pick the closest free one, record it in the comments below, and use it everywhere this spec says `alexei-krivchikov.vercel.app` (the variable below, ticket 05's README link, ticket 07's checks and the folio Case study links).
 2. Framework preset Next.js, Root Directory `apps/web`, "Include source files outside of the Root Directory in the Build Step" on (`packages/ui` is built from outside it). Leave the build and install commands on their defaults; pnpm and Node come from `package.json`. Do not add a `vercel.json` unless the build fails without one.
 3. Production Branch `main`. Pull requests and other branches get preview deployments (the default).
 4. Environment variable `NEXT_PUBLIC_SITE_URL` = `https://alexei-krivchikov.vercel.app`, no trailing slash, enabled for Production, Preview and Development.

@@ -19,7 +19,7 @@ Check, on `https://alexei-krivchikov.vercel.app` (or the fallback name recorded 
 5. The Contact Telegram pill opens `t.me/A1exe1ch`.
 6. The latest `main` commit has a green CI check on GitHub.
 
-Then edit `apps/web/content/projects/folio.mdx`: add `website: https://alexei-krivchikov.vercel.app` and a `github` entry for `https://github.com/Alexey-Krivcikov/folio` labelled `folio`, in the same shape the other Projects use. These links are added only now so the Case study never points at something that did not exist.
+Then edit `apps/web/content/projects/folio.mdx`: add `website: https://alexei-krivchikov.vercel.app` and a `github` entry for `https://github.com/Alexei-Krivchikov/folio` labelled `folio`, in the same shape the other Projects use. These links are added only now so the Case study never points at something that did not exist.
 
 ## Acceptance criteria
 
