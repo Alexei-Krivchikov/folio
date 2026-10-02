@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import { siteUrl } from "@/lib/site";
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body>
         <LenisProvider>{children}</LenisProvider>
+        <Analytics />
       </body>
     </html>
   );

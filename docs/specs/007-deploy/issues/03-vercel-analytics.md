@@ -4,7 +4,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -17,10 +17,10 @@ The developer wants to know whether anyone visits the site and where they come f
 
 ## Acceptance criteria
 
-- [ ] `@vercel/analytics` is a dependency of `@folio/web` and `pnpm-lock.yaml` is updated
-- [ ] `<Analytics />` is rendered once, in the root layout, and nowhere else
-- [ ] The site renders and behaves exactly as before in local dev and in the production build; the browser console shows no new errors
-- [ ] No cookie is set by the site
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] `@vercel/analytics` is a dependency of `@folio/web` and `pnpm-lock.yaml` is updated
+- [x] `<Analytics />` is rendered once, in the root layout, and nowhere else
+- [x] The site renders and behaves exactly as before in local dev and in the production build; the browser console shows no new errors
+- [x] No cookie is set by the site
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
