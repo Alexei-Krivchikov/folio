@@ -13,7 +13,7 @@ Refs: tajmirul.site, vikasdev-in.vercel.app — dark premium, Tailwind, Motion.
 - **Manager:** pnpm 11 workspaces (`pnpm-workspace.yaml`)
 - **Orchestrator:** Turborepo 2 (`turbo.json` — tasks: build/dev/lint/typecheck)
 - **Tooling:** Biome 2 (lint/format, `biome.json` at root), TypeScript 5 strict (`tsconfig.base.json`)
-- **Deploys:** Vercel (apps/web only for MVP)
+- **Deploys:** Vercel Hobby, Git integration with Root Directory `apps/web`, at `alexei-krivchikov.vercel.app` (ADR 0005)
 
 ```
 folio/
@@ -47,15 +47,15 @@ Phase 2: add PG + Drizzle + Route Handlers for guestbook/views (opt-in).
 
 ## Styling & Animation
 
-- Tailwind 4 + shadcn/ui (Radix) + CSS variables (dark default)
-- Framer Motion 11 for hero/cards (`initial/animate`, `stagger`, `whileHover`, `useInView`)
+- Tailwind 4 + shadcn-style primitives (cva + tailwind-merge) + CSS variables (dark default)
+- Motion 13 for hero/cards (`initial/animate`, `stagger`, `whileHover`, `useInView`)
 - Lenis for smooth scroll
 - GSAP/R3F reserved for `app/lab` (phase 2)
 
 ## Conventions
 
 - Imports via `@/*` (web) and `@folio/*` (packages)
-- Commits: conventional (`feat:`, `fix:`, `docs:`) + Commitlint
+- Commits: conventional (`feat:`, `fix:`, `docs:`)
 - Specs: `docs/specs/00X-<slug>/spec.md` per feature (tickets in `issues/`), ADR for stack decisions
 
 ## Verification

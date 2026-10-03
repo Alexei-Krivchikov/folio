@@ -4,7 +4,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** Done
 
 ## What to build
 
@@ -21,10 +21,17 @@ The README still describes the stack as planned, and the hosting decision exists
 
 ## Acceptance criteria
 
-- [ ] The README's badge and any stack line it contains match the versions and packages in `apps/web/package.json`
-- [ ] The README intro links to `https://alexei-krivchikov.vercel.app`
-- [ ] `docs/adr/0005-…md` exists, is numbered after ADR 0004, follows its structure, and covers the four points above
-- [ ] `docs/architecture.md` agrees with the ADR on hosting
-- [ ] `npx biome check .` passes
+- [x] The README's badge and any stack line it contains match the versions and packages in `apps/web/package.json`
+- [x] The README intro links to `https://alexei-krivchikov.vercel.app`
+- [x] `docs/adr/0005-…md` exists, is numbered after ADR 0004, follows its structure, and covers the four points above
+- [x] `docs/architecture.md` agrees with the ADR on hosting
+- [x] `npx biome check .` passes
 
 ## Comments
+
+Checked against `apps/web/package.json` and `next.config.ts`:
+
+- Badge: Framer Motion 11 became Motion 13 (`motion@^13.2.0`).
+- Stack list: dropped "React Compiler" (`reactCompiler: false` in `next.config.ts`) and "Husky + Commitlint" (not installed, no config in the repo). "shadcn/ui (Radix)" became "shadcn-style primitives (cva + tailwind-merge)": `packages/ui` has no Radix dependency, only `class-variance-authority`, `clsx`, `tailwind-merge`.
+- `npx biome check .` was red locally on a clean `main` because `core.autocrlf=true` checked files out as CRLF and the repo had no `.gitattributes`. Added `.gitattributes` (`* text=auto eol=lf`); after normalising the working tree Biome passes.
+- ADR 0002 and `docs/architecture.md` (Styling, Conventions) were updated at the developer's request to match the code: Motion 13, React Compiler off, no Radix, no Commitlint.

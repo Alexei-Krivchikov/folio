@@ -9,9 +9,9 @@ Creative portfolio to impress recruiter. Refs: tajmirul.site, vikasdev-in.vercel
 
 ## Decision
 
-- **Next.js 16 App Router + React 19 + React Compiler** (as in habits-tracker)
-- **Tailwind CSS 4 + shadcn/ui (Radix)** for custom dark premium design
-- **Framer Motion 11 + Lenis** for MVP animation (GSAP/R3F in phase 2 Lab)
+- **Next.js 16 App Router + React 19.** React Compiler was planned (as in habits-tracker) but is switched off (`reactCompiler: false` in `next.config.ts`)
+- **Tailwind CSS 4 + shadcn-style primitives** (cva + clsx + tailwind-merge, no Radix yet) for custom dark premium design
+- **Motion 13 (formerly Framer Motion) + Lenis** for MVP animation (GSAP/R3F in phase 2 Lab)
 - **TypeScript 5 strict + Biome 2**
 
 ## Alternatives
