@@ -4,7 +4,7 @@
 
 **Blocked by:** 01, 02, 03, 04, 05
 
-**Status:** ready-for-human
+**Status:** Done
 
 ## What to build
 
@@ -25,7 +25,7 @@ Put the site on the internet. This is the developer's work in the Vercel dashboa
 - [x] `NEXT_PUBLIC_SITE_URL` is set for Production, Preview and Development to the production origin
 - [x] Web Analytics is enabled, and a visit to the live site shows up in the dashboard
 - [x] A pull request produces a preview deployment
-- [ ] A push to `main` produces a production deployment with no manual step
+- [x] A push to `main` produces a production deployment with no manual step
 
 ## Comments
 
@@ -34,3 +34,4 @@ Put the site on the internet. This is the developer's work in the Vercel dashboa
 - Web Analytics returned 404 on `/_vercel/insights/script.js` until it was enabled in the dashboard and the project redeployed; after that the dashboard counted a visit.
 - A pull request with an empty commit showed "Skipped" on the Vercel bot comment: with a monorepo Root Directory Vercel skips deployments that change nothing under `apps/web`. A pull request that touched `apps/web` produced a Ready preview, and was closed unmerged with its branch deleted.
 - While verifying, the site looked unreachable (`ERR_CONNECTION_RESET`, TCP timeouts) because of a VPN, not the deployment. Without the VPN `/`, `/robots.txt` and `/sitemap.xml` return 200.
+- A push to `main` (commit `c82409a`, inside `apps/web`) produced a Production deployment on its own. Commits that touch only `docs/` are skipped by Vercel, so `839c4b8` did not.

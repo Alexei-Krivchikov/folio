@@ -1,6 +1,6 @@
 # Spec 007 — Deploy and launch
 
-Status: Draft
+Status: Done
 
 ## Problem Statement
 

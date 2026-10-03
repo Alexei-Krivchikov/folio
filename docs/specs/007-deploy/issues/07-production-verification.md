@@ -4,7 +4,7 @@
 
 **Blocked by:** 06
 
-**Status:** ready-for-human
+**Status:** Done
 
 ## What to build
 
@@ -23,15 +23,20 @@ Then edit `apps/web/content/projects/folio.mdx`: add `website: https://alexei-kr
 
 ## Acceptance criteria
 
-- [ ] Lighthouse mobile scores are recorded in the comments, each at 90 or above, or the shortfall has its own ticket
-- [ ] `og:image` on `/` and on a Case study is absolute and on the production origin
-- [ ] `/manifest.webmanifest`, `/robots.txt`, `/sitemap.xml` return 200 with the content described above, and both OG image routes return `image/png`
-- [ ] A real Telegram preview shows title, description and image for the home page and for a Case study
-- [ ] The Contact Telegram link opens `t.me/A1exe1ch`
-- [ ] The latest `main` commit has a green CI check
-- [ ] `folio.mdx` carries the website and GitHub links, the folio Case study shows both in its link row, and both open the right pages
-- [ ] After the new links are pushed, the production deployment shows them
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
-- [ ] Spec 007's status is set to Done
+- [x] Lighthouse mobile scores are recorded in the comments, each at 90 or above, or the shortfall has its own ticket
+- [x] `og:image` on `/` and on a Case study is absolute and on the production origin
+- [x] `/manifest.webmanifest`, `/robots.txt`, `/sitemap.xml` return 200 with the content described above, and both OG image routes return `image/png`
+- [x] A real Telegram preview shows title, description and image for the home page and for a Case study
+- [x] The Contact Telegram link opens `t.me/A1exe1ch`
+- [x] The latest `main` commit has a green CI check
+- [x] `folio.mdx` carries the website and GitHub links, the folio Case study shows both in its link row, and both open the right pages
+- [x] After the new links are pushed, the production deployment shows them
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] Spec 007's status is set to Done
 
 ## Comments
+
+- Lighthouse, mobile (Chrome DevTools, `https://alexei-krivchikov.vercel.app/`): Performance 91, Accessibility 96, Best Practices 100, SEO 100.
+- `og:image` on `/` and `/projects/dominocrm` is absolute on `https://alexei-krivchikov.vercel.app`. `/manifest.webmanifest`, `/robots.txt` and `/sitemap.xml` return 200; the sitemap lists `/` and the three Case studies; `robots.txt` names the sitemap; both OG image routes return `image/png`.
+- Telegram previews for the home page and a Case study show title, description and image. The Contact Telegram pill opens `t.me/A1exe1ch`.
+- `folio.mdx` links added in `c82409a`. The production deployment shows both on `/projects/folio`. CI is green on that commit; `biome`, `tsc` and `turbo build` pass.
