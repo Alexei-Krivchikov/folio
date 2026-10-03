@@ -20,11 +20,17 @@ Put the site on the internet. This is the developer's work in the Vercel dashboa
 
 ## Acceptance criteria
 
-- [ ] `https://alexei-krivchikov.vercel.app` (or the recorded fallback name) serves the home page over HTTPS
-- [ ] The Vercel project's Root Directory is `apps/web`, Production Branch is `main`, and no `vercel.json` was added unless a failing build required it
-- [ ] `NEXT_PUBLIC_SITE_URL` is set for Production, Preview and Development to the production origin
-- [ ] Web Analytics is enabled, and a visit to the live site shows up in the dashboard
-- [ ] A pull request produces a preview deployment
+- [x] `https://alexei-krivchikov.vercel.app` (or the recorded fallback name) serves the home page over HTTPS
+- [x] The Vercel project's Root Directory is `apps/web`, Production Branch is `main`, and no `vercel.json` was added unless a failing build required it
+- [x] `NEXT_PUBLIC_SITE_URL` is set for Production, Preview and Development to the production origin
+- [x] Web Analytics is enabled, and a visit to the live site shows up in the dashboard
+- [x] A pull request produces a preview deployment
 - [ ] A push to `main` produces a production deployment with no manual step
 
 ## Comments
+
+- The name `alexei-krivchikov` was free, so the address is `https://alexei-krivchikov.vercel.app` and nothing else in the spec changes.
+- `NEXT_PUBLIC_SITE_URL` was first saved as type Secret, which hides the value and offers no Development environment. Recreated as type Config for Production, Preview and Development. A `NEXT_PUBLIC_` value ships to the browser anyway, so Secret was the wrong type.
+- Web Analytics returned 404 on `/_vercel/insights/script.js` until it was enabled in the dashboard and the project redeployed; after that the dashboard counted a visit.
+- A pull request with an empty commit showed "Skipped" on the Vercel bot comment: with a monorepo Root Directory Vercel skips deployments that change nothing under `apps/web`. A pull request that touched `apps/web` produced a Ready preview, and was closed unmerged with its branch deleted.
+- While verifying, the site looked unreachable (`ERR_CONNECTION_RESET`, TCP timeouts) because of a VPN, not the deployment. Without the VPN `/`, `/robots.txt` and `/sitemap.xml` return 200.
