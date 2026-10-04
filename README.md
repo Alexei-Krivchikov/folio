@@ -8,7 +8,7 @@ Creative portfolio / lab — `Alexei Krivchikov`.
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?logo=tailwindcss&logoColor=white)
 ![Motion](https://img.shields.io/badge/Motion-13-0055FF?logo=framer&logoColor=white)
 
-Goal: impress recruiter — `Hero + About + Stack + Experience + Projects (3 case studies) + Contact`. Deployed on Vercel: [alexei-krivchikov.vercel.app](https://alexei-krivchikov.vercel.app). EN first, RU later.
+Goal: show recruiters real work, not just claims, in a few minutes: `Hero + About + Stack + Experience + Projects (3 case studies) + Contact`. Deployed on Vercel: [alexei-krivchikov.vercel.app](https://alexei-krivchikov.vercel.app). EN first, RU later.
 
 ## Stack (MVP, 2026)
 
