@@ -74,12 +74,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             {project.gallery.map((image) => (
               <div
                 key={`${image.src}#${image.alt}`}
-                className="relative aspect-[16/10] overflow-hidden rounded-xl border border-zinc-800"
+                className="relative aspect-video overflow-hidden rounded-xl border border-zinc-800"
               >
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
+                  quality={90}
                   sizes="(min-width: 768px) 360px, (min-width: 640px) 50vw, 100vw"
                   className="object-cover"
                 />

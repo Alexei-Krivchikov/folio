@@ -45,11 +45,12 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
                 href={`/projects/${project.slug}`}
                 className="group flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/40 transition-colors hover:border-zinc-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
-                <div className="relative aspect-16/10 overflow-hidden border-b border-zinc-800">
+                <div className="relative aspect-video overflow-hidden border-b border-zinc-800">
                   <Image
                     src={project.cover}
                     alt={`${project.name} preview`}
                     fill
+                    quality={90}
                     sizes="(min-width: 1024px) 476px, (min-width: 768px) calc((100vw - 72px) / 2), 100vw"
                     priority={index === 0}
                     className={cn(
