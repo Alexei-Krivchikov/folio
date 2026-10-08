@@ -56,7 +56,7 @@ pnpm typecheck  # turbo typecheck
 ## Roadmap
 
 - **MVP (20h, 30d x 0.5-1h):** skeleton → ui-kit → hero/about → stack/experience → projects MDX → contact + deploy
-- **Phase 2:** Lab (GSAP/R3F), Blog, Guestbook (PG+Drizzle), RU, custom domain
+- **Phase 2:** Lab (GSAP/R3F), Blog, Guestbook (PG+Drizzle), RU
 
 ## Scripts
 
