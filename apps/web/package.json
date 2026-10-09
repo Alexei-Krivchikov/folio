@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "biome check .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "content-collections build && tsc --noEmit"
   },
   "dependencies": {
     "@content-collections/core": "^0.15.2",
@@ -24,6 +24,7 @@
     "zod": "^4.5.4"
   },
   "devDependencies": {
+    "@content-collections/cli": "^0.1.9",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^20",
     "@types/react": "^19",
