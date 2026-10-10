@@ -50,6 +50,7 @@ Phase 2: add PG + Drizzle + Route Handlers for guestbook/views (opt-in).
 - Tailwind 4 + shadcn-style primitives (cva + tailwind-merge) + CSS variables (dark default)
 - Motion 13 for hero/cards (`initial/animate`, `stagger`, `whileHover`, `useInView`)
 - Lenis for smooth scroll
+- Visual upgrade (specs 009–015): Ember palette as tokens in `packages/ui`, `ogl` fragment shader for the Hero Signature moment, React `ViewTransition` for Case study navigation (ADR 0006). Motion stays the only animation engine; GSAP is still reserved for the Lab
 - GSAP/R3F reserved for `app/lab` (phase 2)
 
 ## Conventions

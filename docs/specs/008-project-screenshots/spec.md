@@ -1,6 +1,6 @@
 # Spec 008 — Real Project screenshots
 
-Status: Draft
+Status: Done
 
 ## Problem Statement
 

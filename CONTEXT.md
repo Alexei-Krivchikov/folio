@@ -11,7 +11,7 @@ The portfolio site itself, and also one of its own Personal projects.
 _Avoid_: portfolio site, website
 
 **Section**:
-One block of the home page (Hero, About, Stack, Experience, Projects, Contact).
+One block of the home page (Hero, Projects, About, Experience, Contact), in that order. The stack of tools Alexei works with is part of About, not a Section of its own.
 _Avoid_: block, screen
 
 **Header**:
@@ -21,6 +21,14 @@ _Avoid_: navbar, top bar
 **Nav overlay**:
 The full-screen mobile menu opened from the Header.
 _Avoid_: drawer, burger menu
+
+**Signature moment**:
+The one dominant visual piece of the Hero that a visitor sees in the first seconds and that sets the impression of the whole site.
+_Avoid_: hero effect, hero animation, wow element
+
+**Facts strip**:
+A short row of three or four concrete facts about Alexei shown right under the Hero, so a recruiter gets the essentials without reading.
+_Avoid_: stats bar, counters, KPI row
 
 **Lab**:
 A separate area for animation and 3D experiments, planned after the MVP.
