@@ -27,11 +27,11 @@ No new features. The cross-cutting checks from the spec, run once on the finishe
 - [x] Lifecycle pass done; no leaked canvas or context
 - [x] Keyboard pass done; focus rings visible over the shader; the canvas is not a tab stop
 - [x] Contrast table written under Comments; every pair is AA
-- [ ] A real Android phone was tried and the result recorded (developer: see the instructions under Comments)
+- [x] A real Android phone was tried and the result recorded
 - [x] Lighthouse numbers recorded under Comments (not gating)
 - [x] `CONTEXT.md` is up to date
-- [ ] Spec 010 is marked Done
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] Spec 010 is marked Done
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
 
@@ -106,3 +106,7 @@ This is the one step left. Please open the site on a mid-range Android phone and
 1. Reachable without a push: run `pnpm --filter @folio/web dev` and open the "Network" address that Next prints (a `192.168...` or similar address) in Chrome on the phone, on the same Wi-Fi. Production-like numbers need the Vercel preview, so pushing `dev` and opening the preview URL (log in to Vercel on the phone) is better.
 2. Check: the aurora moves smoothly (no stutter), the headline fits and the status pill stays on one line, the Facts strip wraps two by two, nothing is cut off, the buttons work, and it feels fine while scrolling away and back.
 3. Tell me the phone model and what you saw. If it stutters, the first things to try are lowering `MAX_DPR` (1.5 now) or the number of noise octaves (4 in `fbm`), and this ticket records that. The shader already switches itself off below 20 frames per second, in which case you will see the static poster.
+
+### Real Android phone: result
+
+The developer opened the pushed build on their own Android phone and reported that everything is fine ("на андроиде все норм"). The phone model and the exact frame rate were not recorded, and no change to `MAX_DPR` or the noise octaves was needed.

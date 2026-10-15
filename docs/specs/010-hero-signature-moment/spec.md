@@ -1,6 +1,6 @@
 # Spec 010 — Hero Signature moment
 
-Status: Draft
+Status: Done
 
 ## Problem Statement
 
