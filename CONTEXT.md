@@ -30,6 +30,10 @@ _Avoid_: hero effect, hero animation, wow element
 A short row of three or four concrete facts about Alexei shown right under the Hero, so a recruiter gets the essentials without reading.
 _Avoid_: stats bar, counters, KPI row
 
+**Poster**:
+The static gradient behind the Hero's shader. It is hidden while the shader runs and shown only when the shader cannot run (reduced motion, no WebGL2, a weak device, a lost context, a failed load) or when JavaScript is off.
+_Avoid_: fallback image, background image
+
 **Lab**:
 A separate area for animation and 3D experiments, planned after the MVP.
 _Avoid_: playground, sandbox
