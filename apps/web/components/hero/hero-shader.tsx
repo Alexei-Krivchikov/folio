@@ -8,6 +8,10 @@ import { fragment, vertex } from "./hero-shader.glsl";
 
 const MAX_DPR = 1.5;
 const FADE_IN_MS = 1600;
+const MIN_CORES = 4;
+const WARMUP_FRAMES = 30;
+const SAMPLE_FRAMES = 60;
+const MIN_FPS = 20;
 const RESIZE_DEBOUNCE_MS = 150;
 const POINTER_SMOOTHING = 6;
 const DRIFT_AMOUNT = 0.7;
@@ -17,6 +21,14 @@ const aurora = { scale: 2.2, speed: 0.09, warp: 1.7, low: 0.3, high: 0.6 } as co
 
 function readColor(name: string) {
   return new Color(getComputedStyle(document.documentElement).getPropertyValue(name).trim());
+}
+
+function supportsWebGL2() {
+  const probe = document.createElement("canvas");
+  const gl = probe.getContext("webgl2");
+  if (!gl) return false;
+  gl.getExtension("WEBGL_lose_context")?.loseContext();
+  return true;
 }
 
 export type ShaderStatus = "running" | "unavailable";
@@ -32,6 +44,11 @@ export function HeroShader({ onStatus }: HeroShaderProps) {
   useEffect(() => {
     const host = hostRef.current;
     if (!host) return;
+
+    if ((navigator.hardwareConcurrency ?? MIN_CORES) < MIN_CORES || !supportsWebGL2()) {
+      onStatus("unavailable");
+      return;
+    }
 
     const canvas = document.createElement("canvas");
     canvas.className = "absolute inset-0 h-full w-full";
@@ -79,7 +96,19 @@ export function HeroShader({ onStatus }: HeroShaderProps) {
         uPointerAmount: { value: 0 },
       },
     });
+    if (!gl.getProgramParameter(program.program, gl.LINK_STATUS)) {
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
+      canvas.remove();
+      onStatus("unavailable");
+      return;
+    }
     const mesh = new Mesh(gl, { geometry: new Triangle(gl), program });
+
+    const onContextLost = (event: Event) => {
+      event.preventDefault();
+      onStatus("unavailable");
+    };
+    canvas.addEventListener("webglcontextlost", onContextLost);
 
     const fine = window.matchMedia(FINE_POINTER).matches;
     const section = host.parentElement;
@@ -124,10 +153,24 @@ export function HeroShader({ onStatus }: HeroShaderProps) {
     let frame = 0;
     let active = false;
     let shown = false;
+    let frames = 0;
+    let sampledFrames = 0;
+    let sampledTime = 0;
     const tick = (now: number) => {
       const delta = (now - last) / 1000;
       last = now;
       seconds += delta;
+
+      frames += 1;
+      if (frames > WARMUP_FRAMES && sampledFrames < SAMPLE_FRAMES) {
+        sampledFrames += 1;
+        sampledTime += delta;
+        if (sampledFrames === SAMPLE_FRAMES && SAMPLE_FRAMES / sampledTime < MIN_FPS) {
+          active = false;
+          onStatus("unavailable");
+          return;
+        }
+      }
       const ease = 1 - Math.exp(-delta * POINTER_SMOOTHING);
 
       if (fine) {
@@ -180,6 +223,7 @@ export function HeroShader({ onStatus }: HeroShaderProps) {
       observer.disconnect();
       section?.removeEventListener("pointermove", onPointerMove);
       section?.removeEventListener("pointerleave", onPointerLeave);
+      canvas.removeEventListener("webglcontextlost", onContextLost);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
       canvas.remove();
     };

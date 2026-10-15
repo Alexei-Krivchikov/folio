@@ -21,6 +21,7 @@ export function Hero({ facts }: { facts: ReactNode }) {
   const [Shader, setShaderComponent] = useState<ComponentType<HeroShaderProps> | null>(null);
 
   useEffect(() => {
+    if (reduced) return;
     let cancelled = false;
     const cancelSchedule = afterFirstPaint(() => {
       import("./hero-shader")
@@ -35,7 +36,7 @@ export function Hero({ facts }: { facts: ReactNode }) {
       cancelled = true;
       cancelSchedule();
     };
-  }, []);
+  }, [reduced]);
 
   const container = staggerVariants(reduced, { staggerChildren: 0 });
   const headline = staggerVariants(reduced, { staggerChildren: STEP });
@@ -49,8 +50,8 @@ export function Hero({ facts }: { facts: ReactNode }) {
 
   return (
     <section id="hero" className="relative isolate flex min-h-svh w-full flex-col justify-center overflow-hidden">
-      <HeroPoster visible={shader === "unavailable"} />
-      {Shader && <Shader onStatus={setShader} />}
+      <HeroPoster visible={reduced || shader === "unavailable"} />
+      {Shader && !reduced && shader !== "unavailable" && <Shader onStatus={setShader} />}
       <div className="mx-auto w-full max-w-5xl px-6 py-24">
         <motion.div variants={container} initial="hidden" animate="show">
           <motion.p

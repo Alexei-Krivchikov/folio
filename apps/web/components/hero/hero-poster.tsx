@@ -13,7 +13,7 @@ export function HeroPoster({ visible }: { visible: boolean }) {
       </noscript>
       <div
         aria-hidden="true"
-        className="hero-poster pointer-events-none absolute inset-0 -z-10 transition-opacity duration-700"
+        className="hero-poster pointer-events-none absolute inset-0 -z-10 transition-opacity duration-700 motion-reduce:transition-none"
         style={{ background: poster, opacity: visible ? 1 : 0 }}
       />
     </>
