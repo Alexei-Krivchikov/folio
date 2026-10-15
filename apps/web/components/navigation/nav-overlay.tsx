@@ -9,15 +9,15 @@ import { useEscapeKey } from "./use-escape-key";
 import { useFocusTrap } from "./use-focus-trap";
 import { useScrollLock } from "./use-scroll-lock";
 
-const focusRing = "rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white";
+const focusRing = "rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
 
 const linkClassName = cn(
-  "flex min-h-[56px] items-center text-3xl font-semibold text-zinc-300 transition-colors hover:text-white",
+  "flex min-h-[56px] items-center text-3xl font-semibold text-muted transition-colors hover:text-accent",
   focusRing,
 );
 
 const iconButtonClassName = cn(
-  "-mr-3 flex h-11 w-11 items-center justify-center text-zinc-300 transition-colors hover:text-white",
+  "-mr-3 flex h-11 w-11 items-center justify-center text-muted transition-colors hover:text-foreground",
   focusRing,
 );
 
@@ -58,7 +58,7 @@ export function NavOverlay({ open, onClose }: { open: boolean; onClose: () => vo
       className="fixed inset-0 z-50 flex flex-col bg-background md:hidden"
     >
       <div className="flex shrink-0 items-center justify-between px-6" style={{ height: HEADER_OFFSET }}>
-        <h2 id={titleId} className="text-sm font-semibold text-white">
+        <h2 id={titleId} className="text-sm font-semibold text-foreground">
           Menu
         </h2>
         <button type="button" onClick={onClose} aria-label="Close menu" className={iconButtonClassName}>
