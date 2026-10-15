@@ -32,9 +32,9 @@ Make the shader react. On a desktop the pointer bends the aurora; on a touch dev
 - `hero-shader.glsl.ts`: two new uniforms, `uPointer` (position in the same 0 to 1 space as `vUv`, y up) and `uPointerAmount` (0 to 1, how strongly the pointer acts). Right after the time is computed:
 
   - `toPointer` is the vector from the pointer to the pixel (with the aspect ratio applied so the area of influence is round, not oval).
-  - `pull = exp(-dot(toPointer, toPointer) * 5.0) * uPointerAmount` is a soft round falloff: 1 under the pointer, near 0 beyond roughly a third of the screen.
-  - The noise coordinates `p` are then shifted by `(rotated toPointer * 0.9 - toPointer * 0.5) * pull * POINTER_BEND`. The rotated part (`vec2(-y, x)`) makes the field swirl around the pointer, the minus part pulls it slightly towards it. Because the shift is added to `p` before the noise is sampled, the smoke itself bends; no extra brightness is added, so the contrast caps from ticket 04 still hold.
-  - Strength knob: `POINTER_BEND` (0.4 now; it started at 1.4, which the developer found too strong, then 0.9, and the developer set 0.4 by hand) at the top of the fragment shader. Raise it for a stronger bend, lower it for a subtler one. The size of the affected area is the `5.0` in `pull` (smaller number, larger area).
+  - `pull = exp(-dot(toPointer, toPointer) * RADIUS) * uPointerAmount` is a soft round falloff: 1 under the pointer, fading to 0 with distance. `RADIUS` is 3.0 (a smaller number means a wider area).
+  - The noise coordinates are then moved by `p -= toPointer * LENS * pull` (a lens): around the pointer the aurora is sampled from points closer to it, so the smoke is gently magnified there; there is no swirl and no sideways push. Because the shift is added to `p` before the noise is sampled, only the shape bends; no brightness is added, so the contrast caps from ticket 04 still hold.
+  - Knobs at the top of the fragment shader: `LENS` (0.4: strength of the magnification, larger is stronger) and `RADIUS` (3.0: larger is a smaller area). The smoothness of following the mouse is `POINTER_SMOOTHING` (6) in `hero-shader.tsx`.
 
 - `hero-shader.tsx`:
   - `fine = matchMedia("(pointer: fine) and (hover: hover)")` is read once at mount. For a fine pointer, passive `pointermove` and `pointerleave` listeners go on the Hero Section (the host's parent). For a coarse pointer no listener is attached at all.
@@ -45,7 +45,7 @@ Make the shader react. On a desktop the pointer bends the aurora; on a touch dev
 
 ### Verification
 
-- Real mouse in the browser pane: moving it over the Hero bends the aurora in a swirl around the cursor (screenshot checked); the values fed to the shader follow it, for example the cursor at 1000,300 in a 1425x900 Hero gives `uPointer` 0.701, 0.667.
+- Real mouse in the browser pane: moving it over the Hero bends the aurora around the cursor (screenshot checked, with the first swirl version); the values fed to the shader follow it, for example the cursor at 1000,300 in a 1425x900 Hero gives `uPointer` 0.701, 0.667.
 - Synthetic events: `uPointerAmount` eases 0.036, 0.071, 0.104 ... to 0.999 on entering and to 0.001 after `pointerleave` (about one second each way); after a pause the position snaps to the new pointer position.
 - Emulated phone (375px, `pointer: coarse`): `fine` is false, `uPointer` moves by itself (0.710, 0.591 then 0.767, 0.476 a few seconds later), and a synthetic `pointermove` has no effect on it.
 - Round trip to a Case study and back: 1 canvas, then 0 on the Case study, then 1 again; the pointer works after returning and the console has no errors.
@@ -54,4 +54,4 @@ Make the shader react. On a desktop the pointer bends the aurora; on a touch dev
 
 ### For the developer
 
-Move the mouse over the Hero and tell me if the bend is too weak or too strong (`POINTER_BEND`) and whether the area it affects feels right (the `5.0` in `pull`). The drift on a phone can be made slower or wider through the sine constants in the render loop.
+Done and approved: the developer tried four behaviours (swirl, parallax of the whole field, a stir that follows the motion, and a lens) and chose the lens, then tuned it by hand with temporary URL parameters to `LENS` 0.4, `RADIUS` 3 (soft and wide) and the default smoothing 6. The temporary parameters and the other modes were removed. The drift on a phone can be made slower or wider through the sine constants in the render loop.

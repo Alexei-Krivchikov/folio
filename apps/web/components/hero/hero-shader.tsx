@@ -2,10 +2,13 @@
 
 import { Color, Mesh, Program, Renderer, Triangle } from "ogl";
 import { useEffect, useRef } from "react";
+import { useInView } from "@/components/motion/use-in-view";
+import { usePageVisible } from "@/components/motion/use-page-visible";
 import { fragment, vertex } from "./hero-shader.glsl";
 
 const MAX_DPR = 1.5;
 const FADE_IN_MS = 1600;
+const RESIZE_DEBOUNCE_MS = 150;
 const POINTER_SMOOTHING = 6;
 const DRIFT_AMOUNT = 0.7;
 const FINE_POINTER = "(pointer: fine) and (hover: hover)";
@@ -18,8 +21,13 @@ function readColor(name: string) {
 
 export type ShaderStatus = "running" | "unavailable";
 
-export function HeroShader({ onStatus }: { onStatus: (status: ShaderStatus) => void }) {
+export type HeroShaderProps = { onStatus: (status: ShaderStatus) => void };
+
+export function HeroShader({ onStatus }: HeroShaderProps) {
   const hostRef = useRef<HTMLDivElement>(null);
+  const controlRef = useRef<((run: boolean) => void) | null>(null);
+  const inView = useInView(hostRef);
+  const pageVisible = usePageVisible();
 
   useEffect(() => {
     const host = hostRef.current;
@@ -89,7 +97,11 @@ export function HeroShader({ onStatus }: { onStatus: (status: ShaderStatus) => v
       program.uniforms.uResolution.value = [rect.width * renderer.dpr, rect.height * renderer.dpr];
     };
     resize();
-    const observer = new ResizeObserver(resize);
+    let resizeTimer: ReturnType<typeof setTimeout> | undefined;
+    const observer = new ResizeObserver(() => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, RESIZE_DEBOUNCE_MS);
+    });
     observer.observe(host);
 
     const onPointerMove = (event: PointerEvent) => {
@@ -107,14 +119,16 @@ export function HeroShader({ onStatus }: { onStatus: (status: ShaderStatus) => v
       section.addEventListener("pointerleave", onPointerLeave);
     }
 
-    const start = performance.now();
-    let last = start;
+    let seconds = 0;
+    let last = 0;
     let frame = 0;
+    let active = false;
     let shown = false;
     const tick = (now: number) => {
-      const seconds = (now - start) / 1000;
-      const ease = 1 - Math.exp(-((now - last) / 1000) * POINTER_SMOOTHING);
+      const delta = (now - last) / 1000;
       last = now;
+      seconds += delta;
+      const ease = 1 - Math.exp(-delta * POINTER_SMOOTHING);
 
       if (fine) {
         if (pointer.seen) {
@@ -145,10 +159,24 @@ export function HeroShader({ onStatus }: { onStatus: (status: ShaderStatus) => v
       }
       frame = requestAnimationFrame(tick);
     };
-    frame = requestAnimationFrame(tick);
+
+    const setActive = (run: boolean) => {
+      if (run === active) return;
+      active = run;
+      if (run) {
+        last = performance.now();
+        frame = requestAnimationFrame(tick);
+      } else {
+        cancelAnimationFrame(frame);
+      }
+    };
+    controlRef.current = setActive;
 
     return () => {
+      controlRef.current = null;
+      active = false;
       cancelAnimationFrame(frame);
+      clearTimeout(resizeTimer);
       observer.disconnect();
       section?.removeEventListener("pointermove", onPointerMove);
       section?.removeEventListener("pointerleave", onPointerLeave);
@@ -156,6 +184,10 @@ export function HeroShader({ onStatus }: { onStatus: (status: ShaderStatus) => v
       canvas.remove();
     };
   }, [onStatus]);
+
+  useEffect(() => {
+    controlRef.current?.(inView && pageVisible);
+  }, [inView, pageVisible]);
 
   return <div ref={hostRef} aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10" />;
 }

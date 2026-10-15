@@ -3,11 +3,12 @@
 import { AccentText, buttonVariants, cn } from "@folio/ui";
 import { motion } from "motion/react";
 import Link from "next/link";
-import { type ReactNode, useState } from "react";
+import { type ComponentType, type ReactNode, useEffect, useState } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, staggerVariants } from "@/components/motion/variants";
+import { afterFirstPaint } from "@/lib/after-first-paint";
 import { HeroPoster } from "./hero-poster";
-import { HeroShader, type ShaderStatus } from "./hero-shader";
+import type { HeroShaderProps, ShaderStatus } from "./hero-shader";
 
 const STEP = 0.1;
 const RISE = 28;
@@ -17,6 +18,25 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export function Hero({ facts }: { facts: ReactNode }) {
   const reduced = usePrefersReducedMotion();
   const [shader, setShader] = useState<ShaderStatus | null>(null);
+  const [Shader, setShaderComponent] = useState<ComponentType<HeroShaderProps> | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const cancelSchedule = afterFirstPaint(() => {
+      import("./hero-shader")
+        .then((module) => {
+          if (!cancelled) setShaderComponent(() => module.HeroShader);
+        })
+        .catch(() => {
+          if (!cancelled) setShader("unavailable");
+        });
+    });
+    return () => {
+      cancelled = true;
+      cancelSchedule();
+    };
+  }, []);
+
   const container = staggerVariants(reduced, { staggerChildren: 0 });
   const headline = staggerVariants(reduced, { staggerChildren: STEP });
   const enter = (index: number) =>
@@ -30,7 +50,7 @@ export function Hero({ facts }: { facts: ReactNode }) {
   return (
     <section id="hero" className="relative isolate flex min-h-svh w-full flex-col justify-center overflow-hidden">
       <HeroPoster visible={shader === "unavailable"} />
-      <HeroShader onStatus={setShader} />
+      {Shader && <Shader onStatus={setShader} />}
       <div className="mx-auto w-full max-w-5xl px-6 py-24">
         <motion.div variants={container} initial="hidden" animate="show">
           <motion.p
