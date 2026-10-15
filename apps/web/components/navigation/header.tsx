@@ -6,12 +6,12 @@ import { usePathname } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { useLenis } from "@/components/providers/lenis-provider";
-import { HEADER_OFFSET, NAV_LINKS } from "@/lib/navigation";
+import { HEADER_PILL_HEIGHT, HEADER_TOP_GAP, NAV_LINKS } from "@/lib/navigation";
 import { NavOverlay } from "./nav-overlay";
 import { useCloseOnDesktop } from "./use-close-on-desktop";
 import { useActiveSection, useHeroPassed } from "./use-header-state";
 
-const focusRing = "rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white";
+const focusRing = "rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
 
 function MenuIcon() {
   return (
@@ -30,9 +30,9 @@ function NavLinks({ active }: { active: string | null }) {
             href={`#${link.id}`}
             aria-current={active === link.id ? "true" : undefined}
             className={cn(
-              "text-sm transition-colors hover:text-white",
+              "text-sm transition-colors hover:text-foreground",
               focusRing,
-              active === link.id ? "text-white underline decoration-2 underline-offset-8" : "text-zinc-400",
+              active === link.id ? "text-accent" : "text-muted",
             )}
           >
             {link.label}
@@ -75,18 +75,18 @@ export function Header() {
   return (
     <>
       <header
-        style={{ height: HEADER_OFFSET }}
+        style={{ top: HEADER_TOP_GAP, height: HEADER_PILL_HEIGHT }}
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b border-zinc-800/80 bg-background/70 backdrop-blur transition-opacity duration-300",
+          "fixed left-1/2 z-50 w-[calc(100%-2rem)] max-w-3xl -translate-x-1/2 rounded-pill border border-border bg-background/70 backdrop-blur-md transition-opacity duration-300",
           visible ? "opacity-100" : "opacity-0",
         )}
         inert={!visible}
       >
-        <nav className="mx-auto flex h-full w-full max-w-5xl items-center justify-between px-6">
+        <nav className="flex h-full w-full items-center justify-between pr-3 pl-6">
           <Link
             href="/"
             onClick={handleLogoClick}
-            className={cn("flex h-11 items-center text-sm md:h-auto font-semibold text-white", focusRing)}
+            className={cn("flex h-11 items-center text-sm md:h-auto font-semibold text-foreground", focusRing)}
           >
             Alexei Krivchikov
           </Link>
@@ -100,7 +100,7 @@ export function Header() {
             aria-label="Open menu"
             aria-expanded={menuOpen}
             className={cn(
-              "-mr-3 flex h-11 w-11 items-center justify-center text-zinc-300 transition-colors hover:text-white md:hidden",
+              "flex h-11 w-11 items-center justify-center text-muted transition-colors hover:text-foreground md:hidden",
               focusRing,
             )}
           >

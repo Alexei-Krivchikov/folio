@@ -1,5 +1,6 @@
 "use client";
 
+import { SectionHeading } from "@folio/ui";
 import { motion } from "motion/react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, staggerVariants, viewportOnce } from "@/components/motion/variants";
@@ -18,9 +19,8 @@ export function Contact() {
   return (
     <section id="contact" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce}>
-        <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">Contact</p>
-        <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">Get in touch</h2>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-zinc-400">
+        <SectionHeading label="[ 05 / CONTACT ]">Get in touch</SectionHeading>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
           Open for frontend / fullstack opportunities. Fastest way — Telegram or Email.
         </p>
       </motion.div>
@@ -39,7 +39,7 @@ export function Contact() {
             href={link.href}
             target={link.external ? "_blank" : undefined}
             rel={link.external ? "noreferrer" : undefined}
-            className="rounded-full border border-zinc-800 bg-zinc-900/60 px-5 py-3 text-sm md:py-2.5 text-zinc-200 transition hover:border-zinc-600 hover:text-white"
+            className="rounded-full border border-border bg-foreground/5 px-5 py-3 text-sm md:py-2.5 text-foreground transition hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             {link.label}
           </motion.a>

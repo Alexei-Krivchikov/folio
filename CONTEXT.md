@@ -15,7 +15,7 @@ One block of the home page (Hero, Projects, About, Experience, Contact), in that
 _Avoid_: block, screen
 
 **Header**:
-The fixed bar with links to the Sections, shown once Hero has scrolled off.
+The floating rounded pill at the top of the viewport with the name and links to the Sections, shown once Hero has scrolled off.
 _Avoid_: navbar, top bar
 
 **Nav overlay**:

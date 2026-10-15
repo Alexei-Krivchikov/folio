@@ -4,7 +4,7 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** ready-for-human
 
 ## What to build
 
@@ -20,14 +20,14 @@ The fixed full-width bar in `apps/web/components/navigation/header.tsx` becomes 
 
 ## Acceptance criteria
 
-- [ ] At 1440px the Header is a centred rounded pill; it is hidden while Hero fills the viewport and fades in after, as before
-- [ ] At 375px the pill shows the name and the menu button; the button opens the overlay, Escape and the close button close it, focus goes back to the menu button
-- [ ] Each of the five links lands with its Section heading clearly visible below the pill (no heading hidden behind it)
-- [ ] The active Section's link is shown in the accent and follows the scroll, including the last Section at the very bottom
-- [ ] The pill is readable over every Section and over Project card covers
-- [ ] Tab order and focus rings are as before, with rings visible on the new colours; the hidden pill is still out of the tab order
-- [ ] `/projects/dominocrm` still shows no Header
-- [ ] `CONTEXT.md` describes the Header as the floating pill
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] At 1440px the Header is a centred rounded pill; it is hidden while Hero fills the viewport and fades in after, as before
+- [x] At 375px the pill shows the name and the menu button; the button opens the overlay, Escape and the close button close it, focus goes back to the menu button
+- [x] Each of the five links lands with its Section heading clearly visible below the pill (no heading hidden behind it)
+- [x] The active Section's link is shown in the accent and follows the scroll, including the last Section at the very bottom
+- [x] The pill is readable over every Section and over Project card covers
+- [x] Tab order and focus rings are as before, with rings visible on the new colours; the hidden pill is still out of the tab order
+- [x] `/projects/dominocrm` still shows no Header
+- [x] `CONTEXT.md` describes the Header as the floating pill
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments

@@ -1,4 +1,5 @@
 import { MDXContent } from "@content-collections/mdx/react";
+import { HudLabel } from "@folio/ui";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,11 +24,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 const mdxComponents = {
-  h2: (props: ComponentProps<"h2">) => <h2 className="mt-12 text-2xl font-semibold text-white" {...props} />,
-  p: (props: ComponentProps<"p">) => <p className="mt-4 leading-relaxed text-zinc-400" {...props} />,
-  ul: (props: ComponentProps<"ul">) => <ul className="mt-4 list-disc space-y-2 pl-5 text-zinc-400" {...props} />,
-  strong: (props: ComponentProps<"strong">) => <strong className="font-semibold text-zinc-200" {...props} />,
-  a: (props: ComponentProps<"a">) => <a className="text-white underline underline-offset-4" {...props} />,
+  h2: (props: ComponentProps<"h2">) => <h2 className="mt-12 text-2xl font-semibold text-foreground" {...props} />,
+  p: (props: ComponentProps<"p">) => <p className="mt-4 leading-relaxed text-muted" {...props} />,
+  ul: (props: ComponentProps<"ul">) => <ul className="mt-4 list-disc space-y-2 pl-5 text-muted" {...props} />,
+  strong: (props: ComponentProps<"strong">) => <strong className="font-semibold text-foreground" {...props} />,
+  a: (props: ComponentProps<"a">) => <a className="text-accent underline underline-offset-4" {...props} />,
 };
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -42,13 +43,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <article className="mx-auto w-full max-w-3xl px-6 py-16">
         <Link
           href="/#projects"
-          className="inline-flex h-11 items-center text-sm text-zinc-500 transition-colors hover:text-white md:h-auto"
+          className="inline-flex h-11 items-center text-sm text-muted transition-colors hover:text-accent md:h-auto"
         >
           ← Back
         </Link>
 
-        <h1 className="mt-8 text-4xl font-bold text-white md:text-5xl">{project.name}</h1>
-        <p className="mt-3 text-sm text-zinc-500">{formatProjectMeta(project)}</p>
+        <h1 className="mt-8 text-4xl font-bold text-foreground md:text-5xl">{project.name}</h1>
+        <p className="mt-3 text-sm text-muted">{formatProjectMeta(project)}</p>
 
         {links.length > 0 && (
           <ul className="mt-6 flex flex-wrap gap-3">
@@ -58,7 +59,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block rounded-lg border border-zinc-800 px-4 py-3 text-sm text-zinc-200 md:py-2 transition-colors hover:border-zinc-500 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="inline-block rounded-lg border border-border px-4 py-3 text-sm text-foreground md:py-2 transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   {link.label} ↗
                 </a>
@@ -74,7 +75,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             {project.gallery.map((image) => (
               <div
                 key={`${image.src}#${image.alt}`}
-                className="relative aspect-video overflow-hidden rounded-xl border border-zinc-800"
+                className="relative aspect-video overflow-hidden rounded-xl border border-border"
               >
                 <Image
                   src={image.src}
@@ -90,11 +91,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         )}
 
         {nextProject && (
-          <nav className="mt-16 border-t border-zinc-800 pt-8">
-            <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">Next project</p>
+          <nav className="mt-16 border-t border-border pt-8">
+            <HudLabel as="p">[ Next project ]</HudLabel>
             <Link
               href={`/projects/${nextProject.slug}`}
-              className="mt-3 inline-flex min-h-11 items-center text-2xl font-semibold text-white transition-colors hover:text-zinc-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="mt-3 inline-flex min-h-11 items-center text-2xl font-semibold text-foreground transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
             >
               {nextProject.name} →
             </Link>
