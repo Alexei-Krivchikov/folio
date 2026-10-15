@@ -1,6 +1,6 @@
 "use client";
 
-import { buttonVariants, cn } from "@folio/ui";
+import { buttonVariants, cn, HudLabel } from "@folio/ui";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
@@ -16,26 +16,26 @@ export function Hero() {
       <motion.div variants={container} initial="hidden" animate="show">
         <motion.p
           variants={item}
-          className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/60 px-4 py-1.5 text-xs text-zinc-300"
+          className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-border bg-foreground/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.04em] text-foreground md:text-xs md:tracking-[0.12em]"
         >
           <span className={cn("h-2 w-2 rounded-full bg-green-500", !reduced && "animate-pulse")} />
           Available for full-time opportunities
         </motion.p>
 
-        <motion.p variants={item} className="text-sm uppercase tracking-[0.3em] text-zinc-500">
-          Hi! I&apos;m Alexei Krivchikov.
+        <motion.p variants={item}>
+          <HudLabel>Hi! I&apos;m Alexei Krivchikov.</HudLabel>
         </motion.p>
 
         <motion.h1
           variants={item}
-          className="mt-4 font-extrabold leading-[1.05] tracking-tight text-white text-[clamp(3rem,2.187rem+3.614vw,4.5rem)]"
+          className="mt-4 font-extrabold leading-[1.05] tracking-tight text-foreground text-[clamp(3rem,2.187rem+3.614vw,4.5rem)]"
         >
           FRONTEND
           <br />
           DEVELOPER
         </motion.h1>
 
-        <motion.p variants={item} className="mt-6 max-w-xl text-base leading-relaxed text-zinc-400 md:text-lg">
+        <motion.p variants={item} className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg">
           A creative Frontend Developer building high-performance, scalable, and responsive web solutions.
         </motion.p>
 

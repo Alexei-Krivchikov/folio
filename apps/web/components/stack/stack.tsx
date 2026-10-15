@@ -1,5 +1,6 @@
 "use client";
 
+import { HudLabel, SectionHeading } from "@folio/ui";
 import SiBiome, { defaultColor as biomeHex } from "@icons-pack/react-simple-icons/icons/SiBiome";
 import SiDocker, { defaultColor as dockerHex } from "@icons-pack/react-simple-icons/icons/SiDocker";
 import SiDrizzle, { defaultColor as drizzleHex } from "@icons-pack/react-simple-icons/icons/SiDrizzle";
@@ -90,17 +91,16 @@ export function Stack() {
   return (
     <section id="stack" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>
-        <motion.p variants={groupAnim} className="text-sm uppercase tracking-[0.3em] text-zinc-500">
-          Toolbox
-        </motion.p>
-        <motion.h2 variants={groupAnim} className="mt-3 text-3xl font-bold text-white md:text-4xl">
-          My Stack
-        </motion.h2>
+        <motion.div variants={groupAnim}>
+          <SectionHeading label="[ 02 / STACK ]">My Stack</SectionHeading>
+        </motion.div>
 
         <div className="mt-10 grid gap-8 md:grid-cols-2">
           {groups.map((group) => (
             <motion.div key={group.title} variants={groupAnim}>
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">{group.title}</h3>
+              <HudLabel as="h3" className="font-semibold">
+                {group.title}
+              </HudLabel>
               <div className="mt-4 flex flex-wrap gap-2.5">
                 {group.items.map(({ name, Icon, hex }) => (
                   <motion.span
@@ -108,7 +108,7 @@ export function Stack() {
                     variants={tileAnim}
                     whileHover={tileHover}
                     style={{ "--brand": brandOverrides[name] ?? hex } as CSSProperties}
-                    className="group/tile flex cursor-default items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/60 px-4 py-2 text-sm text-zinc-200 hover:border-zinc-500"
+                    className="group/tile flex cursor-default items-center gap-2 rounded-lg border border-border bg-foreground/5 px-4 py-2 text-sm text-foreground hover:border-accent"
                   >
                     <Icon
                       size={16}
