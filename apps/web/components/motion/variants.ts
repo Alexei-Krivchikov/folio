@@ -1,4 +1,4 @@
-import type { TargetAndTransition, Variants } from "motion/react";
+import type { Easing, TargetAndTransition, Variants } from "motion/react";
 
 export const viewportOnce = { once: true, margin: "-80px" } as const;
 
@@ -23,11 +23,14 @@ export function staggerVariants(
   return { hidden: {}, show: { transition: { staggerChildren, delayChildren } } };
 }
 
-export function fadeUpVariants(reduced: boolean, { y, duration }: { y: number; duration: number }): Variants {
+export function fadeUpVariants(
+  reduced: boolean,
+  { y, duration, delay = 0, ease = easeOut }: { y: number; duration: number; delay?: number; ease?: Easing },
+): Variants {
   if (reduced) return staticShow;
   return {
     hidden: { opacity: 0, y },
-    show: { opacity: 1, y: 0, transition: { duration, ease: easeOut } },
+    show: { opacity: 1, y: 0, transition: { duration, delay, ease } },
   };
 }
 

@@ -19,13 +19,13 @@ No new code. The cross-cutting checks from the spec, run once on the finished re
 
 ## Acceptance criteria
 
-- [ ] Browser pass done at 1440px and 375px with no old-style leftovers and no horizontal scrollbar
+- [x] Browser pass done at 1440px and 375px with no old-style leftovers and no horizontal scrollbar
 - [x] Contrast table written under Comments; every pair is AA
 - [x] Keyboard pass done; tab order identical to before
 - [x] Reduced-motion pass done
-- [ ] Lighthouse mobile Performance is at least 90, LCP at most 2.5 s, CLS 0 on the preview deployment (scores recorded)
+- [x] Lighthouse mobile on the preview deployment run and recorded (87 to 89, LCP 3.3 to 3.5 s, CLS 0). The 90 and 2.5 s targets are not met and are handled in [spec 016](../../016-lighthouse-lcp/spec.md) after specs 010 to 015, by the developer's decision
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
-- [ ] Spec 009 is marked Done
+- [x] Spec 009 is marked Done
 
 ## Comments
 
@@ -60,7 +60,8 @@ The Footer's second line moved from `zinc-600` to muted in ticket 06 because the
 ### Browser pass and anchors
 
 - 375px: all Sections, the three Case studies and the 404 page render in the new palette and fonts, no horizontal scroll, no Header on Case study pages (tickets 05 to 07). Header pill opens the overlay; the Hero "View Projects" link lands the Projects Section at 88px from the top, below the pill (pill bottom 72px). "Let's Talk" scrolls to the page end because Contact is the last Section.
-- Not done: a visual pass at 1440px. The pane scales an emulated 1440px viewport down to an unreadable size, and its native width is phone-sized. Desktop was covered by computed styles only.
+- 1440px (emulated 1440x900 viewport in the browser pane, screenshots of the real render): Hero, About, Stack, Experience, Projects, Contact, Footer, the Header pill with its nav links and the active link in accent, the Case study page (`/projects/dominocrm`) and the 404 page all use the new palette and fonts, with the HUD labels in place and nothing cut off. `scrollWidth` 1425 equals `clientWidth` 1425, so no horizontal scrollbar. Project cards are 476px wide in two columns, Contact links sit in one row, the pill is 768x56 centred at the top.
+- Pane quirks seen while checking, not app issues: after a programmatic scroll the pane sometimes returns a black or half-repainted frame until a second screenshot, and `IntersectionObserver` callbacks (so the Header fade-in) only fire once the pane paints. Headless Chrome screenshots were not usable because Motion does not finish its animations under virtual time.
 
 ### Lighthouse (local production build, mobile, simulated slow 4G, 3 runs each)
 
@@ -74,9 +75,20 @@ The Footer's second line moved from `zinc-600` to muted in ticket 06 because the
 - Tried and rejected: `preload: false` on Geist Mono and Instrument Serif (LCP 3.4 to 3.3 s, within noise) and removing Grain (3.3 s, no change). Both were reverted; nothing is left in the tree.
 - This is a local run, not the preview deployment, so the criterion stays open. The numbers will differ on Vercel (CDN, no local throttling of TTFB). The branch is not pushed (`origin/dev` is at `73f2809`).
 
-### Open
+### Lighthouse on the preview deployment
 
-- [ ] Lighthouse on the preview deployment (needs the branch pushed)
-- [ ] Browser pass at 1440px
-- [ ] Spec 009 stays `Draft` until the two items above are done
-- The Hero `h1` render delay is a Hero concern (spec 010 rebuilds it); if the preview also shows LCP above 2.5 s, it should be fixed there or in a small ticket here, for example by rendering the `h1` visible on the server and animating only the rest.
+Branch `dev` at `647f43a`, Vercel preview behind deployment protection (opened with a Protection Bypass for Automation header), mobile, simulated slow 4G, 3 runs:
+
+| Run | Performance | LCP | CLS | FCP | TBT |
+|---|---|---|---|---|---|
+| 1 | 87 | 3.5 s | 0 | 1.7 s | 20 ms |
+| 2 | 89 | 3.3 s | 0 | 1.5 s | 20 ms |
+| 3 | 89 | 3.3 s | 0 | 1.5 s | 30 ms |
+
+- CLS is 0 and the fonts are the same three self-hosted files (41 + 23 + 16 KB), with no request to Google font hosts. Performance (87 to 89) and LCP (3.3 to 3.5 s) miss the targets of at least 90 and at most 2.5 s.
+- The LCP element is again the Hero `h1`: render delay 2.6 s of 3.5 s, TTFB 0.9 s. The production HTML still carries `style="opacity:0;transform:translateY(25px)"` on the `h1`, which is what the LCP ticket in spec 016 looks at.
+- The pre-spec Vercel deployment (`2e8d368`) was no longer reachable, so there is no baseline on the preview; the local baseline (95, 2.9 s) from above is the only comparison. Preview numbers are about 0.2 s worse than the local production build, consistent with the longer TTFB.
+
+### Closing
+
+Decision by the developer: spec 009 is closed with the Lighthouse numbers recorded as they are. The shortfall (Performance 87 to 89 against 90, LCP 3.3 to 3.5 s against 2.5 s) moves to [spec 016](../../016-lighthouse-lcp/spec.md), to be taken after specs 010 to 015, when the Hero, the Sections and the payload have reached their final shape. The attempt made inside this spec (the Hero `h1` as a plain element) was reverted because the Hero looked flat without its entrance; it is described in the ticket moved to spec 016.
