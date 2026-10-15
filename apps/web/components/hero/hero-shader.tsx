@@ -6,6 +6,9 @@ import { fragment, vertex } from "./hero-shader.glsl";
 
 const MAX_DPR = 1.5;
 const FADE_IN_MS = 1600;
+const POINTER_SMOOTHING = 6;
+const DRIFT_AMOUNT = 0.7;
+const FINE_POINTER = "(pointer: fine) and (hover: hover)";
 
 const aurora = { scale: 2.2, speed: 0.09, warp: 1.7, low: 0.3, high: 0.6 } as const;
 
@@ -64,24 +67,76 @@ export function HeroShader({ onStatus }: { onStatus: (status: ShaderStatus) => v
         uWarp: { value: aurora.warp },
         uLow: { value: aurora.low },
         uHigh: { value: aurora.high },
+        uPointer: { value: [0.5, 0.5] },
+        uPointerAmount: { value: 0 },
       },
     });
     const mesh = new Mesh(gl, { geometry: new Triangle(gl), program });
 
+    const fine = window.matchMedia(FINE_POINTER).matches;
+    const section = host.parentElement;
+    const target = { x: 0.5, y: 0.5, amount: fine ? 0 : DRIFT_AMOUNT };
+    const current = { x: 0.5, y: 0.5, amount: target.amount };
+    const pointer = { clientX: 0, clientY: 0, seen: false, snap: false };
+    const bounds = { top: 0, width: 1, height: 1 };
+
     const resize = () => {
-      const { width, height } = host.getBoundingClientRect();
-      renderer.setSize(width, height);
-      program.uniforms.uResolution.value = [width * renderer.dpr, height * renderer.dpr];
+      const rect = host.getBoundingClientRect();
+      bounds.top = rect.top + window.scrollY;
+      bounds.width = rect.width;
+      bounds.height = rect.height;
+      renderer.setSize(rect.width, rect.height);
+      program.uniforms.uResolution.value = [rect.width * renderer.dpr, rect.height * renderer.dpr];
     };
     resize();
     const observer = new ResizeObserver(resize);
     observer.observe(host);
 
+    const onPointerMove = (event: PointerEvent) => {
+      pointer.clientX = event.clientX;
+      pointer.clientY = event.clientY;
+      if (!pointer.seen || current.amount < 0.02) pointer.snap = true;
+      pointer.seen = true;
+      target.amount = 1;
+    };
+    const onPointerLeave = () => {
+      target.amount = 0;
+    };
+    if (fine && section) {
+      section.addEventListener("pointermove", onPointerMove, { passive: true });
+      section.addEventListener("pointerleave", onPointerLeave);
+    }
+
     const start = performance.now();
+    let last = start;
     let frame = 0;
     let shown = false;
     const tick = (now: number) => {
-      program.uniforms.uTime.value = (now - start) / 1000;
+      const seconds = (now - start) / 1000;
+      const ease = 1 - Math.exp(-((now - last) / 1000) * POINTER_SMOOTHING);
+      last = now;
+
+      if (fine) {
+        if (pointer.seen) {
+          target.x = pointer.clientX / bounds.width;
+          target.y = 1 - (pointer.clientY + window.scrollY - bounds.top) / bounds.height;
+        }
+        if (pointer.snap) {
+          pointer.snap = false;
+          current.x = target.x;
+          current.y = target.y;
+        }
+      } else {
+        target.x = 0.5 + 0.28 * Math.sin(seconds * 0.21) + 0.12 * Math.sin(seconds * 0.53 + 1);
+        target.y = 0.5 + 0.22 * Math.cos(seconds * 0.17) + 0.1 * Math.cos(seconds * 0.41 + 2);
+      }
+      current.x += (target.x - current.x) * ease;
+      current.y += (target.y - current.y) * ease;
+      current.amount += (target.amount - current.amount) * ease;
+
+      program.uniforms.uTime.value = seconds;
+      program.uniforms.uPointer.value = [current.x, current.y];
+      program.uniforms.uPointerAmount.value = current.amount;
       renderer.render({ scene: mesh });
       if (!shown) {
         shown = true;
@@ -95,6 +150,8 @@ export function HeroShader({ onStatus }: { onStatus: (status: ShaderStatus) => v
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
+      section?.removeEventListener("pointermove", onPointerMove);
+      section?.removeEventListener("pointerleave", onPointerLeave);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
       canvas.remove();
     };

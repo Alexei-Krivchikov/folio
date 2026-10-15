@@ -22,10 +22,13 @@ uniform float uSpeed;
 uniform float uWarp;
 uniform float uLow;
 uniform float uHigh;
+uniform vec2 uPointer;
+uniform float uPointerAmount;
 
 in vec2 vUv;
 out vec4 outColor;
 
+const float POINTER_BEND = 0.4;
 const float CAP_TO_WIDE = 0.30;
 const float CAP_FROM_WIDE = 0.22;
 const float CAP_TO_NARROW = 0.50;
@@ -64,6 +67,10 @@ void main() {
   float aspect = uResolution.x / uResolution.y;
   vec2 p = (vUv - 0.5) * vec2(aspect, 1.0) * uScale;
   float t = uTime * uSpeed;
+
+  vec2 toPointer = (vUv - uPointer) * vec2(aspect, 1.0);
+  float pull = exp(-dot(toPointer, toPointer) * 5.0) * uPointerAmount;
+  p += (vec2(-toPointer.y, toPointer.x) * 0.9 - toPointer * 0.5) * pull * POINTER_BEND;
 
   vec2 q = vec2(fbm(p + vec2(0.0, t)), fbm(p + vec2(5.2, 1.3) - t));
   vec2 r = vec2(
