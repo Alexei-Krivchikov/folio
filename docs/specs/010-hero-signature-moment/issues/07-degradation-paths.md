@@ -20,6 +20,8 @@ The shader does not start (and the poster stays) when any of these holds:
 
 If the context is lost at runtime (`webglcontextlost`), the canvas fades out and the poster is what the visitor sees again.
 
+Mechanism already in place from ticket 04: `HeroShader` reports `unavailable` through its `onStatus` callback (today for a missing WebGL2 or a renderer that cannot be created) and the Hero then shows the poster, fading it in; the poster is hidden by default and a `noscript` rule shows it without JavaScript. This ticket extends the list of reasons that report `unavailable` and adds the runtime cases.
+
 No failure may show as an uncaught error in the console or leave a half-drawn canvas over the poster.
 
 ## Acceptance criteria

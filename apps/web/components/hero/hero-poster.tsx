@@ -5,8 +5,17 @@ const poster = [
   "var(--background)",
 ].join(", ");
 
-export function HeroPoster() {
+export function HeroPoster({ visible }: { visible: boolean }) {
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10" style={{ background: poster }} />
+    <>
+      <noscript>
+        <style>{".hero-poster{opacity:1!important}"}</style>
+      </noscript>
+      <div
+        aria-hidden="true"
+        className="hero-poster pointer-events-none absolute inset-0 -z-10 transition-opacity duration-700"
+        style={{ background: poster, opacity: visible ? 1 : 0 }}
+      />
+    </>
   );
 }

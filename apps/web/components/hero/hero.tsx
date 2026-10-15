@@ -3,10 +3,11 @@
 import { AccentText, buttonVariants, cn } from "@folio/ui";
 import { motion } from "motion/react";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, staggerVariants } from "@/components/motion/variants";
 import { HeroPoster } from "./hero-poster";
+import { HeroShader, type ShaderStatus } from "./hero-shader";
 
 const STEP = 0.1;
 const RISE = 28;
@@ -15,6 +16,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function Hero({ facts }: { facts: ReactNode }) {
   const reduced = usePrefersReducedMotion();
+  const [shader, setShader] = useState<ShaderStatus | null>(null);
   const container = staggerVariants(reduced, { staggerChildren: 0 });
   const headline = staggerVariants(reduced, { staggerChildren: STEP });
   const enter = (index: number) =>
@@ -27,7 +29,8 @@ export function Hero({ facts }: { facts: ReactNode }) {
 
   return (
     <section id="hero" className="relative isolate flex min-h-svh w-full flex-col justify-center overflow-hidden">
-      <HeroPoster />
+      <HeroPoster visible={shader === "unavailable"} />
+      <HeroShader onStatus={setShader} />
       <div className="mx-auto w-full max-w-5xl px-6 py-24">
         <motion.div variants={container} initial="hidden" animate="show">
           <motion.p
@@ -51,7 +54,10 @@ export function Hero({ facts }: { facts: ReactNode }) {
             </motion.span>
           </motion.h1>
 
-          <motion.p variants={subtitle} className="mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-2xl">
+          <motion.p
+            variants={subtitle}
+            className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/80 md:text-2xl"
+          >
             Frontend <AccentText className="text-foreground">developer</AccentText> shipping CRM &amp; chatbot UIs
           </motion.p>
 
