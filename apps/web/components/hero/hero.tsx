@@ -8,10 +8,22 @@ import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced
 import { fadeUpVariants, staggerVariants } from "@/components/motion/variants";
 import { HeroPoster } from "./hero-poster";
 
+const STEP = 0.1;
+const RISE = 28;
+const DURATION = 0.7;
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export function Hero({ facts }: { facts: ReactNode }) {
   const reduced = usePrefersReducedMotion();
-  const container = staggerVariants(reduced, { staggerChildren: 0.12, delayChildren: 0.15 });
-  const item = fadeUpVariants(reduced, { y: 25, duration: 0.6 });
+  const container = staggerVariants(reduced, { staggerChildren: 0 });
+  const headline = staggerVariants(reduced, { staggerChildren: STEP });
+  const enter = (index: number) =>
+    fadeUpVariants(reduced, { y: RISE, duration: DURATION, delay: STEP * index, ease: EASE });
+  const line = enter(0);
+  const pill = enter(2);
+  const subtitle = enter(3);
+  const actions = enter(4);
+  const factsStrip = enter(5);
 
   return (
     <section id="hero" className="relative isolate flex min-h-svh w-full flex-col justify-center overflow-hidden">
@@ -19,7 +31,7 @@ export function Hero({ facts }: { facts: ReactNode }) {
       <div className="mx-auto w-full max-w-5xl px-6 py-24">
         <motion.div variants={container} initial="hidden" animate="show">
           <motion.p
-            variants={item}
+            variants={pill}
             className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-border bg-foreground/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.04em] text-foreground md:text-xs md:tracking-[0.12em]"
           >
             <span className={cn("h-2 w-2 rounded-full bg-green-500", !reduced && "animate-pulse")} />
@@ -28,19 +40,22 @@ export function Hero({ facts }: { facts: ReactNode }) {
           </motion.p>
 
           <motion.h1
-            variants={item}
+            variants={headline}
             className="font-extrabold uppercase leading-[0.92] tracking-tight text-foreground text-[clamp(2.25rem,calc((100vw-3rem)/6.1),8rem)]"
           >
-            Alexei
-            <br />
-            Krivchikov
+            <motion.span variants={line} className="block">
+              Alexei{" "}
+            </motion.span>
+            <motion.span variants={line} className="block">
+              Krivchikov
+            </motion.span>
           </motion.h1>
 
-          <motion.p variants={item} className="mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-2xl">
+          <motion.p variants={subtitle} className="mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-2xl">
             Frontend <AccentText className="text-foreground">developer</AccentText> shipping CRM &amp; chatbot UIs
           </motion.p>
 
-          <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
+          <motion.div variants={actions} className="mt-8 flex flex-wrap gap-3">
             <Link href="#contact" className={cn(buttonVariants(), "max-md:h-11")}>
               Let&apos;s Talk
             </Link>
@@ -49,7 +64,7 @@ export function Hero({ facts }: { facts: ReactNode }) {
             </Link>
           </motion.div>
 
-          <motion.div variants={item} className="mt-14 md:mt-20">
+          <motion.div variants={factsStrip} className="mt-14 md:mt-20">
             {facts}
           </motion.div>
         </motion.div>
