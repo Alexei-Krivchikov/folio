@@ -4,7 +4,7 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** ready-for-human
 
 ## What to build
 
@@ -25,11 +25,31 @@ Visual treatment: the label is a `HudLabel`, the value uses the heading sans, a 
 
 ## Acceptance criteria
 
-- [ ] The strip is a `ul` with four `li` items in the initial HTML, directly under the calls to action
-- [ ] The 7,000+ figure was re-read on domino-crm.com, the date is under Comments, and the developer has chosen the figure or the fallback
-- [ ] The value for the years is computed from 2023 and reads 3 in the current build
-- [ ] At 1440px the items sit in one row; at 375px they wrap two by two with nothing cut off and no horizontal scroll
-- [ ] Text over the poster is within AA (ratios recorded)
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] The strip is a `ul` with four `li` items in the initial HTML, directly under the calls to action
+- [x] The 7,000+ figure was re-read on domino-crm.com, the date is under Comments, and the developer has chosen the figure or the fallback
+- [x] The value for the years is computed from 2023 and reads 3 in the current build
+- [x] At 1440px the items sit in one row; at 375px they wrap two by two with nothing cut off and no horizontal scroll
+- [x] Text over the poster is within AA (ratios recorded)
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
+
+### The 7,000+ figure
+
+Read domino-crm.com on 2026-10-15 with a web fetch: the page shows "7 000+" under the label "Active users", in the block headed "Tested by thousands of users" (next to "5 000+" mailings sent and "23 000+" bots created). The page gives no date for the figures. The title of the page is "Chatbot Builder for Telegram, Web, VK", which backs the three channels; the site switcher offers four languages (English, Russian, Uzbek, Kazakh), and the DominoCRM case study on this site says the product is localised into four languages with i18next.
+
+Decision: the developer decided the figure can be used because it is on the public site ("на сайте есть значит можно юзать"), so the figure is in with the small note "per domino-crm.com" and the qualitative fallback was not needed.
+
+### Implementation
+
+- `facts-strip.tsx` (new, server component): a `ul` with four `li`, one per fact. The value is `text-3xl md:text-4xl font-semibold`, the label is a `HudLabel as="p"` (Geist Mono, uppercase), the 7,000+ item has a muted note line under it. A `border-t border-border` line sits above the strip. Four columns from `md`, two by two below.
+- Years: `new Date().getFullYear() - 2023`, evaluated on the server at build time, so it reads 3 now and updates on the first build of 2027. The strip is passed to `Hero` as a `facts` prop from `app/page.tsx` instead of being imported into the client component, so the current year is computed once on the server and cannot differ from a client render (no hydration mismatch at New Year).
+- `hero.tsx` renders `{facts}` in a `motion.div` with the existing `item` variant right after the calls to action (`mt-14`, `md:mt-20`); no new animation.
+- Item 3 reads "3 channels" with the label "4 UI languages · Telegram, Web, VK". Spoken languages and a city are not shown.
+
+### Verification
+
+- Server-rendered HTML contains the `ul` with four `li` after the "View Projects" link.
+- 1440px: one row of four columns, 226px each, the strip's top at 640px, the Hero still exactly one viewport (900px) tall. 375px: two by two, 152px columns, nothing clipped (no label wider than its box), no horizontal scroll; the whole Hero including the strip fits in the 812px first screen.
+- Contrast: the labels and the note are the muted colour, at least 4.91:1 over the brightest part of the poster (computed in ticket 01); the values are foreground, at least 11.92:1.
+- `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass.

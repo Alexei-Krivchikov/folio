@@ -3,11 +3,12 @@
 import { AccentText, buttonVariants, cn } from "@folio/ui";
 import { motion } from "motion/react";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, staggerVariants } from "@/components/motion/variants";
 import { HeroPoster } from "./hero-poster";
 
-export function Hero() {
+export function Hero({ facts }: { facts: ReactNode }) {
   const reduced = usePrefersReducedMotion();
   const container = staggerVariants(reduced, { staggerChildren: 0.12, delayChildren: 0.15 });
   const item = fadeUpVariants(reduced, { y: 25, duration: 0.6 });
@@ -46,6 +47,10 @@ export function Hero() {
             <Link href="#projects" className={cn(buttonVariants({ variant: "outline" }), "max-md:h-11")}>
               View Projects
             </Link>
+          </motion.div>
+
+          <motion.div variants={item} className="mt-14 md:mt-20">
+            {facts}
           </motion.div>
         </motion.div>
       </div>
