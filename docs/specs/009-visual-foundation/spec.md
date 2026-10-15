@@ -1,6 +1,6 @@
 # Spec 009 — Visual foundation
 
-Status: Draft
+Status: Done
 
 ## Problem Statement
 

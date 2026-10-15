@@ -23,9 +23,9 @@ No new code. The cross-cutting checks from the spec, run once on the finished re
 - [x] Contrast table written under Comments; every pair is AA
 - [x] Keyboard pass done; tab order identical to before
 - [x] Reduced-motion pass done
-- [ ] Lighthouse mobile on the preview deployment: Performance at least 90, CLS 0, LCP recorded (scores recorded). Measured 87 to 89 and 3.3 to 3.5 s; the shortfall is fixed in [09](09-hero-lcp.md), then re-measured here
+- [x] Lighthouse mobile on the preview deployment run and recorded (87 to 89, LCP 3.3 to 3.5 s, CLS 0). The 90 and 2.5 s targets are not met and are handled in [spec 016](../../016-lighthouse-lcp/spec.md) after specs 010 to 015, by the developer's decision
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
-- [ ] Spec 009 is marked Done
+- [x] Spec 009 is marked Done
 
 ## Comments
 
@@ -86,10 +86,9 @@ Branch `dev` at `647f43a`, Vercel preview behind deployment protection (opened w
 | 3 | 89 | 3.3 s | 0 | 1.5 s | 30 ms |
 
 - CLS is 0 and the fonts are the same three self-hosted files (41 + 23 + 16 KB), with no request to Google font hosts. Performance (87 to 89) and LCP (3.3 to 3.5 s) miss the targets of at least 90 and at most 2.5 s.
-- The LCP element is again the Hero `h1`: render delay 2.6 s of 3.5 s, TTFB 0.9 s. The production HTML still carries `style="opacity:0;transform:translateY(25px)"` on the `h1`, which is what ticket 09 removes.
+- The LCP element is again the Hero `h1`: render delay 2.6 s of 3.5 s, TTFB 0.9 s. The production HTML still carries `style="opacity:0;transform:translateY(25px)"` on the `h1`, which is what the LCP ticket in spec 016 looks at.
 - The pre-spec Vercel deployment (`2e8d368`) was no longer reachable, so there is no baseline on the preview; the local baseline (95, 2.9 s) from above is the only comparison. Preview numbers are about 0.2 s worse than the local production build, consistent with the longer TTFB.
 
-### Open
+### Closing
 
-- [ ] Performance at least 90 and LCP at most 2.5 s on the preview: blocked by [ticket 09](09-hero-lcp.md); re-run the same three-run Lighthouse on the preview after it lands and record it here.
-- Spec 009 stays `Draft` until then.
+Decision by the developer: spec 009 is closed with the Lighthouse numbers recorded as they are. The shortfall (Performance 87 to 89 against 90, LCP 3.3 to 3.5 s against 2.5 s) moves to [spec 016](../../016-lighthouse-lcp/spec.md), to be taken after specs 010 to 015, when the Hero, the Sections and the payload have reached their final shape. The attempt made inside this spec (the Hero `h1` as a plain element) was reverted because the Hero looked flat without its entrance; it is described in the ticket moved to spec 016.

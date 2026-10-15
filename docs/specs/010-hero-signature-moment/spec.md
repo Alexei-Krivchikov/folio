@@ -57,7 +57,7 @@ npx turbo run build --filter=@folio/web
 - Browser pass at 1440px and 375px: the name fits, no horizontal scroll, the status pill stays on one line, the Facts strip wraps sensibly, the calls to action reach their anchors.
 - Degradation pass: with `prefers-reduced-motion` on, with WebGL disabled in the browser, and with the shader chunk blocked in the network panel, the Hero shows the static poster with the full composition and no console errors.
 - Lifecycle pass: scrolling the Hero out of view stops the render loop (checked in the performance panel or with a frame counter), switching tabs pauses it, and navigating to a Case study and back leaves no leaked canvas or context.
-- Performance on the preview deployment, mobile profile: Lighthouse Performance at least 90, LCP at most 2.5 s with the headline as the LCP element, CLS 0, and the shader chunk adding no more than about 35 KB gzip to the page, loaded after first paint.
+- Performance on the preview deployment, mobile profile: Lighthouse Performance at least 90, LCP at most 2.5 s with the headline as the LCP element, CLS 0, and the shader chunk adding no more than about 35 KB gzip to the page, loaded after first paint. The Lighthouse numbers are recorded here and do not block closing this spec; reaching the targets is the work of spec 016.
 - A real mid-range Android phone is opened at least once; a stutter there is a bug in this spec.
 
 ## Out of Scope
