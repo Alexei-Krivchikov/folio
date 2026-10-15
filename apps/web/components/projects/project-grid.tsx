@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@folio/ui";
+import { cn, SectionHeading } from "@folio/ui";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,12 +27,9 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
 
   return (
     <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>
-      <motion.p variants={fadeUp} className="text-sm uppercase tracking-[0.3em] text-zinc-500">
-        Selected work
-      </motion.p>
-      <motion.h2 variants={fadeUp} className="mt-3 text-3xl font-bold text-white md:text-4xl">
-        Projects
-      </motion.h2>
+      <motion.div variants={fadeUp}>
+        <SectionHeading label="[ 04 / PROJECTS ]">Projects</SectionHeading>
+      </motion.div>
 
       <ul className="mt-10 grid gap-6 md:grid-cols-2">
         {projects.map((project, index) => {
@@ -43,9 +40,9 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
             <motion.li key={project.slug} variants={fadeUp} whileHover={cardHover}>
               <Link
                 href={`/projects/${project.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/40 transition-colors hover:border-zinc-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-foreground/[0.03] transition-colors hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
-                <div className="relative aspect-video overflow-hidden border-b border-zinc-800">
+                <div className="relative aspect-video overflow-hidden border-b border-border">
                   <Image
                     src={project.cover}
                     alt={`${project.name} preview`}
@@ -62,21 +59,21 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
                 </div>
 
                 <div className="flex flex-col flex-1 p-6">
-                  <p className="font-mono text-sm text-zinc-500">{project.number}</p>
-                  <h3 className="mt-2 text-xl font-semibold text-white">{project.name}</h3>
-                  <p className="mt-1 text-sm text-zinc-500">{project.meta}</p>
-                  <p className="mt-3 text-zinc-400">{project.summary}</p>
+                  <p className="font-mono text-sm text-muted">{project.number}</p>
+                  <h3 className="mt-2 text-xl font-semibold text-foreground">{project.name}</h3>
+                  <p className="mt-1 text-sm text-muted">{project.meta}</p>
+                  <p className="mt-3 text-muted">{project.summary}</p>
 
                   <ul className="mt-auto flex flex-wrap gap-2 pt-5">
                     {tags.map((tag) => (
                       <li
                         key={tag}
-                        className="rounded-md border border-zinc-800 bg-zinc-900/60 px-2.5 py-1 text-xs text-zinc-300"
+                        className="rounded-md border border-border bg-foreground/5 px-2.5 py-1 text-xs text-foreground"
                       >
                         {tag}
                       </li>
                     ))}
-                    {hiddenTags > 0 && <li className="px-1 py-1 text-xs text-zinc-500">+{hiddenTags}</li>}
+                    {hiddenTags > 0 && <li className="px-1 py-1 text-xs text-muted">+{hiddenTags}</li>}
                   </ul>
                 </div>
               </Link>
