@@ -18,7 +18,7 @@ export function getNextProject(slug: string): Project | undefined {
 }
 
 export function formatProjectNumber(order: number): string {
-  return `_${String(order).padStart(2, "0")}.`;
+  return `[${String(order).padStart(2, "0")}]`;
 }
 
 export const projectTypeLabel: Record<Project["type"], string> = {
