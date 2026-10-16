@@ -30,6 +30,10 @@ const projectSchema = z
     summary: z.string().min(1),
     stack: z.array(z.string().min(1)).nonempty(),
     employer: z.string().min(1).optional(),
+    accent: z
+      .string()
+      .regex(/^#[0-9a-f]{6}$/i, "accent must be a #rrggbb hex colour")
+      .optional(),
     links: z
       .object({
         github: z.array(z.object({ label: z.string().min(1), url: z.url() })).optional(),

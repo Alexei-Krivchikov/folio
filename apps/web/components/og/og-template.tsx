@@ -22,10 +22,10 @@ export function OgTemplate({ children, accent, watermark }: OgTemplateProps) {
         flexDirection: "column",
         justifyContent: "space-between",
         overflow: "hidden",
-        background: "#09090b",
+        background: "#0b0908",
         backgroundImage: `linear-gradient(to right, ${GRID_LINE} 1px, transparent 1px), linear-gradient(to bottom, ${GRID_LINE} 1px, transparent 1px)`,
         backgroundSize: "64px 64px",
-        color: "#fafafa",
+        color: "#f5efe9",
         padding: 80,
         fontFamily: "system-ui, sans-serif",
       }}
