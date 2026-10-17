@@ -22,6 +22,10 @@ _Avoid_: navbar, top bar
 The full-screen mobile menu opened from the Header.
 _Avoid_: drawer, burger menu
 
+**Active section**:
+The Section the Header marks as the visitor's current one. It follows where the visitor has scrolled, except right after they follow a link to a Section: then that Section is the Active section until they scroll away, even when the page cannot scroll far enough to bring it to the top.
+_Avoid_: current section, highlighted link
+
 **Signature moment**:
 The one dominant visual piece of the Hero that a visitor sees in the first seconds and that sets the impression of the whole site.
 _Avoid_: hero effect, hero animation, wow element
