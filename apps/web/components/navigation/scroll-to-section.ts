@@ -1,5 +1,6 @@
 import type Lenis from "lenis";
-import { HEADER_OFFSET } from "@/lib/navigation";
+import { HEADER_OFFSET, isNavSectionId } from "@/lib/navigation";
+import { lockSection, releaseSection } from "./section-lock";
 
 const ANCHOR_SCROLL_SKIP_ATTR = "data-anchor-scroll-skip";
 
@@ -11,6 +12,12 @@ export function skipsAnchorScroll(anchor: HTMLAnchorElement): boolean {
 
 export function scrollToSection(lenis: Lenis | null, section: HTMLElement, options?: { immediate?: boolean }) {
   const top = section.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  if (isNavSectionId(section.id)) {
+    lockSection(section.id, Math.max(0, Math.min(top, maxScroll)));
+  } else {
+    releaseSection();
+  }
   if (lenis) {
     lenis.scrollTo(top, options);
   } else {

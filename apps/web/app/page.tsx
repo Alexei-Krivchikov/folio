@@ -15,10 +15,10 @@ export default function Page() {
       <AnchorScroll />
       <Header />
       <Hero facts={<FactsStrip />} />
+      <Projects />
       <About />
       <Stack />
       <Experience />
-      <Projects />
       <Contact />
       <Footer />
     </main>

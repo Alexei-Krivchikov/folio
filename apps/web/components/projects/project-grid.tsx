@@ -28,7 +28,7 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
   return (
     <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>
       <motion.div variants={fadeUp}>
-        <SectionHeading label="[ 04 / PROJECTS ]">Projects</SectionHeading>
+        <SectionHeading label="[ 01 / PROJECTS ]">Projects</SectionHeading>
       </motion.div>
 
       <ul className="mt-10 grid gap-6 md:grid-cols-2">
@@ -40,7 +40,7 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
             <motion.li key={project.slug} variants={fadeUp} whileHover={cardHover}>
               <Link
                 href={`/projects/${project.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-foreground/[0.03] transition-colors hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-foreground/3 transition-colors hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
                 <div className="relative aspect-video overflow-hidden border-b border-border">
                   <Image

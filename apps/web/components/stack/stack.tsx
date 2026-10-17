@@ -92,7 +92,7 @@ export function Stack() {
     <section id="stack" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>
         <motion.div variants={groupAnim}>
-          <SectionHeading label="[ 02 / STACK ]">My Stack</SectionHeading>
+          <SectionHeading label="[ 03 / STACK ]">My Stack</SectionHeading>
         </motion.div>
 
         <div className="mt-10 grid gap-8 md:grid-cols-2">

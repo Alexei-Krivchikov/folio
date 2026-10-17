@@ -12,7 +12,7 @@ export function About() {
   return (
     <section id="about" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce}>
-        <SectionHeading label="[ 01 / ABOUT ]">About</SectionHeading>
+        <SectionHeading label="[ 02 / ABOUT ]">About</SectionHeading>
         <p className="mt-6 max-w-2xl leading-relaxed text-muted">
           I&apos;m a frontend developer dedicated to turning ideas into creative solutions. I specialize in creating
           seamless and intuitive user experiences.
