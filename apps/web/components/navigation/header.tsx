@@ -82,7 +82,7 @@ export function Header() {
         )}
         inert={!visible}
       >
-        <nav className="flex h-full w-full items-center justify-between pr-3 pl-6">
+        <nav className="flex h-full w-full items-center justify-between pr-3 pl-6 md:pr-6">
           <Link
             href="/"
             onClick={handleLogoClick}

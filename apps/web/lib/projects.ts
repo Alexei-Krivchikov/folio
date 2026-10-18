@@ -40,3 +40,7 @@ export function formatProjectMeta(project: Project): string {
   const type = projectTypeLabel[project.type];
   return [project.employer ? `${type} · ${project.employer}` : type, project.year].join(" · ");
 }
+
+export function formatProjectCardMeta(project: Project): string {
+  return [project.employer, project.year].filter(Boolean).join(" · ");
+}
