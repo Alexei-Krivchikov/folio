@@ -60,6 +60,10 @@ _Avoid_: client project, NDA project
 A Project Alexei built on his own, with public code and, where deployed, a live demo.
 _Avoid_: pet project, side project
 
+**Featured project**:
+The first Project by its order, shown wider than the others at the top of the Projects Section. It is chosen by position, never by name, so reordering Projects changes which one is featured.
+_Avoid_: hero project, main project, pinned project
+
 **Employer**:
 The company Alexei works for, which also owns the Commercial project (currently Anthill).
 _Avoid_: client, customer, company
