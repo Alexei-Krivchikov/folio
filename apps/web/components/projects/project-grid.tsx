@@ -1,6 +1,6 @@
 "use client";
 
-import { cn, SectionHeading } from "@folio/ui";
+import { cn, MagneticButton, SectionHeading, TiltCard, usePointerMotion } from "@folio/ui";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,7 +33,8 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
   const reduced = usePrefersReducedMotion();
   const section = staggerVariants(reduced, { staggerChildren: 0.12 });
   const fadeUp = fadeUpVariants(reduced, { y: 24, duration: 0.5 });
-  const cardHover = liftOnHover(reduced, -6);
+  const pointerMotion = usePointerMotion();
+  const cardHover = pointerMotion ? undefined : liftOnHover(reduced, -6);
 
   return (
     <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>
@@ -54,77 +55,81 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
               whileHover={cardHover}
               className={cn(featured && "md:col-span-2")}
             >
-              <Link
-                href={`/projects/${project.slug}`}
-                className={cn(
-                  "group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-foreground/3 transition-[border-color,box-shadow] duration-300",
-                  "hover:border-accent hover:shadow-[0_0_40px_-12px_var(--accent)]",
-                  "focus-visible:border-accent focus-visible:shadow-[0_0_40px_-12px_var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent",
-                  featured && "lg:flex-row",
-                )}
-              >
-                <div
+              <TiltCard className="h-full rounded-xl" maxAngle={featured ? 3 : 5} lightStrength={7}>
+                <Link
+                  href={`/projects/${project.slug}`}
                   className={cn(
-                    "relative aspect-video overflow-hidden border-b border-border",
-                    featured && "lg:aspect-auto lg:w-[45%] lg:shrink-0 lg:border-r lg:border-b-0",
+                    "group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-foreground/3 transition-[border-color,box-shadow] duration-300",
+                    "hover:border-accent/40 hover:shadow-[0_12px_32px_-18px_var(--accent)]",
+                    "focus-visible:border-accent/40 focus-visible:shadow-[0_12px_32px_-18px_var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent",
+                    featured && "lg:flex-row",
                   )}
                 >
-                  <Image
-                    src={project.cover}
-                    alt={`${project.name} preview`}
-                    fill
-                    quality={90}
-                    sizes={featured ? FEATURED_SIZES : REGULAR_SIZES}
-                    priority={featured}
+                  <div
                     className={cn(
-                      "object-cover object-top-left",
-                      !reduced &&
-                        "transition-transform duration-500 ease-out group-hover:scale-105 group-focus-visible:scale-105",
+                      "relative aspect-video overflow-hidden border-b border-border",
+                      featured && "lg:aspect-auto lg:w-[45%] lg:shrink-0 lg:border-r lg:border-b-0",
                     )}
-                  />
-                </div>
-
-                <div className="flex flex-1 flex-col p-6">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="font-mono text-sm text-muted">{project.number}</p>
-                    <span
+                  >
+                    <Image
+                      src={project.cover}
+                      alt={`${project.name} preview`}
+                      fill
+                      quality={90}
+                      sizes={featured ? FEATURED_SIZES : REGULAR_SIZES}
+                      priority={featured}
                       className={cn(
-                        "rounded-full border px-2.5 py-0.5 font-mono text-xs uppercase tracking-[0.15em]",
-                        TYPE_STYLES[project.type],
+                        "object-cover object-top-left",
+                        !reduced &&
+                          "transition-transform duration-500 ease-out group-hover:scale-105 group-focus-visible:scale-105",
                       )}
-                    >
-                      {project.typeLabel}
-                    </span>
+                    />
                   </div>
-                  <h3 className={cn("mt-4 font-semibold text-foreground", featured ? "text-2xl" : "text-xl")}>
-                    {project.name}
-                  </h3>
-                  {project.meta && <p className="mt-1 text-sm text-muted">{project.meta}</p>}
-                  <p className="mt-3 text-muted">{project.summary}</p>
 
-                  <ul className="mt-auto flex flex-wrap gap-2 pt-5">
-                    {tags.map((tag) => (
-                      <li
-                        key={tag}
-                        className="rounded-md border border-border bg-foreground/5 px-2.5 py-1 text-xs text-foreground"
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="font-mono text-sm text-muted">{project.number}</p>
+                      <span
+                        className={cn(
+                          "rounded-full border px-2.5 py-0.5 font-mono text-xs uppercase tracking-[0.15em]",
+                          TYPE_STYLES[project.type],
+                        )}
                       >
-                        {tag}
-                      </li>
-                    ))}
-                    {hiddenTags > 0 && <li className="px-1 py-1 text-xs text-muted">+{hiddenTags}</li>}
-                  </ul>
+                        {project.typeLabel}
+                      </span>
+                    </div>
+                    <h3 className={cn("mt-4 font-semibold text-foreground", featured ? "text-2xl" : "text-xl")}>
+                      {project.name}
+                    </h3>
+                    {project.meta && <p className="mt-1 text-sm text-muted">{project.meta}</p>}
+                    <p className="mt-3 text-muted">{project.summary}</p>
 
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-accent">
-                    View project
-                    <span
-                      aria-hidden="true"
-                      className={cn(!reduced && "transition-transform duration-300 group-hover:translate-x-1")}
-                    >
-                      →
-                    </span>
-                  </span>
-                </div>
-              </Link>
+                    <ul className="mt-auto flex flex-wrap gap-2 pt-5">
+                      {tags.map((tag) => (
+                        <li
+                          key={tag}
+                          className="rounded-md border border-border bg-foreground/5 px-2.5 py-1 text-xs text-foreground"
+                        >
+                          {tag}
+                        </li>
+                      ))}
+                      {hiddenTags > 0 && <li className="px-1 py-1 text-xs text-muted">+{hiddenTags}</li>}
+                    </ul>
+
+                    <MagneticButton className="mt-5 self-start">
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-accent">
+                        View project
+                        <span
+                          aria-hidden="true"
+                          className={cn(!reduced && "transition-transform duration-300 group-hover:translate-x-1")}
+                        >
+                          →
+                        </span>
+                      </span>
+                    </MagneticButton>
+                  </div>
+                </Link>
+              </TiltCard>
             </motion.li>
           );
         })}
