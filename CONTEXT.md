@@ -22,6 +22,10 @@ _Avoid_: navbar, top bar
 The full-screen mobile menu opened from the Header.
 _Avoid_: drawer, burger menu
 
+**Active section**:
+The Section the Header marks as the visitor's current one. It follows where the visitor has scrolled, except right after they follow a link to a Section: then that Section is the Active section until they scroll away, even when the page cannot scroll far enough to bring it to the top.
+_Avoid_: current section, highlighted link
+
 **Signature moment**:
 The one dominant visual piece of the Hero that a visitor sees in the first seconds and that sets the impression of the whole site.
 _Avoid_: hero effect, hero animation, wow element
@@ -55,6 +59,10 @@ _Avoid_: client project, NDA project
 **Personal project**:
 A Project Alexei built on his own, with public code and, where deployed, a live demo.
 _Avoid_: pet project, side project
+
+**Featured project**:
+The first Project by its order, shown wider than the others at the top of the Projects Section. It is chosen by position, never by name, so reordering Projects changes which one is featured.
+_Avoid_: hero project, main project, pinned project
 
 **Employer**:
 The company Alexei works for, which also owns the Commercial project (currently Anthill).

@@ -1,4 +1,4 @@
-import { formatProjectMeta, formatProjectNumber, getProjects } from "@/lib/projects";
+import { formatProjectCardMeta, formatProjectNumber, getProjects, projectTypeLabel } from "@/lib/projects";
 import { type ProjectCard, ProjectGrid } from "./project-grid";
 
 export function Projects() {
@@ -6,7 +6,9 @@ export function Projects() {
     slug: project.slug,
     number: formatProjectNumber(project.order),
     name: project.name,
-    meta: formatProjectMeta(project),
+    type: project.type,
+    typeLabel: projectTypeLabel[project.type],
+    meta: formatProjectCardMeta(project),
     summary: project.summary,
     stack: project.stack,
     cover: project.cover,

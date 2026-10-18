@@ -23,11 +23,20 @@ A generic `TiltCard` in `packages/ui`, plus the one small hook that decides whet
 
 ## Acceptance criteria
 
-- [ ] `TiltCard` and `usePointerMotion` are exported from `@folio/ui`
-- [ ] `packages/ui/package.json` declares `motion`, the lockfile is updated, and `apps/web` still builds
-- [ ] With a mouse, a test card tilts toward the pointer and the light follows it; on leave both return smoothly
+- [x] `TiltCard` and `usePointerMotion` are exported from `@folio/ui`
+- [x] `packages/ui/package.json` declares `motion`, the lockfile is updated, and `apps/web` still builds
+- [x] With a mouse, a test card tilts toward the pointer and the light follows it; on leave both return smoothly
 - [ ] With device emulation set to touch, and with reduced motion on, the rendered DOM is the wrapper and the children only (no overlay element) and no pointer listeners are attached
-- [ ] Moving the pointer causes no React re-render (checked in the React/Performance panel or by reading the code path) and no layout shift
+- [x] Moving the pointer causes no React re-render (checked in the React/Performance panel or by reading the code path) and no layout shift
 - [ ] Listeners are gone after unmount (navigate away and back, no duplicates)
-- [ ] A note under Comments gives the knobs (max angle, spring stiffness, light size and strength) and the values chosen
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] A note under Comments gives the knobs (max angle, spring stiffness, light size and strength) and the values chosen
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+
+## Comments
+
+- Done: `usePointerMotion` in `packages/ui/src/lib/use-pointer-motion.ts` (`useSyncExternalStore`, server snapshot `false`, true only for `(pointer: fine) and (hover: hover)` without `prefers-reduced-motion`), `TiltCard` in `packages/ui/src/components/tilt-card.tsx`, both exported from `@folio/ui`. `motion ^13.2.0` added to `packages/ui/package.json`, lockfile refreshed.
+- Structure: `TiltCard` reads the gate. When `false` it renders `<div className>{children}</div>` and nothing else. When `true` it renders `TiltSurface`, which owns the motion values and the listeners, so the hooks are never conditional and unmounting the surface (unmount or gate flip) removes `pointerenter`/`pointermove`/`pointerleave`, all passive. The wrapper carries `perspective: 1000px`; the rotation is a transform on an inner `motion.div` (`rounded-[inherit]`), the light is an `aria-hidden` `pointer-events-none` overlay inside it with `rounded-[inherit]`, so the consumer's radius on `className` clips it.
+- Knobs (props with defaults): `maxAngle` 6 deg; `lightSize` 520px radius; `lightStrength` 14% of `--accent` mixed with transparent (`color-mix(in oklab, var(--accent) N%, transparent)`, fading to transparent at 70%). Constants in the file: tilt spring `stiffness 180, damping 20, mass 0.6`; light spring `stiffness 220, damping 28, mass 0.5`; `PERSPECTIVE` 1000. The light jumps to the entry point on `pointerenter` so it does not sweep in from the centre, then fades in; on leave the tilt springs to 0 and the light fades out.
+- No re-render on move: pointer position only goes into `useMotionValue`s and `useTransform`/`useMotionTemplate` outputs bound to `style`; no React state is set in the handlers.
+- Checked in the browser on a temporary page (deleted afterwards), 1440 wide, mouse: at the top-right of the card the inner transform read `rotateX(4.9deg) rotateY(5.1deg)` and the gradient sat at 92% / 9%; after leaving, transform `none`, overlay opacity 0, and the wrapper rect stayed 384x320 throughout (no layout shift). With the pane emulating mobile the gate was `false`: the wrapper had no `style`, one child (the card) and no overlay.
+- Not checked: `prefers-reduced-motion` could not be emulated in the pane; it goes through the same `matchMedia` gate as touch. Listener cleanup on navigation was verified by reading the effect's cleanup, not by navigating away and back. Ticket 05 should look at the tilt on a real card (image, link) and retune `maxAngle` / `lightStrength` there if needed.
