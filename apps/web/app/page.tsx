@@ -7,7 +7,6 @@ import { Hero } from "@/components/hero/hero";
 import { AnchorScroll } from "@/components/navigation/anchor-scroll";
 import { Header } from "@/components/navigation/header";
 import { Projects } from "@/components/projects/projects";
-import { Stack } from "@/components/stack/stack";
 
 export default function Page() {
   return (
@@ -17,7 +16,6 @@ export default function Page() {
       <Hero facts={<FactsStrip />} />
       <Projects />
       <About />
-      <Stack />
       <Experience />
       <Contact />
       <Footer />

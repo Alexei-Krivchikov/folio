@@ -1,6 +1,3 @@
-"use client";
-
-import { HudLabel, SectionHeading } from "@folio/ui";
 import SiBiome, { defaultColor as biomeHex } from "@icons-pack/react-simple-icons/icons/SiBiome";
 import SiDocker, { defaultColor as dockerHex } from "@icons-pack/react-simple-icons/icons/SiDocker";
 import SiDrizzle, { defaultColor as drizzleHex } from "@icons-pack/react-simple-icons/icons/SiDrizzle";
@@ -17,31 +14,21 @@ import SiTailwindcss, { defaultColor as tailwindHex } from "@icons-pack/react-si
 import SiTurborepo, { defaultColor as turborepoHex } from "@icons-pack/react-simple-icons/icons/SiTurborepo";
 import SiTypescript, { defaultColor as typescriptHex } from "@icons-pack/react-simple-icons/icons/SiTypescript";
 import SiVercel, { defaultColor as vercelHex } from "@icons-pack/react-simple-icons/icons/SiVercel";
-import { motion } from "motion/react";
-import type { CSSProperties } from "react";
-import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
-import {
-  fadeUpVariants,
-  liftOnHover,
-  scaleInVariants,
-  staggerVariants,
-  viewportOnce,
-} from "@/components/motion/variants";
 import type { StackIcon } from "./icon";
 import { MotionIcon, motionHex } from "./motion-icon";
 
-type Tech = { name: string; Icon: StackIcon; hex: string };
+export type Tech = { name: string; Icon: StackIcon; hex: string };
 
 const VISIBLE_ON_DARK = "#FFFFFF";
 
-const brandOverrides: Record<string, string> = {
+export const brandOverrides: Record<string, string> = {
   "Next.js": VISIBLE_ON_DARK,
   Vercel: VISIBLE_ON_DARK,
   Express: VISIBLE_ON_DARK,
   Prisma: VISIBLE_ON_DARK,
 };
 
-const groups: { title: string; items: Tech[] }[] = [
+export const groups: { title: string; items: Tech[] }[] = [
   {
     title: "Frontend",
     items: [
@@ -80,50 +67,3 @@ const groups: { title: string; items: Tech[] }[] = [
     ],
   },
 ];
-
-export function Stack() {
-  const reduced = usePrefersReducedMotion();
-  const section = staggerVariants(reduced, { staggerChildren: 0.1 });
-  const groupAnim = fadeUpVariants(reduced, { y: 24, duration: 0.5 });
-  const tileAnim = scaleInVariants(reduced, { scale: 0.92, duration: 0.35 });
-  const tileHover = liftOnHover(reduced, -4);
-
-  return (
-    <section id="stack" className="mx-auto w-full max-w-5xl px-6 py-16">
-      <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>
-        <motion.div variants={groupAnim}>
-          <SectionHeading label="[ 03 / STACK ]">My Stack</SectionHeading>
-        </motion.div>
-
-        <div className="mt-10 grid gap-8 md:grid-cols-2">
-          {groups.map((group) => (
-            <motion.div key={group.title} variants={groupAnim}>
-              <HudLabel as="h3" className="font-semibold">
-                {group.title}
-              </HudLabel>
-              <div className="mt-4 flex flex-wrap gap-2.5">
-                {group.items.map(({ name, Icon, hex }) => (
-                  <motion.span
-                    key={name}
-                    variants={tileAnim}
-                    whileHover={tileHover}
-                    style={{ "--brand": brandOverrides[name] ?? hex } as CSSProperties}
-                    className="group/tile flex cursor-default items-center gap-2 rounded-lg border border-border bg-foreground/5 px-4 py-2 text-sm text-foreground hover:border-accent"
-                  >
-                    <Icon
-                      size={16}
-                      title=""
-                      aria-hidden
-                      className="shrink-0 transition-colors duration-200 group-hover/tile:text-(--brand)"
-                    />
-                    {name}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-    </section>
-  );
-}

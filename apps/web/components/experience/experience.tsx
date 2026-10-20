@@ -20,7 +20,7 @@ export function Experience() {
   return (
     <section id="experience" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce}>
-        <SectionHeading label="[ 04 / EXPERIENCE ]">My Experience</SectionHeading>
+        <SectionHeading label="[ 03 / EXPERIENCE ]">My Experience</SectionHeading>
 
         <div className="mt-10 border-l border-border pl-6">
           {jobs.map((job) => (

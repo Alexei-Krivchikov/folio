@@ -19,12 +19,12 @@ Remove Stack as a Section and make every place that knows the Section order agre
 
 ## Acceptance criteria
 
-- [ ] The page reads Hero, Projects, About, Experience, Contact at 1440 and 375px, and the tiles are still shown inside About
-- [ ] Header links and the Nav overlay list Projects, About, Experience, Contact only
-- [ ] The Active section highlight is right through every Section, including Contact at the very bottom and after following each link
-- [ ] A direct visit to `/#stack` opens the top of the page with no console error; `/#about`, `/#experience`, `/#contact` still scroll to the right Section
-- [ ] HUD labels run `01` to `04` in page order with no gaps
-- [ ] `grep -r "stack" apps/web/lib apps/web/app apps/web/components/navigation` finds no Section reference left
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] The page reads Hero, Projects, About, Experience, Contact at 1440 and 375px, and the tiles are still shown inside About
+- [x] Header links and the Nav overlay list Projects, About, Experience, Contact only
+- [x] The Active section highlight is right through every Section, including Contact at the very bottom and after following each link
+- [x] A direct visit to `/#stack` opens the top of the page with no console error; `/#about`, `/#experience`, `/#contact` still scroll to the right Section
+- [x] HUD labels run `01` to `04` in page order with no gaps
+- [x] `grep -r "stack" apps/web/lib apps/web/app apps/web/components/navigation` finds no Section reference left
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
