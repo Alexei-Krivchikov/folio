@@ -37,7 +37,7 @@ function Entry({
 
   return (
     <li className="relative">
-      <span aria-hidden="true" className="absolute top-2 -left-[calc(2rem+4.5px)] h-2.5 w-2.5 rounded-full bg-muted/40">
+      <span aria-hidden="true" className="absolute top-2 -left-[calc(2rem+5px)] size-[11px] rounded-full bg-muted/40">
         <motion.span
           className="absolute inset-0 rounded-full bg-accent motion-reduce:opacity-100!"
           style={{ opacity: reduced ? 1 : fill }}
