@@ -14,6 +14,7 @@
   --accent-from: #ffb347;
   --accent-to: #ff3d2e;
   --border: #2a2421;
+  --marquee-duration: 50s;
 }
 
 @theme inline {
@@ -33,6 +34,17 @@
   --radius-pill: 9999px;
 
   --spacing: 0.25rem;
+
+  --animate-marquee: marquee var(--marquee-duration) linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 @utility bg-accent-gradient {

@@ -20,12 +20,12 @@ A generic `WordReveal` in `packages/ui` that shows a paragraph word by word as i
 
 ## Acceptance criteria
 
-- [ ] `WordReveal` is exported from `@folio/ui`
-- [ ] A test paragraph reveals word by word once on entering the viewport and does not replay on scrolling back
-- [ ] The DOM has the full text once as `sr-only` and the split words as `aria-hidden`; a screen reader (or the accessibility tree in devtools) reads the sentence once, intact
-- [ ] Selecting and copying the paragraph gives the original sentence with normal spaces
-- [ ] With reduced motion on, all words are visible immediately and no word has an inline `opacity` or `transform` of a hidden state
-- [ ] The block's height is the same before, during and after the reveal (CLS 0)
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] `WordReveal` is exported from `@folio/ui`
+- [x] A test paragraph reveals word by word once on entering the viewport and does not replay on scrolling back
+- [x] The DOM has the full text once as `sr-only` and the split words as `aria-hidden`; a screen reader (or the accessibility tree in devtools) reads the sentence once, intact
+- [x] Selecting and copying the paragraph gives the original sentence with normal spaces
+- [x] With reduced motion on, all words are visible immediately and no word has an inline `opacity` or `transform` of a hidden state
+- [x] The block's height is the same before, during and after the reveal (CLS 0)
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments

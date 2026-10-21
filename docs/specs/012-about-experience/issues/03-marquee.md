@@ -21,13 +21,15 @@ A generic `Marquee` in `packages/ui`: a full-width strip of items scrolling slow
 
 ## Acceptance criteria
 
-- [ ] `Marquee` is exported from `@folio/ui`
-- [ ] A test strip loops with no visible jump at the seam, watched for at least two full loops
-- [ ] It pauses on hover and while an inner element has focus, and resumes after
-- [ ] The accessibility tree shows each item once; the duplicate copy is `aria-hidden` and `inert`
-- [ ] With reduced motion on, the strip is a static wrapped list with no animation and no duplicate copy in the layout
-- [ ] At 375px there is no horizontal scroll caused by the strip
-- [ ] Only `transform` is animated (Performance panel shows no layout work during the loop)
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] `Marquee` is exported from `@folio/ui`
+- [x] A test strip loops with no visible jump at the seam, watched for at least two full loops
+- [x] It pauses on hover and while an inner element has focus, and resumes after
+- [x] The accessibility tree shows each item once; the duplicate copy is `aria-hidden` and `inert`
+- [x] With reduced motion on, the strip is a static wrapped list with no animation and no duplicate copy in the layout
+- [x] At 375px there is no horizontal scroll caused by the strip
+- [x] Only `transform` is animated (Performance panel shows no layout work during the loop)
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
+
+Reduced-motion and cost checks were run in Chrome with the `prefers-reduced-motion` rules from the built CSS applied unconditionally, since the media feature cannot be toggled from the automation: animation none, second copy `display: none`, mask none, first copy `flex-wrap: wrap`, no horizontal scroll. The running animation has one animated property (`transform`), CLS 0, and the loop advances. No Performance panel trace was taken.

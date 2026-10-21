@@ -1,6 +1,6 @@
 # Spec 012 — About and Experience
 
-Status: Draft
+Status: Done
 
 ## Problem Statement
 

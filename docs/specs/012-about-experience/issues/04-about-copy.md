@@ -4,7 +4,7 @@
 
 **Blocked by:** none
 
-**Status:** needs-info
+**Status:** ready-for-human
 
 ## What to build
 
@@ -40,10 +40,32 @@ How I work, card 2:
 
 ## Acceptance criteria
 
-- [ ] The developer has answered the questions and corrected the draft
-- [ ] Final text for the introduction and one or two "how I work" cards is written under Comments, marked approved
-- [ ] No sentence repeats a number already shown in the Facts strip
-- [ ] Every factual claim in the approved text is one the developer has confirmed
-- [ ] Status is set to `ready-for-human` when the text is approved, which unblocks ticket 05
+- [x] The developer has answered the questions and corrected the draft
+- [x] Final text for the introduction and one or two "how I work" cards is written under Comments, marked approved
+- [x] No sentence repeats a number already shown in the Facts strip
+- [x] Every factual claim in the approved text is one the developer has confirmed
+- [x] Status is set to `ready-for-human` when the text is approved, which unblocks ticket 05
 
 ## Comments
+
+### Approved text
+
+Approved by the developer. Facts taken from the developer's answers and the DominoCRM Case study: the flow editor and the chats and group chats are his work; he works in teams of varying size with the usual review and release process; he led a small team on the landing site; he trained at Yandex Practicum, took part in its community activities and explored technologies on his own. "Three years" and the channel numbers are left out because the Facts strip already shows them.
+
+Introduction:
+
+> At Anthill I work on DominoCRM, a no-code chatbot builder with a shared inbox for messengers. I build the parts users spend their day in: the visual flow editor, where a graph of steps has to stay in sync while it is dragged, edited and validated, and live chats and group chats that update in real time. I'm a frontend developer and go fullstack when the product needs it.
+
+Path line (one line under the introduction):
+
+> Started with Yandex Practicum and its community, kept learning new technologies on my own, and have shipped in production ever since.
+
+How I work, card 1:
+
+> **Predictable under real use.** Deep forms, live data and screens people keep open all day. I push for one shared vocabulary for loading, empty and error states instead of each screen inventing its own.
+
+How I work, card 2:
+
+> **At home in teams of any size.** I've shipped with a handful of developers and with many, inside a standard review and release flow, and I led a small team on the product's landing site.
+
+Confirmed by the developer: the landing site team was him and two other developers; the community mentioned is Yandex Practicum's workshop projects, deliberately left unspecific in the text; he moved from the course straight to Anthill.

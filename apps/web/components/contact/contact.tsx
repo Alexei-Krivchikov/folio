@@ -19,7 +19,7 @@ export function Contact() {
   return (
     <section id="contact" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce}>
-        <SectionHeading label="[ 05 / CONTACT ]">Get in touch</SectionHeading>
+        <SectionHeading label="[ 04 / CONTACT ]">Get in touch</SectionHeading>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
           Open for frontend / fullstack opportunities. Fastest way — Telegram or Email.
         </p>
