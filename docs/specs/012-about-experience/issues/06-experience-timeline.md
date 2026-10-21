@@ -19,12 +19,14 @@ Restyle the Experience timeline: an Ember line that draws as the Section scrolls
 
 ## Acceptance criteria
 
-- [ ] The list is an `ol` of `li` items and the DOM order is newest first
-- [ ] The Ember line scales with scroll through the Section and ends fully drawn; scrolling back up undraws it
-- [ ] The current entry's dot pulses; other entries' dots do not
-- [ ] Adding a second object to the array renders a second entry with the line spanning both and no other code change (checked by trying it locally, then removed)
-- [ ] With reduced motion on, the line is fully drawn, nothing pulses and nothing is linked to scroll
-- [ ] No horizontal scroll at 375px and CLS 0
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] The list is an `ol` of `li` items and the DOM order is newest first
+- [x] The Ember line scales with scroll through the Section and ends fully drawn; scrolling back up undraws it
+- [x] The current entry's dot pulses; other entries' dots do not
+- [x] Adding a second object to the array renders a second entry with the line spanning both and no other code change (checked by trying it locally, then removed)
+- [x] With reduced motion on, the line is fully drawn, nothing pulses and nothing is linked to scroll
+- [x] No horizontal scroll at 375px and CLS 0
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
+
+Checked in Chrome at 1214px and 375px. With two entries tried locally (then removed) the line spans both, the second dot fills after the first and only the current entry's dot pulses. Scrolling back to the top undraws the line to 0. The reduced-motion state was checked by applying the `prefers-reduced-motion` rules of the built CSS unconditionally (line transform none, dot opaque, ring hidden), since the media feature cannot be toggled from the automation. No horizontal scroll at 375px, CLS 0.
