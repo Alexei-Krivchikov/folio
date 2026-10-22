@@ -5,6 +5,7 @@ import { type MotionValue, motion, useScroll, useTransform } from "motion/react"
 import { useRef } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, viewportOnce } from "@/components/motion/variants";
+import { sectionIndex } from "@/lib/navigation";
 
 type Job = { role: string; org: string; period: string; current?: boolean };
 
@@ -66,7 +67,7 @@ export function Experience() {
   return (
     <section id="experience" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce}>
-        <SectionHeading label="[ 03 / EXPERIENCE ]">My Experience</SectionHeading>
+        <SectionHeading label={sectionIndex("experience")}>My Experience</SectionHeading>
 
         <div className="relative mt-10 pl-8">
           <span aria-hidden="true" className="absolute top-0 left-0 h-full w-px bg-border" />

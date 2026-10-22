@@ -12,6 +12,7 @@ import {
   viewportOnce,
 } from "@/components/motion/variants";
 import { brandOverrides, groups } from "@/components/stack/tech";
+import { sectionIndex } from "@/lib/navigation";
 
 const INTRODUCTION =
   "At Anthill I work on DominoCRM, a no-code chatbot builder with a shared inbox for messengers. I build the parts users spend their day in: the visual flow editor, where a graph of steps has to stay in sync while it is dragged, edited and validated, and live chats and group chats that update in real time. I'm a frontend developer and go fullstack when the product needs it.";
@@ -48,7 +49,7 @@ export function About() {
     <section id="about" className="w-full py-16">
       <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>
         <motion.div variants={fadeUp} className="mx-auto max-w-5xl px-6">
-          <SectionHeading label="[ 02 / ABOUT ]">About</SectionHeading>
+          <SectionHeading label={sectionIndex("about")}>About</SectionHeading>
         </motion.div>
 
         <motion.div variants={fadeUp} aria-hidden="true" className="mt-10">

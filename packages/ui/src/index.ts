@@ -1,9 +1,12 @@
 export { AccentText, type AccentTextProps } from "./components/accent-text";
 export { Button, buttonVariants } from "./components/button";
+export { CursorSpotlight } from "./components/cursor-spotlight";
 export { Grain } from "./components/grain";
 export { HudLabel, type HudLabelProps } from "./components/hud-label";
+export { LocalTime, type LocalTimeProps } from "./components/local-time";
 export { MagneticButton, type MagneticButtonProps } from "./components/magnetic-button";
 export { Marquee, type MarqueeProps } from "./components/marquee";
+export { ScrollProgress, type ScrollProgressProps } from "./components/scroll-progress";
 export { SectionHeading, type SectionHeadingProps } from "./components/section-heading";
 export { TiltCard, type TiltCardProps } from "./components/tilt-card";
 export { WordReveal, type WordRevealProps } from "./components/word-reveal";

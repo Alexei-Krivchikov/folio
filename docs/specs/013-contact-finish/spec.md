@@ -1,6 +1,6 @@
 # Spec 013 — Contact, Footer and finishing touches
 
-Status: Draft
+Status: Done
 
 ## Problem Statement
 
@@ -8,7 +8,7 @@ The last Section is where a convinced recruiter acts, and today it is a heading,
 
 ## Solution
 
-Contact becomes a closing statement: a giant call to action in the Hero's type scale, with magnetic Telegram, Email and GitHub buttons. The Footer is restyled to match and shows the developer's local time at UTC+3. Across the whole page a few small global details tie the work together on desktop: a soft Ember spotlight and a ring that follow the pointer, HUD section indices, and a thin scroll-progress line. Together they give the page a finished, instrument-panel feel without changing what is on it.
+Contact becomes a closing statement: a giant call to action in the Hero's type scale, with magnetic Telegram, Email and GitHub buttons. The Footer is restyled to match and shows the developer's local time at UTC+3. Across the whole page a few small global details tie the work together on desktop: a soft Ember spotlight that follows the pointer, HUD section indices, and a thin scroll-progress line. Together they give the page a finished, instrument-panel feel without changing what is on it.
 
 ## User Stories
 
@@ -25,7 +25,7 @@ Contact becomes a closing statement: a giant call to action in the Hero's type s
 
 - **Contact.** The existing three links and their targets are unchanged (`https://github.com/Alexei-Krivchikov`, `https://t.me/A1exe1ch`, `mailto:krivchikov.alexei@gmail.com`). The Section gets a giant closing line in the Hero's type scale with one Instrument Serif italic word, the Ember accent, and the `MagneticButton` from spec 011 for the three links. The supporting sentence stays honest and plain ("Open for frontend / fullstack opportunities. Fastest way: Telegram or Email.").
 - **Footer.** Restyled with the tokens and `HudLabel`. A live local-time readout for UTC+3 is added, computed on the client after hydration with a stable server-rendered fallback so there is no hydration mismatch and no layout shift. The existing copyright line and the "Built with" line stay and are updated to include the new tools.
-- **Cursor effects.** One global client component mounted in the root layout for a fine pointer with hover only. It renders a soft radial Ember spotlight that follows the pointer behind the content and a small ring that grows over interactive elements. The native system cursor is not hidden. The component is absent on touch, absent under reduced-motion, and does not capture pointer events.
+- **Cursor effects.** One global client component mounted in the root layout for a fine pointer with hover only. It renders a soft radial Ember spotlight that follows the pointer behind the content. There is no custom cursor ring: it was built and cut in the browser pass as too much. The native system cursor is not hidden. The component is absent on touch, absent under reduced-motion, and does not capture pointer events.
 - **HUD indices.** Each Section's heading carries an index of the form `[ 02 / 04 ]` in Geist Mono, generated from the actual Section order so it stays right if Sections change, through the `SectionHeading` primitive from spec 009.
 - **Scroll progress.** A thin Ember line fixed at the top edge scales with page scroll progress, driven by Motion's `useScroll`. Under reduced-motion it still reflects position because that is not decorative motion, and changes without easing.
 - **Where it lives.** The cursor component, the progress line and the clock are generic and live in `packages/ui`; the Contact Section and the Footer composition live in `apps/web`.
@@ -34,7 +34,7 @@ Contact becomes a closing statement: a giant call to action in the Hero's type s
 
 - Verification before commit: `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web`.
 - Browser pass at 1440px and 375px: Contact buttons wrap and stay at least 44px tall at 375px; the three links open the correct targets; no horizontal scroll.
-- Pointer pass: spotlight and ring work with a mouse and are completely absent in touch emulation and with reduced-motion; the native cursor is still visible; clicks are never blocked by the overlay.
+- Pointer pass: the spotlight works with a mouse and is completely absent in touch emulation and with reduced-motion; the native cursor is still visible; clicks are never blocked by the overlay.
 - Clock pass: no hydration warning in the console, no layout shift, correct UTC+3 time.
 - Progress pass: the line reaches the right end exactly at the bottom of the page, including on the Case study page if it is mounted globally.
 - Lighthouse mobile on the preview deployment: Performance at least 90, CLS 0, and no long task from the pointer handlers.
@@ -48,4 +48,4 @@ Contact becomes a closing statement: a giant call to action in the Hero's type s
 
 ## Further Notes
 
-- The spotlight and the ring are the most "decorative" effects in the series. If they distract in the browser pass they are cut here and not tuned later; the page is meant to be finished, not busy.
+- The spotlight is the most "decorative" effect in the series. If it distracts in the browser pass it is cut here and not tuned later; the page is meant to be finished, not busy.
