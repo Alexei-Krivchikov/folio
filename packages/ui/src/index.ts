@@ -4,6 +4,7 @@ export { Grain } from "./components/grain";
 export { HudLabel, type HudLabelProps } from "./components/hud-label";
 export { MagneticButton, type MagneticButtonProps } from "./components/magnetic-button";
 export { Marquee, type MarqueeProps } from "./components/marquee";
+export { ScrollProgress, type ScrollProgressProps } from "./components/scroll-progress";
 export { SectionHeading, type SectionHeadingProps } from "./components/section-heading";
 export { TiltCard, type TiltCardProps } from "./components/tilt-card";
 export { WordReveal, type WordRevealProps } from "./components/word-reveal";

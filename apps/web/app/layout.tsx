@@ -1,4 +1,4 @@
-import { Grain } from "@folio/ui";
+import { Grain, ScrollProgress } from "@folio/ui";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Geist_Mono, Instrument_Serif } from "next/font/google";
@@ -57,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-background font-sans text-foreground">
         <LenisProvider>{children}</LenisProvider>
         <Grain />
+        <ScrollProgress />
         <Analytics />
       </body>
     </html>
