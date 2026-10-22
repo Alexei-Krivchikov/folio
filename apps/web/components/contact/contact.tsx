@@ -4,6 +4,7 @@ import { SectionHeading } from "@folio/ui";
 import { motion } from "motion/react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, staggerVariants, viewportOnce } from "@/components/motion/variants";
+import { sectionIndex } from "@/lib/navigation";
 
 const links = [
   { label: "GitHub", href: "https://github.com/Alexei-Krivchikov", external: true },
@@ -19,7 +20,7 @@ export function Contact() {
   return (
     <section id="contact" className="mx-auto w-full max-w-5xl px-6 py-16">
       <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={viewportOnce}>
-        <SectionHeading label="[ 04 / CONTACT ]">Get in touch</SectionHeading>
+        <SectionHeading label={sectionIndex("contact")}>Get in touch</SectionHeading>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
           Open for frontend / fullstack opportunities. Fastest way — Telegram or Email.
         </p>

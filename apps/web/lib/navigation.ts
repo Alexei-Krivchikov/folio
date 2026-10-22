@@ -18,6 +18,12 @@ export function isNavSectionId(id: string): id is NavSectionId {
   return (NAV_SECTION_IDS as readonly string[]).includes(id);
 }
 
+const pad = (value: number) => String(value).padStart(2, "0");
+
+export function sectionIndex(id: NavSectionId): string {
+  return `[ ${pad(NAV_SECTION_IDS.indexOf(id) + 1)} / ${pad(NAV_SECTION_IDS.length)} ]`;
+}
+
 export const NAV_LINKS: { id: NavSectionId; label: string }[] = [
   { id: "projects", label: "Projects" },
   { id: "about", label: "About" },

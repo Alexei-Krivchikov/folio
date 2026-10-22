@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, liftOnHover, staggerVariants, viewportOnce } from "@/components/motion/variants";
+import { sectionIndex } from "@/lib/navigation";
 
 export type ProjectCard = {
   slug: string;
@@ -39,7 +40,7 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
   return (
     <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>
       <motion.div variants={fadeUp}>
-        <SectionHeading label="[ 01 / PROJECTS ]">Projects</SectionHeading>
+        <SectionHeading label={sectionIndex("projects")}>Projects</SectionHeading>
       </motion.div>
 
       <ul className="mt-10 grid gap-6 md:grid-cols-2">
