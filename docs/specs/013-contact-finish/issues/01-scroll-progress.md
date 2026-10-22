@@ -22,7 +22,7 @@ A thin Ember line fixed at the top edge of the viewport whose length shows how f
 - [x] `ScrollProgress` is exported from `@folio/ui` and mounted in the root layout
 - [x] At the top of the page the line has zero length, at the very bottom it spans the full width exactly (check at 1440px and 375px, with the mobile browser UI in mind)
 - [x] The same holds on a Case study page (`/projects/<slug>`)
-- [ ] With reduced motion forced on, the line still follows position and has no easing
+- [x] With reduced motion forced on, the line still follows position and has no easing
 - [x] The line does not block clicks on anything under it and is absent from the accessibility tree
 - [x] It stays above the Header and the Nav overlay
 - [ ] No React re-render per scroll event (React DevTools or a render counter shows none)
@@ -34,3 +34,4 @@ A thin Ember line fixed at the top edge of the viewport whose length shows how f
 - Checked in the built-in browser with the dev server. Home page at 1024px: scale 0 at the top, 0.9687 at scrollY 3216 of 3320 (equal to 3216/3320), `none` (scale 1) at the very bottom. Case study `/projects/dominocrm`: `none` at the bottom (scrollY 1519 of 1519). At 375px: bottom scale 1, line width 375px, `scrollWidth` 375, so no horizontal scroll. `pointer-events: none`, `aria-hidden="true"`. No console errors.
 - Note on the method: the Browser pane is hidden, so `requestAnimationFrame` does not run there and the spring only advanced while screenshots were being taken; the values above are read after it settled.
 - Not verified: the reduced-motion branch. Motion's `useReducedMotion` caches its first value, so forcing `matchMedia` after load does not switch it; it needs the check from ticket 07 (override before the app loads, or read the code path). The "no re-render per scroll" criterion is not measured with React DevTools either; the component holds no state and only passes motion values to `style`, so none is expected.
+- Closed in ticket 07: with `prefers-reduced-motion: reduce` emulated before load, the line is exactly 0.5 at half scroll two frames after the scroll and still 0.5 1.5 s later (no easing), and 1 at the bottom. The re-render-per-scroll criterion stays open: not measured with React DevTools.

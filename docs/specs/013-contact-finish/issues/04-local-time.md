@@ -20,7 +20,7 @@ A generic live clock in `packages/ui` that shows the time at a fixed UTC offset.
 
 - [x] `LocalTime` is exported from `@folio/ui`
 - [x] A test render shows the correct `HH:MM` at UTC+3 (compare with the system time converted to UTC+3 at two different moments)
-- [ ] First paint shows the placeholder, then the real time, with no hydration warning in the console and no layout shift (CLS 0 on that region); placeholder and hydration are checked, CLS is inferred from equal widths and left for ticket 07's Lighthouse run
+- [x] First paint shows the placeholder, then the real time, with no hydration warning in the console and no layout shift (CLS 0 on that region)
 - [x] The time rolls over on the minute without a page interaction
 - [ ] No timer is left running after unmount (cleanup is in the code but was not exercised at runtime)
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
@@ -33,3 +33,4 @@ A generic live clock in `packages/ui` that shows the time at a fixed UTC offset.
 - Width: in Geist Mono the placeholder, `12:06` and `00:00` all measure 48px, so swapping the placeholder for the time cannot move a neighbour. In a proportional font `min-w-[5ch]` keeps the width from shrinking below five zero-widths; the Footer will use the mono font (`HudLabel` style). A layout-shift observer was not used; the equal widths are the evidence.
 - No hydration warning in the console (searched for "hydrat"; the buffer also holds old errors from earlier edits of other tickets, not from this component).
 - Not run: an unmount check that no timer is left (the code clears it in the effect cleanup, and the component is in the layout so it does not unmount in practice). Ticket 06 puts it in the Footer.
+- Closed in ticket 07: layout shift observed on the production build from load through a full page scroll was 0 on desktop and on mobile, with the clock in the Footer. The unmount criterion stays open: the cleanup is in the code but was not exercised.

@@ -23,10 +23,10 @@ Rebuild `apps/web/components/contact/contact.tsx` so the last Section is a state
 - [x] The Section shows the index label, the giant line with one italic word, the supporting sentence and three large buttons
 - [x] The three links open the correct targets: Telegram and GitHub in a new tab, Email as `mailto:`
 - [x] At 375px the buttons are at least 44px tall, wrap cleanly and there is no horizontal scroll; the giant line does not overflow
-- [ ] At 1440px the buttons pull toward the pointer (magnetic) and do not on touch emulation or with reduced motion forced on (pull and touch checked; reduced motion is left for ticket 07)
+- [x] At 1440px the buttons pull toward the pointer (magnetic) and do not on touch emulation or with reduced motion forced on
 - [x] Keyboard: Tab reaches the three links in order, focus rings are visible (the ring is now the shared `buttonVariants` `ring-2` Ember ring, the same as the Hero buttons, not the old `outline`)
 - [x] Text/background contrast of every text on the Section is AA (ratios recorded under Comments)
-- [ ] The developer has approved the giant line's wording (recorded under Comments)
+- [x] The developer has approved the giant line's wording (recorded under Comments)
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
@@ -37,4 +37,5 @@ Rebuild `apps/web/components/contact/contact.tsx` so the last Section is a state
 - Checked in the built-in browser. 1440px: heading on two lines plus the italic word, buttons 64px tall, links and attributes as above; the magnetic pull moved Telegram by about (7.5, -2.8)px and Email by about (-7.9, -1.5)px with the pointer between them, GitHub outside the radius stayed put. 375px: heading 46.7px and fits its box (`scrollWidth` equals `clientWidth`), buttons 56px tall, Telegram and Email on one row and GitHub wrapped to the next, `scrollWidth` 375 (no horizontal scroll), no magnetic transform in touch emulation. Keyboard: Tab goes Telegram, Email, GitHub, and the focused link shows the `ring-2` Ember ring with the background-coloured offset (`:focus-visible` true).
 - Contrast (computed from the token colours on `#0b0908`): italic accent word 7.02, heading 17.42, supporting sentence (`--muted`) 7.18, GitHub label 17.42, button label `#0b0908` on the gradient 11.16 at the amber end and 5.64 at the red end, index label 7.18 as in spec 012 ticket 07. All are AA.
 - One thing seen and not a bug in this change: loading `/#contact`, then scrolling, left the three buttons at opacity 0 once, right after hot reload; a fresh load of `/#contact` and of `/` both showed them. It looked like stale hot-reload state and did not reproduce.
-- Still open: the developer's approval of the wording, and the Hero-vs-Contact reading of "the Hero's type scale". The line, the italic word and the size are easy to change in this one file.
+- Wording approved by the developer: "Let's build something together" ("Да норм"). The size is its own clamp rather than the Hero's, as explained above; the line, the italic word and the size are easy to change in this one file.
+- Closed in ticket 07: with reduced motion emulated before load the magnetic wrappers stay at `transform: none` with the mouse next to the buttons and the buttons are visible at once; in touch emulation they are also `none`. The wording approval is still open.

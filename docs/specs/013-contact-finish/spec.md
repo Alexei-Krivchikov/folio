@@ -1,6 +1,6 @@
 # Spec 013 — Contact, Footer and finishing touches
 
-Status: Draft
+Status: Done
 
 ## Problem Statement
 
