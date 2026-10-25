@@ -4,7 +4,7 @@
 
 **Blocked by:** none
 
-**Status:** ready-for-agent
+**Status:** done
 
 ## What to build
 
@@ -18,11 +18,20 @@ The top of `apps/web/app/projects/[slug]/page.tsx` in the Ember language: back l
 
 ## Acceptance criteria
 
-- [ ] Title, cover, HUD meta row and link buttons render for all three Case studies, with the cover in the server HTML
-- [ ] A Project without an Employer shows "personal" (or the agreed wording) and a Project without links shows no empty link list
-- [ ] No horizontal scroll at 375px or 1440px; link buttons are at least 44px tall at 375px
-- [ ] Cover aspect ratio and crop match the home card cover
-- [ ] The cover has correct `sizes` and does not request a larger image than it shows
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] Title, cover, HUD meta row and link buttons render for all three Case studies, with the cover in the server HTML
+- [x] A Project without an Employer shows "personal" (or the agreed wording) and a Project without links shows no empty link list
+- [x] No horizontal scroll at 375px or 1440px; link buttons are at least 44px tall at 375px
+- [x] Cover aspect ratio and crop match the home card cover
+- [x] The cover has correct `sizes` and does not request a larger image than it shows
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
+
+**Done (2026-10-25).**
+
+- **Width.** The article container is `max-w-5xl` (the width of Hero and Contact), so the cover is 976px at 1440px. The MDX body, gallery and next-project block sit in an inner `max-w-3xl`, so their layout is unchanged until tickets 03 to 05. Cover `sizes` is `(min-width: 1072px) 976px, calc(100vw - 48px)`: 976px is the container's content width, 1072px is where it stops growing.
+- **Title and meta.** `SectionHeading as="h1"` with the label `[ ${formatProjectMeta(project)} ]`: the same HUD label above a display heading as in the home Sections, with no new type scale. `formatProjectMeta` is unchanged because the Open Graph image also uses it.
+- **"personal" wording.** The type label already says "Personal", so a Project without an Employer shows `[ Personal · 2026 ]`, not "Personal · personal · 2026". With an Employer: `[ Commercial · Anthill · 2023 — Present ]`.
+- **Links.** `buttonVariants` plus `max-md:h-11` (same pattern as the Hero). The primary (`default`) button is the first link, so `getProjectLinks` now returns Website first, then the GitHub repos; before, Website was last. Only this page uses it.
+- **Cover.** `aspect-video`, `rounded-xl border border-border`, `object-cover object-top-left`, `priority`, `quality={90}`, same as the home card cover.
+- **Checked** in the browser at 1024px and 375px (no horizontal scroll, link buttons 44px tall at 375px, no console errors); the server HTML of all three pages has the cover `<img>` and the meta row. 1440px not checked directly: the container stops growing at 1072px, so it is the same layout as 1024px with wider margins.
