@@ -33,7 +33,7 @@ export function getProjectLinks(project: Project): ProjectLink[] {
     label: `GitHub — ${repo.label}`,
     url: repo.url,
   }));
-  return project.links.website ? [...github, { label: "Website", url: project.links.website }] : github;
+  return project.links.website ? [{ label: "Website", url: project.links.website }, ...github] : github;
 }
 
 export function formatProjectMeta(project: Project): string {

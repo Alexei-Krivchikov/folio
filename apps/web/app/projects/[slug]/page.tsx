@@ -1,5 +1,5 @@
 import { MDXContent } from "@content-collections/mdx/react";
-import { HudLabel } from "@folio/ui";
+import { buttonVariants, cn, HudLabel, SectionHeading } from "@folio/ui";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +8,8 @@ import type { ComponentProps } from "react";
 import { formatProjectMeta, getNextProject, getProject, getProjectLinks, getProjects } from "@/lib/projects";
 
 export const dynamicParams = false;
+
+const COVER_SIZES = "(min-width: 1072px) 976px, calc(100vw - 48px)";
 
 export function generateStaticParams() {
   return getProjects().map((project) => ({ slug: project.slug }));
@@ -40,7 +42,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <article className="mx-auto w-full max-w-3xl px-6 py-16">
+      <article className="mx-auto w-full max-w-5xl px-6 py-16">
         <Link
           href="/#projects"
           className="inline-flex h-11 items-center text-sm text-muted transition-colors hover:text-accent md:h-auto"
@@ -48,18 +50,21 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           ← Back
         </Link>
 
-        <h1 className="mt-8 text-4xl font-bold text-foreground md:text-5xl">{project.name}</h1>
-        <p className="mt-3 text-sm text-muted">{formatProjectMeta(project)}</p>
+        <div className="mt-8">
+          <SectionHeading as="h1" label={`[ ${formatProjectMeta(project)} ]`}>
+            {project.name}
+          </SectionHeading>
+        </div>
 
         {links.length > 0 && (
           <ul className="mt-6 flex flex-wrap gap-3">
-            {links.map((link) => (
+            {links.map((link, index) => (
               <li key={link.url}>
                 <a
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block rounded-lg border border-border px-4 py-3 text-sm text-foreground md:py-2 transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  className={cn(buttonVariants({ variant: index === 0 ? "default" : "outline" }), "max-md:h-11")}
                 >
                   {link.label} ↗
                 </a>
@@ -68,39 +73,53 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </ul>
         )}
 
-        <MDXContent code={project.body} components={mdxComponents} />
+        <div className="relative mt-10 aspect-video overflow-hidden rounded-xl border border-border">
+          <Image
+            src={project.cover}
+            alt={`${project.name} preview`}
+            fill
+            priority
+            quality={90}
+            sizes={COVER_SIZES}
+            className="object-cover object-top-left"
+          />
+        </div>
 
-        {project.gallery.length > 0 && (
-          <section aria-label="Screenshots" className="mt-12 grid gap-4 sm:grid-cols-2">
-            {project.gallery.map((image) => (
-              <div
-                key={`${image.src}#${image.alt}`}
-                className="relative aspect-video overflow-hidden rounded-xl border border-border"
+        <div className="max-w-3xl">
+          <MDXContent code={project.body} components={mdxComponents} />
+
+          {project.gallery.length > 0 && (
+            <section aria-label="Screenshots" className="mt-12 grid gap-4 sm:grid-cols-2">
+              {project.gallery.map((image) => (
+                <div
+                  key={`${image.src}#${image.alt}`}
+                  className="relative aspect-video overflow-hidden rounded-xl border border-border"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    quality={90}
+                    sizes="(min-width: 768px) 360px, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </section>
+          )}
+
+          {nextProject && (
+            <nav className="mt-16 border-t border-border pt-8">
+              <HudLabel as="p">[ Next project ]</HudLabel>
+              <Link
+                href={`/projects/${nextProject.slug}`}
+                className="mt-3 inline-flex min-h-11 items-center text-2xl font-semibold text-foreground transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  quality={90}
-                  sizes="(min-width: 768px) 360px, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </section>
-        )}
-
-        {nextProject && (
-          <nav className="mt-16 border-t border-border pt-8">
-            <HudLabel as="p">[ Next project ]</HudLabel>
-            <Link
-              href={`/projects/${nextProject.slug}`}
-              className="mt-3 inline-flex min-h-11 items-center text-2xl font-semibold text-foreground transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            >
-              {nextProject.name} →
-            </Link>
-          </nav>
-        )}
+                {nextProject.name} →
+              </Link>
+            </nav>
+          )}
+        </div>
       </article>
     </main>
   );
