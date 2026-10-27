@@ -1,5 +1,5 @@
 import { MDXContent } from "@content-collections/mdx/react";
-import { buttonVariants, cn, HudLabel, SectionHeading } from "@folio/ui";
+import { AccentText, buttonVariants, cn, HudLabel, SectionHeading } from "@folio/ui";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,11 +26,33 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 const mdxComponents = {
-  h2: (props: ComponentProps<"h2">) => <h2 className="mt-12 text-2xl font-semibold text-foreground" {...props} />,
-  p: (props: ComponentProps<"p">) => <p className="mt-4 leading-relaxed text-muted" {...props} />,
-  ul: (props: ComponentProps<"ul">) => <ul className="mt-4 list-disc space-y-2 pl-5 text-muted" {...props} />,
+  h2: (props: ComponentProps<"h2">) => (
+    <h2 className="mt-14 text-2xl font-semibold tracking-tight text-foreground first:mt-10 md:text-3xl" {...props} />
+  ),
+  p: (props: ComponentProps<"p">) => (
+    <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-muted md:text-lg" {...props} />
+  ),
+  ul: (props: ComponentProps<"ul">) => (
+    <ul
+      className="mt-4 max-w-[68ch] list-disc space-y-3 pl-5 text-base leading-relaxed text-muted marker:text-accent md:text-lg"
+      {...props}
+    />
+  ),
+  li: (props: ComponentProps<"li">) => <li className="pl-1" {...props} />,
   strong: (props: ComponentProps<"strong">) => <strong className="font-semibold text-foreground" {...props} />,
-  a: (props: ComponentProps<"a">) => <a className="text-accent underline underline-offset-4" {...props} />,
+  a: (props: ComponentProps<"a">) => (
+    <a
+      className="rounded-sm text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:text-accent-from hover:decoration-accent-from focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+      {...props}
+    />
+  ),
+  code: (props: ComponentProps<"code">) => (
+    <code
+      className="break-words rounded-md border border-border bg-foreground/5 px-1.5 py-0.5 font-mono text-[0.85em] text-foreground"
+      {...props}
+    />
+  ),
+  AccentText: (props: ComponentProps<typeof AccentText>) => <AccentText className="text-accent" {...props} />,
 };
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -87,27 +109,27 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         <div className="max-w-3xl">
           <MDXContent code={project.body} components={mdxComponents} />
+        </div>
 
-          {project.gallery.length > 0 && (
-            <section aria-label="Screenshots" className="mt-12 grid gap-4 sm:grid-cols-2">
-              {project.gallery.map((image) => (
-                <div
-                  key={`${image.src}#${image.alt}`}
-                  className="relative aspect-video overflow-hidden rounded-xl border border-border"
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    quality={90}
-                    sizes="(min-width: 768px) 360px, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </section>
-          )}
+        {project.gallery.length > 0 && (
+          <section aria-label="Screenshots" className="mt-12 flex flex-col gap-6">
+            {project.gallery.map((image) => (
+              <div key={`${image.src}#${image.alt}`} className="overflow-hidden rounded-xl border border-border">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  quality={90}
+                  sizes={COVER_SIZES}
+                  className="h-auto w-full"
+                />
+              </div>
+            ))}
+          </section>
+        )}
 
+        <div className="max-w-3xl">
           {nextProject && (
             <nav className="mt-16 border-t border-border pt-8">
               <HudLabel as="p">[ Next project ]</HudLabel>

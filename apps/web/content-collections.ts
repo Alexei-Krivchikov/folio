@@ -1,5 +1,8 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
+import { imageSize } from "image-size";
 import { z } from "zod";
 
 type ProjectIdentity = {
@@ -83,8 +86,15 @@ const projects = defineCollection({
     assertUnique(documents, "order", document.order);
 
     const body = await compileMDX(context, document);
+    const gallery = await Promise.all(
+      document.gallery.map(async (image) => {
+        const file = path.join(process.cwd(), "public", image.src);
+        const { width, height } = imageSize(await readFile(file));
+        return { ...image, width, height };
+      }),
+    );
     const { content: _content, ...project } = document;
-    return { ...project, body };
+    return { ...project, gallery, body };
   },
 });
 
