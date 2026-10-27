@@ -79,11 +79,7 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
                       quality={90}
                       sizes={featured ? FEATURED_SIZES : REGULAR_SIZES}
                       priority={featured}
-                      className={cn(
-                        "object-cover object-top-left",
-                        !reduced &&
-                          "transition-transform duration-500 ease-out group-hover:scale-105 group-focus-visible:scale-105",
-                      )}
+                      className="object-cover object-top-left"
                     />
                   </div>
 
