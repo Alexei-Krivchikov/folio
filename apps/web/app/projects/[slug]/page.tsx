@@ -109,27 +109,27 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         <div className="max-w-3xl">
           <MDXContent code={project.body} components={mdxComponents} />
+        </div>
 
-          {project.gallery.length > 0 && (
-            <section aria-label="Screenshots" className="mt-12 grid gap-4 sm:grid-cols-2">
-              {project.gallery.map((image) => (
-                <div
-                  key={`${image.src}#${image.alt}`}
-                  className="relative aspect-video overflow-hidden rounded-xl border border-border"
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    quality={90}
-                    sizes="(min-width: 768px) 360px, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </section>
-          )}
+        {project.gallery.length > 0 && (
+          <section aria-label="Screenshots" className="mt-12 flex flex-col gap-6">
+            {project.gallery.map((image) => (
+              <div key={`${image.src}#${image.alt}`} className="overflow-hidden rounded-xl border border-border">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  quality={90}
+                  sizes={COVER_SIZES}
+                  className="h-auto w-full"
+                />
+              </div>
+            ))}
+          </section>
+        )}
 
+        <div className="max-w-3xl">
           {nextProject && (
             <nav className="mt-16 border-t border-border pt-8">
               <HudLabel as="p">[ Next project ]</HudLabel>
