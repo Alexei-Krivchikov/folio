@@ -1,10 +1,12 @@
 import { MDXContent } from "@content-collections/mdx/react";
-import { AccentText, buttonVariants, cn, HudLabel, SectionHeading } from "@folio/ui";
+import { AccentText, buttonVariants, cn, SectionHeading } from "@folio/ui";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ComponentProps } from "react";
+import { NextProject } from "@/components/projects/next-project";
+import { ProjectCover } from "@/components/projects/project-cover";
 import { formatProjectMeta, getNextProject, getProject, getProjectLinks, getProjects } from "@/lib/projects";
 
 export const dynamicParams = false;
@@ -95,17 +97,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </ul>
         )}
 
-        <div className="relative mt-10 aspect-video overflow-hidden rounded-xl border border-border">
-          <Image
-            src={project.cover}
-            alt={`${project.name} preview`}
-            fill
-            priority
-            quality={90}
-            sizes={COVER_SIZES}
-            className="object-cover object-top-left"
-          />
-        </div>
+        <ProjectCover
+          src={project.cover}
+          name={project.name}
+          sizes={COVER_SIZES}
+          priority
+          className="mt-10 rounded-xl"
+        />
 
         <div className="max-w-3xl">
           <MDXContent code={project.body} components={mdxComponents} />
@@ -129,19 +127,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </section>
         )}
 
-        <div className="max-w-3xl">
-          {nextProject && (
-            <nav className="mt-16 border-t border-border pt-8">
-              <HudLabel as="p">[ Next project ]</HudLabel>
-              <Link
-                href={`/projects/${nextProject.slug}`}
-                className="mt-3 inline-flex min-h-11 items-center text-2xl font-semibold text-foreground transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-              >
-                {nextProject.name} →
-              </Link>
-            </nav>
-          )}
-        </div>
+        {nextProject && <NextProject project={nextProject} />}
       </article>
     </main>
   );
