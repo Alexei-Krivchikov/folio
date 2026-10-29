@@ -4,9 +4,11 @@ import { cn, MagneticButton, SectionHeading, TiltCard, usePointerMotion } from "
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, liftOnHover, staggerVariants, viewportOnce } from "@/components/motion/variants";
 import { sectionIndex } from "@/lib/navigation";
+import { projectCoverTransitionName } from "@/lib/view-transition";
 
 export type ProjectCard = {
   slug: string;
@@ -66,22 +68,24 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
                     featured && "lg:flex-row",
                   )}
                 >
-                  <div
-                    className={cn(
-                      "relative aspect-video overflow-hidden border-b border-border",
-                      featured && "lg:aspect-auto lg:w-[45%] lg:shrink-0 lg:border-r lg:border-b-0",
-                    )}
-                  >
-                    <Image
-                      src={project.cover}
-                      alt={`${project.name} preview`}
-                      fill
-                      quality={90}
-                      sizes={featured ? FEATURED_SIZES : REGULAR_SIZES}
-                      priority={featured}
-                      className="object-cover object-top-left"
-                    />
-                  </div>
+                  <ViewTransition name={projectCoverTransitionName(project.slug)}>
+                    <div
+                      className={cn(
+                        "relative aspect-video overflow-hidden border-b border-border",
+                        featured && "lg:aspect-auto lg:w-[45%] lg:shrink-0 lg:border-r lg:border-b-0",
+                      )}
+                    >
+                      <Image
+                        src={project.cover}
+                        alt={`${project.name} preview`}
+                        fill
+                        quality={90}
+                        sizes={featured ? FEATURED_SIZES : REGULAR_SIZES}
+                        priority={featured}
+                        className="object-cover object-top-left"
+                      />
+                    </div>
+                  </ViewTransition>
 
                   <div className="flex flex-1 flex-col p-6">
                     <div className="flex items-center justify-between gap-3">

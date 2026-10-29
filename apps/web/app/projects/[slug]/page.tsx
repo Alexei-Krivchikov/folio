@@ -8,6 +8,7 @@ import type { ComponentProps } from "react";
 import { NextProject } from "@/components/projects/next-project";
 import { ProjectCover } from "@/components/projects/project-cover";
 import { formatProjectMeta, getNextProject, getProject, getProjectLinks, getProjects } from "@/lib/projects";
+import { projectCoverTransitionName } from "@/lib/view-transition";
 
 export const dynamicParams = false;
 
@@ -102,6 +103,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           name={project.name}
           sizes={COVER_SIZES}
           priority
+          transitionName={projectCoverTransitionName(project.slug)}
           className="mt-10 rounded-xl"
         />
 
