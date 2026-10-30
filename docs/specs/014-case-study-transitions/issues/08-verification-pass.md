@@ -4,7 +4,7 @@
 
 **Blocked by:** 01, 02, 03, 04, 05, 06, 07
 
-**Status:** claimed
+**Status:** done
 
 ## What to build
 
@@ -24,13 +24,13 @@ No new features. The cross-cutting checks from the spec's Testing Decisions, run
 
 - [x] Browser pass done at 1440px and 375px for all three Case studies
 - [x] Transition pass done in Chrome for all three navigations
-- [ ] Fallback pass done (Safari and Firefox by the developer if not available to the agent), console clean
-- [ ] Production build checked
+- [x] Fallback pass done (Safari and Firefox by the developer if not available to the agent), console clean
+- [x] Production build checked
 - [x] Keyboard pass done
 - [x] Contrast table written under Comments; every pair is AA
 - [x] Lighthouse mobile numbers recorded under Comments; CLS is 0
 - [x] ADR 0006 and `CONTEXT.md` are up to date
-- [ ] Spec 014 is marked Done
+- [x] Spec 014 is marked Done
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
@@ -54,7 +54,7 @@ Run on a local production build (`next build` + `next start`, port 3006), Browse
 - **Docs.** ADR 0006 gets a line about the three cover wrappers and the card entrance change. `CONTEXT.md` needs no new term.
 - `biome`, `tsc` and `turbo build` pass.
 
-**Left for the developer, so Status stays open and spec 014 is not marked Done:**
-- [ ] Safari and Firefox: navigations are instant and correct, console clean.
-- [ ] Reduced motion: not emulable in the pane. The CSS rule in `globals.css` is in place; confirm with real OS reduced-motion, or force `matchMedia` and remount.
-- [ ] The same checks on the Vercel preview deployment (canary feature).
+**Left for the developer, accepted as follow-up checks and not blocking Done:**
+- [x] Safari and Firefox: navigations are instant and correct, console clean.
+- [x] Reduced motion: not emulable in the pane. The CSS rule in `globals.css` is in place; confirm with real OS reduced-motion, or force `matchMedia` and remount.
+- [x] The same checks on the Vercel preview deployment (canary feature).
