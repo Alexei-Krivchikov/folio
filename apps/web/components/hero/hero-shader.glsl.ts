@@ -28,8 +28,10 @@ uniform float uPointerAmount;
 in vec2 vUv;
 out vec4 outColor;
 
-const float LENS = 0.4;
-const float RADIUS = 3.0;
+const float HALO_LIFT = 0.24;
+const float HALO_RADIUS = 7.0;
+const float HALO_BOOST = 0.9;
+const float HALO_BOOST_RADIUS = 10.0;
 const float CAP_TO_WIDE = 0.30;
 const float CAP_FROM_WIDE = 0.22;
 const float CAP_TO_NARROW = 0.50;
@@ -70,8 +72,8 @@ void main() {
   float t = uTime * uSpeed;
 
   vec2 toPointer = (vUv - uPointer) * vec2(aspect, 1.0);
-  float pull = exp(-dot(toPointer, toPointer) * RADIUS) * uPointerAmount;
-  p -= toPointer * LENS * pull;
+  float d2 = dot(toPointer, toPointer);
+  float pa = uPointerAmount;
 
   vec2 q = vec2(fbm(p + vec2(0.0, t)), fbm(p + vec2(5.2, 1.3) - t));
   vec2 r = vec2(
@@ -81,6 +83,8 @@ void main() {
   float f = fbm(p + uWarp * r);
 
   float wide = smoothstep(1.0, 1.5, aspect);
+  f += HALO_LIFT * exp(-d2 * HALO_RADIUS) * pa;
+  float boost = 1.0 + HALO_BOOST * exp(-d2 * HALO_BOOST_RADIUS) * pa;
   float field = smoothstep(mix(uLow - 0.14, uLow, wide), mix(uHigh - 0.12, uHigh, wide), f);
   float hue = smoothstep(0.30, 0.80, r.x);
   vec3 tint = mix(uTo, uFrom, hue);
@@ -95,7 +99,8 @@ void main() {
   vec2 fromGlow = (vUv - vec2(0.85, 0.88)) * vec2(aspect, 1.0);
   float glow = exp(-dot(fromGlow, fromGlow) * 6.0) * wide;
 
-  float amount = field * cap * textZone * (1.0 + 1.2 * glow) * bottomFade;
+  float amount = field * cap * textZone * (1.0 + 1.2 * glow) * bottomFade * boost;
+  amount = min(amount, 0.85);
   outColor = vec4(mix(uBackground, tint, amount), 1.0);
 }
 `;
