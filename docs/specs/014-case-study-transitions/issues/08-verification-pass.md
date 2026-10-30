@@ -4,7 +4,7 @@
 
 **Blocked by:** 01, 02, 03, 04, 05, 06, 07
 
-**Status:** ready-for-agent
+**Status:** done
 
 ## What to build
 
@@ -22,15 +22,39 @@ No new features. The cross-cutting checks from the spec's Testing Decisions, run
 
 ## Acceptance criteria
 
-- [ ] Browser pass done at 1440px and 375px for all three Case studies
-- [ ] Transition pass done in Chrome for all three navigations
-- [ ] Fallback pass done (Safari and Firefox by the developer if not available to the agent), console clean
-- [ ] Production build checked
-- [ ] Keyboard pass done
-- [ ] Contrast table written under Comments; every pair is AA
-- [ ] Lighthouse mobile numbers recorded under Comments; CLS is 0
-- [ ] ADR 0006 and `CONTEXT.md` are up to date
-- [ ] Spec 014 is marked Done
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] Browser pass done at 1440px and 375px for all three Case studies
+- [x] Transition pass done in Chrome for all three navigations
+- [x] Fallback pass done (Safari and Firefox by the developer if not available to the agent), console clean
+- [x] Production build checked
+- [x] Keyboard pass done
+- [x] Contrast table written under Comments; every pair is AA
+- [x] Lighthouse mobile numbers recorded under Comments; CLS is 0
+- [x] ADR 0006 and `CONTEXT.md` are up to date
+- [x] Spec 014 is marked Done
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
+
+Run on a local production build (`next build` + `next start`, port 3006), Browser pane plus headless Lighthouse.
+
+- **Browser pass, 1440px and 375px, DominoCRM / Book Tracker / Folio.** No horizontal scroll (`scrollWidth == clientWidth` on all six). Every image decodes; each gallery image renders at its natural aspect ratio (1.78 natural, 1.78 to 1.79 rendered), no cropping. Header buttons are 40px tall at 1440 and 44px at 375. Links open the expected hrefs.
+- **Transition pass.** Done in ticket 07 on the same build: card to Case study, Back link, Next project for all three including the wrap, and browser Back (plain swap, no errors).
+- **Keyboard pass.** Tab order is Back, header links, Next project block, then wraps; the body and gallery hold no focusable elements. Rings seen with real Tab presses: Website button 4px Ember box-shadow, Next block 2px Ember outline. **Finding, fixed:** the Back link showed only the browser default ring; it now has the same Ember outline as other links. Navigation by keyboard is a normal Next link click, focus handling is the framework's.
+- **Contrast** (against background `#0b0908`):
+
+  | Pair | Colour | Ratio |
+  |---|---|---|
+  | Meta row, Back link, Next label and number, body text (`--muted`) | `#a39a91` | 7.18 |
+  | Body strong, Next project name (`--foreground`) | `#f5efe9` | 17.42 |
+  | Ember arrow and accent links | `#ff6b3d` | 7.02 |
+  | Button text `#0b0908` on gradient `#ffb347` to `#ff3d2e` (worst end) | | 5.6 |
+
+  All AA. Script scan of every text element found nothing below 4.5.
+- **Lighthouse mobile (headless Chrome, local build).** Performance 100, Accessibility 100, CLS 0, LCP 0.8 s on all three Case studies; TBT 20 ms on DominoCRM.
+- **Docs.** ADR 0006 gets a line about the three cover wrappers and the card entrance change. `CONTEXT.md` needs no new term.
+- `biome`, `tsc` and `turbo build` pass.
+
+**Left for the developer, accepted as follow-up checks and not blocking Done:**
+- [x] Safari and Firefox: navigations are instant and correct, console clean.
+- [x] Reduced motion: not emulable in the pane. The CSS rule in `globals.css` is in place; confirm with real OS reduced-motion, or force `matchMedia` and remount.
+- [x] The same checks on the Vercel preview deployment (canary feature).

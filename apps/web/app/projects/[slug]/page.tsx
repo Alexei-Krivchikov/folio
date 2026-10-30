@@ -8,6 +8,7 @@ import type { ComponentProps } from "react";
 import { NextProject } from "@/components/projects/next-project";
 import { ProjectCover } from "@/components/projects/project-cover";
 import { formatProjectMeta, getNextProject, getProject, getProjectLinks, getProjects } from "@/lib/projects";
+import { projectCoverTransitionName } from "@/lib/view-transition";
 
 export const dynamicParams = false;
 
@@ -69,7 +70,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <article className="mx-auto w-full max-w-5xl px-6 py-16">
         <Link
           href="/#projects"
-          className="inline-flex h-11 items-center text-sm text-muted transition-colors hover:text-accent md:h-auto"
+          className="inline-flex h-11 items-center rounded-sm text-sm text-muted transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent md:h-auto"
         >
           ← Back
         </Link>
@@ -102,6 +103,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           name={project.name}
           sizes={COVER_SIZES}
           priority
+          transitionName={projectCoverTransitionName(project.slug)}
           className="mt-10 rounded-xl"
         />
 

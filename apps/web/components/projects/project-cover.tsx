@@ -1,5 +1,6 @@
 import { cn } from "@folio/ui";
 import Image from "next/image";
+import { ViewTransition } from "react";
 
 export function ProjectCover({
   src,
@@ -7,14 +8,16 @@ export function ProjectCover({
   sizes,
   priority,
   className,
+  transitionName,
 }: {
   src: string;
   name: string;
   sizes: string;
   priority?: boolean;
   className?: string;
+  transitionName?: string;
 }) {
-  return (
+  const cover = (
     <div className={cn("relative aspect-video overflow-hidden border border-border", className)}>
       <Image
         src={src}
@@ -27,4 +30,6 @@ export function ProjectCover({
       />
     </div>
   );
+
+  return transitionName ? <ViewTransition name={transitionName}>{cover}</ViewTransition> : cover;
 }

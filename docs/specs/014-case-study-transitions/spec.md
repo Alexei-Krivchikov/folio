@@ -1,6 +1,6 @@
 # Spec 014 — Case study redesign and View Transitions
 
-Status: Draft
+Status: Done
 
 ## Problem Statement
 

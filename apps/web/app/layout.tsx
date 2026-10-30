@@ -1,4 +1,4 @@
-import { CursorSpotlight, Grain, ScrollProgress } from "@folio/ui";
+import { Grain, ScrollProgress } from "@folio/ui";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Geist_Mono, Instrument_Serif } from "next/font/google";
@@ -58,7 +58,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LenisProvider>{children}</LenisProvider>
         <Grain />
         <ScrollProgress />
-        <CursorSpotlight />
         <Analytics />
       </body>
     </html>

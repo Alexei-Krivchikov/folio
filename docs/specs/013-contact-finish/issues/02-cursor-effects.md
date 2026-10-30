@@ -40,3 +40,5 @@ The first version also drew a small ring that followed the pointer and grew over
 - The first version was 640px at 20% alpha; the developer found it too strong, so it was cut to 420px at 12%.
 - For ticket 07's keep-or-cut call: on the Hero the spotlight is almost invisible against the shader; it shows on the quiet Sections.
 - Closed in ticket 07 with Chrome emulation on the production build: absent from the DOM in touch emulation and under emulated reduced motion; opacity 0 before the first move, 1 while moving, 0 after a `pointerleave`; a real click on the Hero button under the visible layer worked and text selection worked; no long task during 300 mouse moves, also with the CPU throttled 4x. The "no React render per move" half is not measured; the component has no state.
+
+- **Reversal.** The component was later removed at the developer's request ("фонарик не нравится").

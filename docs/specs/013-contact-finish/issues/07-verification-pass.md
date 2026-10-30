@@ -67,3 +67,5 @@ How it was checked: a script in the session scratchpad drove a headless Chrome o
 - **Lighthouse mobile on the preview deployment: moved to spec 016.** The developer decided Lighthouse runs will be done separately, in [spec 016](../../016-lighthouse-lcp/spec.md), which exists for exactly this: measure the finished site once on the preview and fix the misses in one place. It was not run here. What was measured locally on the production build is above (CLS 0, no long tasks).
 - **Docs.** `CONTEXT.md` needs no change: the Sections list is still Hero, Projects, About, Experience, Contact, and none of the new pieces (progress line, spotlight, clock, index) is a domain term worth a name.
 - Spec 013 is marked Done: the spotlight and the Contact wording are confirmed by the developer, and the Lighthouse numbers are tracked in spec 016.
+
+- **Reversal.** The spotlight was later cut at the developer's request ("фонарик не нравится"); `CursorSpotlight`, its export and mount are removed.

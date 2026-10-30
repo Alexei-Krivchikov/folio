@@ -1,6 +1,7 @@
 import { HudLabel } from "@folio/ui";
 import Link from "next/link";
 import { formatProjectNumber, type Project } from "@/lib/projects";
+import { projectCoverTransitionName } from "@/lib/view-transition";
 import { ProjectCover } from "./project-cover";
 
 const NEXT_COVER_SIZES = "(min-width: 1072px) 976px, calc(100vw - 48px)";
@@ -17,6 +18,7 @@ export function NextProject({ project }: { project: Project }) {
           src={project.cover}
           name={project.name}
           sizes={NEXT_COVER_SIZES}
+          transitionName={projectCoverTransitionName(project.slug)}
           className="rounded-none border-0 border-b"
         />
         <div className="flex items-center justify-between gap-4 p-6">

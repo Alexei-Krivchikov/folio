@@ -4,9 +4,11 @@ import { cn, MagneticButton, SectionHeading, TiltCard, usePointerMotion } from "
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, liftOnHover, staggerVariants, viewportOnce } from "@/components/motion/variants";
 import { sectionIndex } from "@/lib/navigation";
+import { projectCoverTransitionName } from "@/lib/view-transition";
 
 export type ProjectCard = {
   slug: string;
@@ -34,6 +36,9 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
   const reduced = usePrefersReducedMotion();
   const section = staggerVariants(reduced, { staggerChildren: 0.12 });
   const fadeUp = fadeUpVariants(reduced, { y: 24, duration: 0.5 });
+  const cardRise = reduced
+    ? fadeUp
+    : { hidden: { y: 24 }, show: { y: 0, transition: { duration: 0.5, ease: "easeOut" as const } } };
   const pointerMotion = usePointerMotion();
   const cardHover = pointerMotion ? undefined : liftOnHover(reduced, -6);
 
@@ -52,7 +57,7 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
           return (
             <motion.li
               key={project.slug}
-              variants={fadeUp}
+              variants={cardRise}
               whileHover={cardHover}
               className={cn(featured && "md:col-span-2")}
             >
@@ -66,22 +71,24 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
                     featured && "lg:flex-row",
                   )}
                 >
-                  <div
-                    className={cn(
-                      "relative aspect-video overflow-hidden border-b border-border",
-                      featured && "lg:aspect-auto lg:w-[45%] lg:shrink-0 lg:border-r lg:border-b-0",
-                    )}
-                  >
-                    <Image
-                      src={project.cover}
-                      alt={`${project.name} preview`}
-                      fill
-                      quality={90}
-                      sizes={featured ? FEATURED_SIZES : REGULAR_SIZES}
-                      priority={featured}
-                      className="object-cover object-top-left"
-                    />
-                  </div>
+                  <ViewTransition name={projectCoverTransitionName(project.slug)}>
+                    <div
+                      className={cn(
+                        "relative aspect-video overflow-hidden border-b border-border",
+                        featured && "lg:aspect-auto lg:w-[45%] lg:shrink-0 lg:border-r lg:border-b-0",
+                      )}
+                    >
+                      <Image
+                        src={project.cover}
+                        alt={`${project.name} preview`}
+                        fill
+                        quality={90}
+                        sizes={featured ? FEATURED_SIZES : REGULAR_SIZES}
+                        priority={featured}
+                        className="object-cover object-top-left"
+                      />
+                    </div>
+                  </ViewTransition>
 
                   <div className="flex flex-1 flex-col p-6">
                     <div className="flex items-center justify-between gap-3">
