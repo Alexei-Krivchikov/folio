@@ -36,6 +36,9 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
   const reduced = usePrefersReducedMotion();
   const section = staggerVariants(reduced, { staggerChildren: 0.12 });
   const fadeUp = fadeUpVariants(reduced, { y: 24, duration: 0.5 });
+  const cardRise = reduced
+    ? fadeUp
+    : { hidden: { y: 24 }, show: { y: 0, transition: { duration: 0.5, ease: "easeOut" as const } } };
   const pointerMotion = usePointerMotion();
   const cardHover = pointerMotion ? undefined : liftOnHover(reduced, -6);
 
@@ -54,7 +57,7 @@ export function ProjectGrid({ projects }: { projects: ProjectCard[] }) {
           return (
             <motion.li
               key={project.slug}
-              variants={fadeUp}
+              variants={cardRise}
               whileHover={cardHover}
               className={cn(featured && "md:col-span-2")}
             >
