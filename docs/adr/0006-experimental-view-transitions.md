@@ -27,3 +27,7 @@ The visual upgrade (specs 009 to 015) wants the cover of a Project card to morph
 + Rollback is removing a few wrappers and the global CSS rules
 - A canary API can change or break on a Next upgrade, so Next upgrades need a manual check of Case study navigation
 - Safari behaviour can differ and has to be tested explicitly
+
+## Update
+
+The wrappers sit on three covers: the home card, the Case study header and the Next project block, with names from `projectCoverTransitionName`. To make the card a visible morph target the card entrance animation moves only on Y and no longer starts at opacity 0. Browser Back is a plain swap, not a reverse morph.
