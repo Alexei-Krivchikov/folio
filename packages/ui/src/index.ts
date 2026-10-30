@@ -1,6 +1,5 @@
 export { AccentText, type AccentTextProps } from "./components/accent-text";
 export { Button, buttonVariants } from "./components/button";
-export { CursorSpotlight } from "./components/cursor-spotlight";
 export { Grain } from "./components/grain";
 export { HudLabel, type HudLabelProps } from "./components/hud-label";
 export { LocalTime, type LocalTimeProps } from "./components/local-time";
