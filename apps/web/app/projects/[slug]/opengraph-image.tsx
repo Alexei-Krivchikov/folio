@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { OgTemplate, ogImageContentType, ogImageSize } from "@/components/og/og-template";
+import { getOgFonts } from "@/lib/og-fonts";
 import { formatProjectMeta, formatProjectNumber, getProject, getProjects } from "@/lib/projects";
 
 export const alt = "Project preview";
@@ -28,6 +29,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         <div style={{ display: "flex", fontSize: 22, color: "#7a7068" }}>{project.stack.join(" · ")}</div>
       </div>
     </OgTemplate>,
-    { ...size },
+    { ...size, fonts: await getOgFonts() },
   );
 }

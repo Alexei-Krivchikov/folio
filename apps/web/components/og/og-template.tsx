@@ -27,7 +27,7 @@ export function OgTemplate({ children, accent, watermark }: OgTemplateProps) {
         backgroundSize: "64px 64px",
         color: "#f5efe9",
         padding: 80,
-        fontFamily: "system-ui, sans-serif",
+        fontFamily: "Bricolage Grotesque",
       }}
     >
       <div

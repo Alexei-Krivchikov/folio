@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { OgTemplate, ogImageContentType, ogImageSize } from "@/components/og/og-template";
+import { getOgFonts } from "@/lib/og-fonts";
 
 export const alt = "Alexei Krivchikov — Frontend Developer";
 export const size = ogImageSize;
@@ -7,7 +8,8 @@ export const contentType = ogImageContentType;
 
 const ACCENT = "#ff6b3d";
 
-export default function Image() {
+export default async function Image() {
+  const fonts = await getOgFonts();
   return new ImageResponse(
     <OgTemplate accent={ACCENT} watermark=">_">
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -17,6 +19,6 @@ export default function Image() {
         </div>
       </div>
     </OgTemplate>,
-    { ...size },
+    { ...size, fonts },
   );
 }

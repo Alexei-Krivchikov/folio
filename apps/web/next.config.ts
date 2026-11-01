@@ -4,6 +4,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactCompiler: false,
   images: { qualities: [90] },
+  outputFileTracingIncludes: {
+    "/**": ["./assets/fonts/**"],
+  },
   async headers() {
     return [
       {
