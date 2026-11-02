@@ -3,6 +3,14 @@ import type { ReactNode } from "react";
 export const ogImageSize = { width: 1200, height: 630 };
 export const ogImageContentType = "image/png";
 
+export const ogColors = {
+  background: "#0b0908",
+  foreground: "#f5efe9",
+  muted: "#a39a91",
+  dim: "#7a7068",
+  accent: "#ff6b3d",
+};
+
 const GRID_LINE = "rgba(255,255,255,0.05)";
 
 type OgTemplateProps = {
@@ -22,10 +30,10 @@ export function OgTemplate({ children, accent, watermark }: OgTemplateProps) {
         flexDirection: "column",
         justifyContent: "space-between",
         overflow: "hidden",
-        background: "#0b0908",
+        background: ogColors.background,
         backgroundImage: `linear-gradient(to right, ${GRID_LINE} 1px, transparent 1px), linear-gradient(to bottom, ${GRID_LINE} 1px, transparent 1px)`,
         backgroundSize: "64px 64px",
-        color: "#f5efe9",
+        color: ogColors.foreground,
         padding: 80,
         fontFamily: "Bricolage Grotesque",
       }}

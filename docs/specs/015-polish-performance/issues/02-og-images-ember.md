@@ -4,7 +4,7 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** done
 
 ## What to build
 
@@ -17,12 +17,14 @@ The site's preview card and the Case study preview cards look like the rest of t
 
 ## Acceptance criteria
 
-- [ ] Site and all three Case study images render in Bricolage Grotesque, in the Ember style, 1200x630
-- [ ] No text is clipped or wrapped badly on any of the four images
-- [ ] The HTML of `/` and of a Case study contains an absolute `og:image` that answers 200 with `image/png`
-- [ ] Still generated through `next/og` from code, no binary image added (ADR 0004)
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] Site and all three Case study images render in Bricolage Grotesque, in the Ember style, 1200x630
+- [x] No text is clipped or wrapped badly on any of the four images
+- [x] The HTML of `/` and of a Case study contains an absolute `og:image` that answers 200 with `image/png`
+- [x] Still generated through `next/og` from code, no binary image added (ADR 0004)
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
 
 Telegram showing the new card is checked on the production address in ticket 08; Telegram caches previews, so test with a fresh URL (a query string) or the bot's refresh.
+
+Done: `og-template.tsx` now exports `ogColors` (the Ember token values, one place for the OG renderer, which cannot read CSS variables); both `opengraph-image.tsx` files use it. The stack line on the Case study card has `maxWidth: 1040` so DominoCRM fits on one line and Book Tracker and folio wrap onto two without orphans. `og:image` is absolute (built from `metadataBase`) and answers 200 `image/png` in a production build.
