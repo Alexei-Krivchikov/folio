@@ -4,7 +4,7 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** done
 
 ## What to build
 
@@ -16,10 +16,10 @@ The tab icon, the home-screen icon, the installed-app colours and the mobile bro
 
 ## Acceptance criteria
 
-- [ ] `/icon` and `/apple-icon` render the new mark in the display font, readable at 16px
-- [ ] `/manifest.webmanifest` answers 200 with Ember `background_color` and `theme_color`
-- [ ] The rendered HTML contains `<meta name="theme-color">` with the Ember value
-- [ ] No `#0a0a0a` remains anywhere in `apps/web`
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] `/icon` and `/apple-icon` render the new mark in the display font, readable at 16px
+- [x] `/manifest.webmanifest` answers 200 with Ember `background_color` and `theme_color`
+- [x] The rendered HTML contains `<meta name="theme-color">` with the Ember value
+- [x] No `#0a0a0a` remains anywhere in `apps/web`
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments

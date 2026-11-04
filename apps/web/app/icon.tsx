@@ -1,26 +1,31 @@
 import { ImageResponse } from "next/og";
+import { ogColors } from "@/components/og/og-template";
+import { getOgFonts } from "@/lib/og-fonts";
 
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
-export default function Icon() {
+export default async function Icon() {
   return new ImageResponse(
     <div
       style={{
         width: "100%",
         height: "100%",
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "#0a0a0a",
-        color: "#fafafa",
-        fontSize: 18,
-        fontWeight: 700,
-        fontFamily: "system-ui, sans-serif",
+        background: ogColors.background,
+        color: ogColors.foreground,
+        fontSize: 19,
+        fontWeight: 800,
+        letterSpacing: -1,
+        fontFamily: "Bricolage Grotesque",
       }}
     >
-      AK
+      <div style={{ display: "flex" }}>AK</div>
+      <div style={{ display: "flex", width: 18, height: 3, marginTop: 1, background: ogColors.accent }} />
     </div>,
-    { ...size },
+    { ...size, fonts: await getOgFonts() },
   );
 }

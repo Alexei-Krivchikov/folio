@@ -1,7 +1,8 @@
 import { Grain, ScrollProgress } from "@folio/ui";
 import { Analytics } from "@vercel/analytics/next";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { ogColors } from "@/components/og/og-template";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -45,6 +46,10 @@ export const metadata: Metadata = {
     title,
     description,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: ogColors.background,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
