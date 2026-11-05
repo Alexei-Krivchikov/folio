@@ -1,0 +1,21 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "pnpm --filter @folio/web exec next start -p 3000",
+      "startServerReadyPattern": "Ready",
+      "startServerReadyTimeout": 60000,
+      "url": ["http://localhost:3000/", "http://localhost:3000/projects/folio"],
+      "numberOfRuns": 3,
+      "settings": {
+        "preset": "perf",
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "chromeFlags": "--no-sandbox --headless=new"
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": ".lighthouseci"
+    }
+  }
+}
