@@ -7,7 +7,6 @@
       "url": ["http://localhost:3000/", "http://localhost:3000/projects/folio"],
       "numberOfRuns": 3,
       "settings": {
-        "preset": "perf",
         "formFactor": "mobile",
         "throttlingMethod": "simulate",
         "chromeFlags": "--no-sandbox --headless=new"
