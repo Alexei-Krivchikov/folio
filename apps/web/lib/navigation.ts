@@ -4,7 +4,7 @@ export const HEADER_PILL_HEIGHT = 56;
 
 export const HEADER_OFFSET = HEADER_TOP_GAP + HEADER_PILL_HEIGHT + 16;
 
-export const SECTION_IDS = ["hero", "projects", "about", "experience", "contact"] as const;
+const SECTION_IDS = ["hero", "projects", "about", "experience", "contact"] as const;
 
 export function isSectionHash(hash: string): boolean {
   return SECTION_IDS.some((id) => hash === `#${id}`);
