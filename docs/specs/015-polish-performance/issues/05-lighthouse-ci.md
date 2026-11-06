@@ -4,7 +4,7 @@
 
 **Blocked by:** none
 
-**Status:** ready-for-agent
+**Status:** done
 
 ## What to build
 
@@ -36,4 +36,12 @@ Verified by opening a pull request. If the agent cannot push, that step is the d
 - `lighthouserc.json` has only `collect` and a filesystem `upload`; there is no `assert`, so scores cannot fail the job. Pages: `/` and `/projects/folio`, three runs each, mobile form factor, simulated throttling.
 - `scripts/lighthouse-summary.mjs` takes the median of the three runs per page and writes a table to `$GITHUB_STEP_SUMMARY`; a Performance score below 90 gets a warning mark, not a failure. The raw reports are uploaded as the `lighthouse-report` artifact.
 - Not verified locally: the job only runs on GitHub. The push and the first run are the developer's step.
-- CI baseline: _to be filled in after the first run._
+- CI baseline (run 42178720232, `ubuntu-latest`, median of 3, mobile, simulated slow 4G):
+
+  | Page | Perf | A11y | BP | SEO | LCP | CLS | TBT |
+  | --- | --- | --- | --- | --- | --- | --- | --- |
+  | `/` | 51 | 100 | 96 | 100 | 4.23 s | 0.000 | 31038 ms |
+  | `/projects/folio` | 94 | 100 | 96 | 100 | 3.06 s | 0.000 | 65 ms |
+
+  The `/` TBT of about 31 s is far outside the norm and is probably the Hero shader (ogl) running on a CPU-only runner without a GPU; it is not verified. Handed to spec 016 together with the bundle growth from ticket 06.
+- The job is green with a Performance score of 51, so non-blocking behaviour is confirmed in practice. Run annotations are only the Node 20 deprecation of `actions/upload-artifact@v5` and the ubuntu-latest migration notice.
