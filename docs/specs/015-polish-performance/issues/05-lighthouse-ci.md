@@ -28,3 +28,12 @@ Every pull request reports Lighthouse scores. The job reports only: a hard gate 
 ## Comments
 
 Verified by opening a pull request. If the agent cannot push, that step is the developer's; list it here.
+
+### Implementation notes
+
+- Separate `lighthouse.yml` rather than a second job in `ci.yml`: the `check` job and its file stay untouched, and the Lighthouse run (build, three runs per page, Chrome) is slow and has its own failure modes, so it gets its own workflow and its own status in the PR.
+- Target is a local production build (`pnpm build`, then `next start` started by `lhci collect` through `startServerCommand`). No Vercel bypass secret is used or needed.
+- `lighthouserc.json` has only `collect` and a filesystem `upload`; there is no `assert`, so scores cannot fail the job. Pages: `/` and `/projects/folio`, three runs each, mobile form factor, simulated throttling.
+- `scripts/lighthouse-summary.mjs` takes the median of the three runs per page and writes a table to `$GITHUB_STEP_SUMMARY`; a Performance score below 90 gets a warning mark, not a failure. The raw reports are uploaded as the `lighthouse-report` artifact.
+- Not verified locally: the job only runs on GitHub. The push and the first run are the developer's step.
+- CI baseline: _to be filled in after the first run._
