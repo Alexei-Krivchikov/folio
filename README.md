@@ -7,17 +7,20 @@ Creative portfolio - `Alexei Krivchikov`.
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?logo=tailwindcss&logoColor=white)
 ![Motion](https://img.shields.io/badge/Motion-13-0055FF?logo=framer&logoColor=white)
+![OGL](https://img.shields.io/badge/OGL-1-black)
+![Lenis](https://img.shields.io/badge/Lenis-1-black)
 
-Goal: show recruiters real work, not just claims, in a few minutes: `Hero + About + Stack + Experience + Projects (3 case studies) + Contact`. Deployed on Vercel: [alexei-krivchikov.vercel.app](https://alexei-krivchikov.vercel.app). EN first, RU later.
+Goal: show recruiters real work, not just claims, in a few minutes: a dark Ember-themed site with a WebGL shader Hero, Projects (3 case studies), About (with the Stack), Experience and Contact. Deployed on Vercel: [alexei-krivchikov.vercel.app](https://alexei-krivchikov.vercel.app). EN first, RU later.
 
 ## Stack (MVP, 2026)
 
 - **Monorepo:** pnpm 11 + Turborepo 2
 - **Web:** Next.js 16 (App Router) + React 19 + TypeScript 5 strict
-- **Styling:** Tailwind CSS 4 + shadcn-style primitives (cva + tailwind-merge)
-- **Animation:** Motion 13 + Lenis (GSAP in Lab phase 2)
+- **Styling:** Tailwind CSS 4 + shadcn-style primitives (cva + tailwind-merge), Ember tokens in `packages/ui`
+- **Animation:** Motion 13 + Lenis, an `ogl` fragment shader in the Hero, React `ViewTransition` for Case study navigation (GSAP in Lab phase 2)
 - **Content:** MDX via content-collections (static, no DB for MVP)
 - **Tooling:** Biome 2
+- **CI:** GitHub Actions: `ci.yml` (lint, typecheck, build) and `lighthouse.yml` (Lighthouse report on every PR, never blocks)
 
 Full decisions: `docs/adr/`
 
@@ -26,9 +29,12 @@ Full decisions: `docs/adr/`
 ```
 folio/
   apps/web              # Next.js portfolio
-  packages/ui           # shadcn design system
-  packages/shared       # zod schemas, types
-  packages/config       # biome, tsconfig, tailwind presets
+  packages/ui           # design system: Ember tokens, shadcn-style and motion primitives
+  packages/shared       # placeholder, no schemas yet
+  packages/config       # placeholder
+  scripts/              # lighthouse-summary.mjs (CI job summary)
+  lighthouserc.json     # Lighthouse CI settings
+  .github/workflows/    # ci.yml, lighthouse.yml
   docs/
     architecture.md
     adr/
@@ -55,7 +61,8 @@ pnpm typecheck  # turbo typecheck
 
 ## Roadmap
 
-- **MVP (20h, 30d x 0.5-1h):** skeleton → ui-kit → hero/about → stack/experience → projects MDX → contact + deploy
+- **MVP:** done, specs 001-008 (skeleton, hero/about, stack, experience, projects MDX, polish/navigation, deploy, screenshots)
+- **Visual upgrade (Ember):** specs 009, 010, 012, 013, 014 done; 011 waits for its human verification pass; 015 (polish and performance) in progress; 016 (Lighthouse LCP) next
 - **Phase 2:** Lab (GSAP/R3F), Blog, Guestbook (PG+Drizzle), RU
 
 ## Scripts

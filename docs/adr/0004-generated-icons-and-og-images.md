@@ -10,6 +10,7 @@ The site needs a favicon, an Apple touch icon, and (in a follow-up ticket) Open 
 ## Decision
 
 - All icons (`app/icon.tsx`, `app/apple-icon.tsx`) and OG images are generated through `next/og`'s `ImageResponse`, not stored as binary assets.
+- The one font file `next/og` needs lives in `apps/web/assets/fonts`, not in `public/`, and is read at render time.
 - `public/` holds nothing but Project case-study screenshots — no `.ico`, no PNG icons, no OG image files.
 
 ## Alternatives
