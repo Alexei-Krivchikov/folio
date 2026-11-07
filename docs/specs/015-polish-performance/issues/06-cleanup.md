@@ -25,23 +25,23 @@ After specs 009 to 014 the codebase should hold nothing of the old look and no d
 
 ## Comments
 
-### Результаты
+### Results
 
-**Старые стили.** `zinc-*`, `#0a0a0a`, `#fafafa` в `apps` и `packages` не найдены. Все токены в `packages/ui/src/tailwind.css` и keyframe `marquee` используются.
+**Old styles.** No `zinc-*`, `#0a0a0a` or `#fafafa` in `apps` or `packages`. Every token in `packages/ui/src/tailwind.css` and the `marquee` keyframe are in use.
 
-**Мёртвый код** (knip, один запуск, в репозиторий не добавлен; каждая находка проверена вручную):
-- убран `export` у `SECTION_IDS` (`apps/web/lib/navigation.ts`): используется только внутри файла;
-- убран `export` у `ButtonProps` (`packages/ui/src/components/button.tsx`): снаружи не импортируется;
-- не тронуто, ложные срабатывания: `apps/web/content-collections.ts` (конфиг читает `@content-collections/next`), `zod` и `image-size` (оба импортируются в этом конфиге);
-- не тронуто, вне объёма: `packages/shared` (`placeholderSchema`) и `zod` в его `package.json`: пустой пакет-заглушка из скелета monorepo (spec 001), не остаток редизайна.
+**Dead code** (knip, one run, not added to the repository; every hit checked by hand):
+- removed `export` from `SECTION_IDS` (`apps/web/lib/navigation.ts`): used only inside its file;
+- removed `export` from `ButtonProps` (`packages/ui/src/components/button.tsx`): not imported anywhere;
+- left alone, false positives: `apps/web/content-collections.ts` (read by `@content-collections/next`), `zod` and `image-size` (both imported in that config);
+- left alone, out of scope: `packages/shared` (`placeholderSchema`) and `zod` in its `package.json`: an empty placeholder package from the monorepo skeleton (spec 001), not a leftover of the redesign.
 
-**Зависимости.** Неиспользуемых в `package.json` нет, lockfile не менялся.
+**Dependencies.** No unused package in any `package.json`; the lockfile is unchanged.
 
-**Размер JS первой загрузки** (Turbopack не печатает First Load JS, поэтому посчитано по `<script>`-чанкам из собранного HTML; baseline `aeda944`, последний коммит до spec 009):
+**First-load JS** (Turbopack does not print First Load JS, so it is computed from the `<script>` chunks in the built HTML; baseline is `aeda944`, the last commit before spec 009):
 
-| Страница | До (raw / gzip) | После (raw / gzip) | Разница |
+| Page | Before (raw / gzip) | After (raw / gzip) | Difference |
 |---|---|---|---|
 | `/` | 794.3 / 250.6 kB | 844.2 / 268.6 kB | +49.9 / +18.0 kB (+7%) |
 | `/projects/folio` | 599.9 / 185.3 kB | 760.9 / 237.8 kB | +161.0 / +52.5 kB (+28%) |
 
-Рост Case study заметный (вероятно `motion`, `ogl`, ViewTransition). Здесь не чинится, передано в spec 016.
+The Case study growth is noticeable (probably `motion`, `ogl`, ViewTransition). Not fixed here; handed to spec 016.

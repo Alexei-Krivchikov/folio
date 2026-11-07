@@ -26,10 +26,10 @@ Nothing in the repository's documentation should describe the site as it was bef
 
 ## Comments
 
-### Результаты
+### Results
 
-- `README.md`: добавлены бейджи OGL 1 и Lenis 1 (версии сверены с `apps/web/node_modules`), описание и Stack обновлены (шейдер, ViewTransition, CI), дерево структуры сверено с папками (`scripts/`, `lighthouserc.json`, `.github/workflows/`, `shared` и `config` помечены как заглушки), роадмап отражает закрытые спеки.
-- `docs/architecture.md`: раздел «apps/web (planned)» заменён на фактическое дерево; добавлен раздел `packages/ui`; Styling & Animation описывает токены Ember, три шрифта, шейдер и его ленивый чанк, view transitions, шрифт для OG в репозитории и почему `public/` только для скриншотов, Lighthouse CI.
-- `CONTEXT.md` просмотрен, не менялся: новых устоявшихся терминов нет (Poster, Signature moment, Case study уже описаны).
-- ADR 0004 просмотрен: остаётся верным, добавлена строка про шрифт в `apps/web/assets/fonts`. Новых ADR нет.
-- Спека 011 в файле всё ещё `Draft`, все её тикеты `ready-for-human`; в README это отражено как «ждёт верификации», статус самой спеки не менял.
+- `README.md`: added OGL 1 and Lenis 1 badges (versions checked against `apps/web/node_modules`), updated the description and Stack (shader, ViewTransition, CI), checked the structure tree against the folders (`scripts/`, `lighthouserc.json`, `.github/workflows/`, `shared` and `config` marked as placeholders), roadmap reflects the closed specs.
+- `docs/architecture.md`: replaced the "apps/web (planned)" section with the real tree; added a `packages/ui` section; Styling & Animation now covers the Ember tokens, the three fonts, the shader and its lazy chunk, view transitions, the OG font in the repository and why `public/` is screenshots-only, and Lighthouse CI.
+- `CONTEXT.md` reviewed and unchanged: no new settled terms (Poster, Signature moment, Case study are already defined).
+- ADR 0004 reviewed: still accurate; added one line about the font in `apps/web/assets/fonts`. No new ADR.
+- Spec 011 is still `Draft` in its file and all its tickets are `ready-for-human`; the README says it awaits verification, and I did not change the spec status.

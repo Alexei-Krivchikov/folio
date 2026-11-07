@@ -30,20 +30,23 @@ No new features. The cross-cutting checks from the spec's Testing Decisions, run
 
 ## Comments
 
-### Результаты (2026-11-07, прод `https://alexei-krivchikov.vercel.app`, PR #22 смержен)
+### Results (2026-11-07, production `https://alexei-krivchikov.vercel.app`, PR #22 merged)
 
-**Проверено агентом (браузерная панель, fetch с origin прода):**
+**Checked by the agent (browser pane, fetch from the production origin):**
 - `/manifest.webmanifest`, `/robots.txt`, `/sitemap.xml`: 200.
-- `og:image` в HTML `/` и `/projects/folio`: абсолютные URL (`https://alexei-krivchikov.vercel.app/opengraph-image?...` и `/projects/folio/opengraph-image?...`), 1200x630, `image/png`; картинка главной отдаёт 200 `image/png`.
-- `theme-color` в HTML обеих страниц: `#0b0908`.
+- `og:image` in the HTML of `/` and `/projects/folio`: absolute URLs (`https://alexei-krivchikov.vercel.app/opengraph-image?...` and `/projects/folio/opengraph-image?...`), 1200x630, `image/png`; the home image answers 200 `image/png`.
+- `theme-color` in the HTML of both pages: `#0b0908`.
 
-**Проверено разработчиком:**
-- Telegram: новая карточка превью показывается для сайта и для Case study: ок.
-- Реальные устройства и браузеры (Android, Safari, Firefox, Chrome, клавиатура, screen reader, reduced motion, медленный 4G): разработчик просмотрел всё сам, замечаний нет (1440px и 375px тоже просмотрены им). Что не устраивает, разработчик оформит отдельными спеками.
+**Checked by the developer:**
+- Telegram: the new preview card shows for the site and for a Case study: pass.
+- Real devices and browsers (Android, Safari, Firefox, Chrome, keyboard only, screen reader, reduced motion, slow 4G): the developer went through all of them, no findings (1440px and 375px included). Anything they dislike will become separate specs.
 
-**Lighthouse на проде** (запуск разработчика, скриншот, mobile, `/`): Performance 94, Accessibility 100, Best Practices 100, SEO 100; FCP 1.1 s, **LCP 2.9 s** (выше порога 2.5 s, фикс в spec 016), TBT 40 ms, CLS 0, Speed Index 3.1 s. Case study `/projects/dominocrm` (тоже запуск разработчика, скриншот): Performance 100, Accessibility 100, Best Practices 100, SEO 100; метрики на скриншоте не видны. CI-значение `/` (Perf 51, TBT 31 s) на проде не воспроизводится, это артефакт раннера без GPU, а не проблема сайта.
+**Production Lighthouse** (run by the developer, screenshots, mobile):
+- `/`: Performance 94, Accessibility 100, Best Practices 100, SEO 100; FCP 1.1 s, **LCP 2.9 s** (above the 2.5 s limit, fix is in spec 016), TBT 40 ms, CLS 0, Speed Index 3.1 s.
+- `/projects/dominocrm`: Performance 100, Accessibility 100, Best Practices 100, SEO 100; the metrics are not visible in the screenshot.
+- The CI value for `/` (Perf 51, TBT 31 s) does not reproduce in production: it is an artifact of the GPU-less runner, not a site problem.
 
 **Lighthouse CI:**
-- Job Lighthouse CI виден на PR #22 зелёным и не блокирует его (прогон 42178720232).
+- The job was seen green on PR #22 and did not block it (run 42178720232).
 
-**Статусы спек:** 009, 010, 012, 013, 014 Done. Спека 011 остаётся Draft: все её тикеты ждут верификации разработчика. Спека 015 помечена Done.
+**Spec status:** 009, 010, 012, 013, 014 are Done. Spec 011 stays Draft: all its tickets wait for the developer's verification. Spec 015 is marked Done.
