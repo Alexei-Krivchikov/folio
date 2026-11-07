@@ -1,6 +1,6 @@
 # Spec 015 — Polish and performance
 
-Status: Draft
+Status: Done
 
 ## Problem Statement
 

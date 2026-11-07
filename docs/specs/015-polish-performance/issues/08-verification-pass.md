@@ -4,7 +4,7 @@
 
 **Blocked by:** 01, 02, 03, 04, 05, 06, 07
 
-**Status:** ready-for-human
+**Status:** done
 
 ## What to build
 
@@ -29,3 +29,24 @@ No new features. The cross-cutting checks from the spec's Testing Decisions, run
 - [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
+
+### Results (2026-11-07, production `https://alexei-krivchikov.vercel.app`, PR #22 merged)
+
+**Checked by the agent (browser pane, fetch from the production origin):**
+- `/manifest.webmanifest`, `/robots.txt`, `/sitemap.xml`: 200.
+- `og:image` in the HTML of `/` and `/projects/folio`: absolute URLs (`https://alexei-krivchikov.vercel.app/opengraph-image?...` and `/projects/folio/opengraph-image?...`), 1200x630, `image/png`; the home image answers 200 `image/png`.
+- `theme-color` in the HTML of both pages: `#0b0908`.
+
+**Checked by the developer:**
+- Telegram: the new preview card shows for the site and for a Case study: pass.
+- Real devices and browsers (Android, Safari, Firefox, Chrome, keyboard only, screen reader, reduced motion, slow 4G): the developer went through all of them, no findings (1440px and 375px included). Anything they dislike will become separate specs.
+
+**Production Lighthouse** (run by the developer, screenshots, mobile):
+- `/`: Performance 94, Accessibility 100, Best Practices 100, SEO 100; FCP 1.1 s, **LCP 2.9 s** (above the 2.5 s limit, fix is in spec 016), TBT 40 ms, CLS 0, Speed Index 3.1 s.
+- `/projects/dominocrm`: Performance 100, Accessibility 100, Best Practices 100, SEO 100; the metrics are not visible in the screenshot.
+- The CI value for `/` (Perf 51, TBT 31 s) does not reproduce in production: it is an artifact of the GPU-less runner, not a site problem.
+
+**Lighthouse CI:**
+- The job was seen green on PR #22 and did not block it (run 42178720232).
+
+**Spec status:** 009, 010, 012, 013, 014 are Done. Spec 011 stays Draft: all its tickets wait for the developer's verification. Spec 015 is marked Done.

@@ -43,5 +43,5 @@ Verified by opening a pull request. If the agent cannot push, that step is the d
   | `/` | 51 | 100 | 96 | 100 | 4.23 s | 0.000 | 31038 ms |
   | `/projects/folio` | 94 | 100 | 96 | 100 | 3.06 s | 0.000 | 65 ms |
 
-  The `/` TBT of about 31 s is far outside the norm and is probably the Hero shader (ogl) running on a CPU-only runner without a GPU; it is not verified. Handed to spec 016 together with the bundle growth from ticket 06.
+  The `/` TBT of about 31 s is far outside the norm and is an artifact of the CPU-only runner (production Lighthouse on `/` gave TBT 40 ms, see ticket 08). Handed to spec 016 together with the bundle growth from ticket 06.
 - The job is green with a Performance score of 51, so non-blocking behaviour is confirmed in practice. Run annotations are only the Node 20 deprecation of `actions/upload-artifact@v5` and the ubuntu-latest migration notice.
