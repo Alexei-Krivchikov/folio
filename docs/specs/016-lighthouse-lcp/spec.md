@@ -1,6 +1,6 @@
 # Spec 016 — Lighthouse and LCP
 
-Status: Draft
+Status: Wontfix
 
 ## Problem Statement
 
