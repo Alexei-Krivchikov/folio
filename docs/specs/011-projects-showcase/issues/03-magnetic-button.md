@@ -4,7 +4,7 @@
 
 **Blocked by:** 02
 
-**Status:** ready-for-human
+**Status:** done
 
 ## What to build
 
@@ -25,7 +25,7 @@ A generic `MagneticButton` in `packages/ui` that pulls its content slightly towa
 
 - [x] `MagneticButton` is exported from `@folio/ui`
 - [x] With a mouse, a test control drifts toward the pointer inside the radius, never by more than the cap, and returns smoothly on leave
-- [ ] With touch emulation and with reduced motion on, nothing moves and no listeners are attached
+- [x] With touch emulation and with reduced motion on, nothing moves and no listeners are attached
 - [x] Wrapping a `Button`, a `Link` and a span inside an outer link all work, and clicks still go to the right target
 - [x] No React re-render and no layout read per pointer move; no layout shift
 - [x] The detection zone does not block clicks on elements next to it

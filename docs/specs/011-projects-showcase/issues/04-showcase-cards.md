@@ -4,7 +4,7 @@
 
 **Blocked by:** none
 
-**Status:** ready-for-human
+**Status:** done
 
 ## What to build
 
@@ -28,7 +28,7 @@ The static showcase: the featured card, the two smaller cards, and the new card 
 - [x] The card is still one link and one tab stop; no link or button is nested inside it
 - [x] Covers share one crop; the Ember border glow shows on hover and on keyboard focus; the focus ring is visible
 - [x] `priority` is set only on the first card, and `sizes` matches the rendered widths (checked in the network panel: the served image width is not far above the rendered width)
-- [ ] No horizontal scroll at 320 and 375px and no layout shift when images load
+- [x] No horizontal scroll at 320 and 375px and no layout shift when images load
 - [x] The Case study Open Graph watermark shows `[01]` in the same format as the card; the Case study page is otherwise unchanged
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 

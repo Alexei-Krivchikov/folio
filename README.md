@@ -62,7 +62,7 @@ pnpm typecheck  # turbo typecheck
 ## Roadmap
 
 - **MVP:** done, specs 001-008 (skeleton, hero/about, stack, experience, projects MDX, polish/navigation, deploy, screenshots)
-- **Visual upgrade (Ember):** specs 009, 010, 012, 013, 014 done; 011 waits for its human verification pass; 015 (polish and performance) done; 016 (Lighthouse LCP) closed without changes, the live site stays at about 89
+- **Visual upgrade (Ember):** specs 009 to 015 done; 016 (Lighthouse LCP) closed without changes, the live site stays at about 89
 - **Phase 2:** Lab (GSAP/R3F), Blog, Guestbook (PG+Drizzle), RU
 
 ## Scripts

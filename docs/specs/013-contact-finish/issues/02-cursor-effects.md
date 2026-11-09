@@ -4,7 +4,7 @@
 
 **Blocked by:** none
 
-**Status:** ready-for-human
+**Status:** done
 
 ## What to build
 
@@ -28,7 +28,7 @@ The first version also drew a small ring that followed the pointer and grew over
 - [x] Clicks, text selection and keyboard focus rings behave exactly as before, including under the layer
 - [x] The pointer leaving the window hides the layer; it does not appear before the first move
 - [x] No hydration warning in the console
-- [ ] Performance panel while moving the mouse: no long task from the handler, no React render per move (no long task at 1x or 4x CPU; React renders not counted)
+- [x] Performance panel while moving the mouse: no long task from the handler, no React render per move (no long task at 1x or 4x CPU; React renders not counted)
 - [x] Text contrast over the brightest part of the spotlight is still AA (one sample recorded under Comments)
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 

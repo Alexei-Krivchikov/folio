@@ -19,11 +19,11 @@ Every pull request reports Lighthouse scores. The job reports only: a hard gate 
 
 ## Acceptance criteria
 
-- [ ] The job runs on a pull request and on `push` to `main`, and shows the scores for `/` and a Case study in its summary
-- [ ] A score below 90 does not fail the job or the PR; the `check` job is unchanged
-- [ ] `lighthouserc.json` is committed; no token or bypass secret is in the repository
-- [ ] The first CI numbers are recorded under Comments as the baseline
-- [ ] `npx biome check .` passes
+- [x] The job runs on a pull request and on `push` to `main`, and shows the scores for `/` and a Case study in its summary
+- [x] A score below 90 does not fail the job or the PR; the `check` job is unchanged
+- [x] `lighthouserc.json` is committed; no token or bypass secret is in the repository
+- [x] The first CI numbers are recorded under Comments as the baseline
+- [x] `npx biome check .` passes
 
 ## Comments
 

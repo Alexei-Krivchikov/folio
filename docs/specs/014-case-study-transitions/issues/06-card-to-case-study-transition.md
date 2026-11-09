@@ -20,12 +20,12 @@ Clicking a Project card on the home page morphs the card's cover into the Case s
 
 ## Acceptance criteria
 
-- [ ] In Chrome, clicking each of the three cards morphs its cover into the Case study cover with no flash, no layout jump and no wrong-image frame
-- [ ] The cover is in the Case study page's HTML on arrival (view source shows it)
-- [ ] Clicking again mid-transition does not break navigation or leave the page stuck
-- [ ] With `prefers-reduced-motion: reduce` emulated before load, navigation is instant
-- [ ] Hovered or tilted cards still morph from the cover's visual rectangle
-- [ ] The behaviour is checked on a production build (`next build` and `next start`), not only `next dev`
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] In Chrome, clicking each of the three cards morphs its cover into the Case study cover with no flash, no layout jump and no wrong-image frame
+- [x] The cover is in the Case study page's HTML on arrival (view source shows it)
+- [x] Clicking again mid-transition does not break navigation or leave the page stuck
+- [x] With `prefers-reduced-motion: reduce` emulated before load, navigation is instant
+- [x] Hovered or tilted cards still morph from the cover's visual rectangle
+- [x] The behaviour is checked on a production build (`next build` and `next start`), not only `next dev`
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments

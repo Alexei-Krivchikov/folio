@@ -17,11 +17,11 @@ After specs 009 to 014 the codebase should hold nothing of the old look and no d
 
 ## Acceptance criteria
 
-- [ ] No `zinc-*`, no old neutral palette literals and no unused tokens or keyframes remain
-- [ ] Every unused file, export and dependency found is removed, and the list is under Comments
-- [ ] Before and after First Load JS for `/` and a Case study are under Comments
-- [ ] Nothing visible changed: the four pages look the same before and after in the browser pane
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] No `zinc-*`, no old neutral palette literals and no unused tokens or keyframes remain
+- [x] Every unused file, export and dependency found is removed, and the list is under Comments
+- [x] Before and after First Load JS for `/` and a Case study are under Comments
+- [x] Nothing visible changed: the four pages look the same before and after in the browser pane
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
 

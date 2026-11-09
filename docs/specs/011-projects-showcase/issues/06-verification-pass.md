@@ -4,7 +4,7 @@
 
 **Blocked by:** 01, 02, 03, 04, 05
 
-**Status:** ready-for-human
+**Status:** done
 
 ## What to build
 
@@ -26,9 +26,9 @@ No new features. The cross-cutting checks from the spec's Testing Decisions, run
 - [x] Pointer pass done; effects are absent in the DOM under touch emulation and reduced motion
 - [x] Keyboard pass done; one tab stop per card, visible focus ring
 - [x] Contrast table written under Comments; every pair is AA
-- [ ] Lighthouse mobile numbers recorded under Comments; CLS is 0
+- [x] Lighthouse mobile numbers recorded under Comments; CLS is 0
 - [x] `CONTEXT.md` is up to date
-- [ ] Spec 011 is marked Done
+- [x] Spec 011 is marked Done
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments

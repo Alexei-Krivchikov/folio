@@ -4,7 +4,7 @@
 
 **Blocked by:** none
 
-**Status:** ready-for-human
+**Status:** done
 
 ## What to build
 
@@ -22,7 +22,7 @@ Independent of ticket 01: it uses no palette token, only black/white noise at lo
 
 - [x] Grain is visible on the Hero background at 1440px and 375px, and subtle enough that body text is not harder to read
 - [x] Every link, button and the Header remain clickable and keep their focus rings; text can be selected
-- [ ] Scrolling stays smooth: no new paint cost visible in the Performance panel (the layer is composited, not repainted)
+- [x] Scrolling stays smooth: no new paint cost visible in the Performance panel (the layer is composited, not repainted)
 - [x] No horizontal scrollbar appears at 375px
 - [x] With reduced motion on, the grain is still there and nothing moves
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass

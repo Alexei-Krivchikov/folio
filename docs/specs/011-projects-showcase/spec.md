@@ -1,6 +1,6 @@
 # Spec 011 — Projects showcase
 
-Status: Draft
+Status: Done
 
 ## Problem Statement
 
