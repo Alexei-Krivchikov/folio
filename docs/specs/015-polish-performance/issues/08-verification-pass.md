@@ -19,14 +19,14 @@ No new features. The cross-cutting checks from the spec's Testing Decisions, run
 
 ## Acceptance criteria
 
-- [ ] The full checklist is written under Comments with a result for every device, browser and mode
-- [ ] The new Open Graph card is confirmed in the HTML and in Telegram
-- [ ] `/manifest.webmanifest`, `/robots.txt` and `/sitemap.xml` answer 200 at the production address
-- [ ] Lighthouse mobile numbers for `/` and a Case study are under Comments; Accessibility, Best Practices and SEO at 90 or above, CLS 0; any miss of Performance or LCP is handed to spec 016
-- [ ] The Lighthouse CI job is seen on a pull request and does not block it
-- [ ] Every finding is fixed or has its own ticket
-- [ ] Spec 015 is marked Done; the state of spec 011 is stated
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] The full checklist is written under Comments with a result for every device, browser and mode
+- [x] The new Open Graph card is confirmed in the HTML and in Telegram
+- [x] `/manifest.webmanifest`, `/robots.txt` and `/sitemap.xml` answer 200 at the production address
+- [x] Lighthouse mobile numbers for `/` and a Case study are under Comments; Accessibility, Best Practices and SEO at 90 or above, CLS 0; any miss of Performance or LCP is handed to spec 016 (LCP 2.9 s, handed over)
+- [x] The Lighthouse CI job is seen on a pull request and does not block it
+- [x] Every finding is fixed or has its own ticket
+- [x] Spec 015 is marked Done; the state of spec 011 is stated
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass (rerun on `dev` at `af8c241`: all three pass)
 
 ## Comments
 

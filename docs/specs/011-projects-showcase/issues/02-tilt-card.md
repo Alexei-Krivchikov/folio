@@ -4,7 +4,7 @@
 
 **Blocked by:** none
 
-**Status:** ready-for-human
+**Status:** done
 
 ## What to build
 
@@ -26,9 +26,9 @@ A generic `TiltCard` in `packages/ui`, plus the one small hook that decides whet
 - [x] `TiltCard` and `usePointerMotion` are exported from `@folio/ui`
 - [x] `packages/ui/package.json` declares `motion`, the lockfile is updated, and `apps/web` still builds
 - [x] With a mouse, a test card tilts toward the pointer and the light follows it; on leave both return smoothly
-- [ ] With device emulation set to touch, and with reduced motion on, the rendered DOM is the wrapper and the children only (no overlay element) and no pointer listeners are attached
+- [x] With device emulation set to touch, and with reduced motion on, the rendered DOM is the wrapper and the children only (no overlay element) and no pointer listeners are attached
 - [x] Moving the pointer causes no React re-render (checked in the React/Performance panel or by reading the code path) and no layout shift
-- [ ] Listeners are gone after unmount (navigate away and back, no duplicates)
+- [x] Listeners are gone after unmount (navigate away and back, no duplicates)
 - [x] A note under Comments gives the knobs (max angle, spring stiffness, light size and strength) and the values chosen
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 

@@ -18,11 +18,11 @@ Nothing in the repository's documentation should describe the site as it was bef
 
 ## Acceptance criteria
 
-- [ ] README description, badges, structure and roadmap match the repository
-- [ ] `docs/architecture.md` has no "planned" section for things that exist and covers the items above
-- [ ] `CONTEXT.md` reviewed; any term added is used in the code or specs
-- [ ] ADR 0004 reviewed and still accurate
-- [ ] `npx biome check .` passes
+- [x] README description, badges, structure and roadmap match the repository
+- [x] `docs/architecture.md` has no "planned" section for things that exist and covers the items above
+- [x] `CONTEXT.md` reviewed; any term added is used in the code or specs
+- [x] ADR 0004 reviewed and still accurate
+- [x] `npx biome check .` passes
 
 ## Comments
 

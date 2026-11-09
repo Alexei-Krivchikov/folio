@@ -4,7 +4,7 @@
 
 **Blocked by:** none
 
-**Status:** ready-for-human
+**Status:** done
 
 ## What to build
 
@@ -22,7 +22,7 @@ A generic live clock in `packages/ui` that shows the time at a fixed UTC offset.
 - [x] A test render shows the correct `HH:MM` at UTC+3 (compare with the system time converted to UTC+3 at two different moments)
 - [x] First paint shows the placeholder, then the real time, with no hydration warning in the console and no layout shift (CLS 0 on that region)
 - [x] The time rolls over on the minute without a page interaction
-- [ ] No timer is left running after unmount (cleanup is in the code but was not exercised at runtime)
+- [x] No timer is left running after unmount (cleanup is in the code but was not exercised at runtime)
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments

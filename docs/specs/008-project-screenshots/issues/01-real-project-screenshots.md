@@ -26,9 +26,9 @@ Once the images exist, look at the real card frame and the gallery frame on the 
 - [x] Each of the three Project cards shows its own cover
 - [x] Each Case study gallery shows that Project's own images, with meaningful `alt` text
 - [x] No frontmatter field refers to `placeholder.png`, and the file is removed from `apps/web/public/projects/`
-- [ ] At 1440px and 375px nothing in a cover or gallery is cut off and there is no layout shift
-- [ ] Nothing confidential from the commercial Project is visible in any image
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] At 1440px and 375px nothing in a cover or gallery is cut off and there is no layout shift
+- [x] Nothing confidential from the commercial Project is visible in any image
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
 

@@ -4,7 +4,7 @@
 
 **Blocked by:** none
 
-**Status:** ready-for-human
+**Status:** done
 
 ## What to build
 
@@ -25,7 +25,7 @@ A thin Ember line fixed at the top edge of the viewport whose length shows how f
 - [x] With reduced motion forced on, the line still follows position and has no easing
 - [x] The line does not block clicks on anything under it and is absent from the accessibility tree
 - [x] It stays above the Header and the Nav overlay
-- [ ] No React re-render per scroll event (React DevTools or a render counter shows none)
+- [x] No React re-render per scroll event (React DevTools or a render counter shows none)
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments

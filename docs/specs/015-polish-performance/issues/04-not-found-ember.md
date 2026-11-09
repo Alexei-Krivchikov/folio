@@ -17,10 +17,10 @@
 
 ## Acceptance criteria
 
-- [ ] `/does-not-exist` and `/projects/nope` render the page with status 404
-- [ ] Looks right at 375px and 1440px; no horizontal scroll
-- [ ] Keyboard: the button is focusable with a visible ring; contrast of every text pair is AA
-- [ ] Reduced motion leaves the page static
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] `/does-not-exist` and `/projects/nope` render the page with status 404
+- [x] Looks right at 375px and 1440px; no horizontal scroll
+- [x] Keyboard: the button is focusable with a visible ring; contrast of every text pair is AA
+- [x] Reduced motion leaves the page static
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments

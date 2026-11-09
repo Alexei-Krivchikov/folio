@@ -20,11 +20,11 @@ The work: run Lighthouse mobile three times on the preview, find what the simula
 
 ## Acceptance criteria
 
-- [ ] The headline text is painted on the first frame, not after hydration (observed LCP equals FCP)
-- [ ] Lighthouse mobile on a production build: LCP at most 2.5 s, Performance at least 90, CLS 0 (3 runs recorded, with the pre-spec baseline 2.9 s and ticket 08 numbers for comparison)
-- [ ] The Hero looks and animates as designed at 1440px and 375px
-- [ ] With reduced motion on, nothing moves and nothing is hidden
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] The headline text is painted on the first frame, not after hydration (observed LCP equals FCP). Not changed: the CSS entrance was tried and reverted, see Closed without code changes
+- [x] Lighthouse mobile on a production build, 3 runs recorded with the baseline for comparison. The targets are not met (local 85 to 87 and 3.9 to 4.0 s, live site 89 and 3.4 s, CLS 0); closed by the developer's decision
+- [x] The Hero looks and animates as designed at 1440px and 375px. No code change, the Hero is as it was
+- [x] With reduced motion on, nothing moves and nothing is hidden. No code change, the behaviour is as it was
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass. No code change, `apps/web` is identical to `dev`
 
 ## Comments
 

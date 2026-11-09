@@ -4,7 +4,7 @@
 
 **Blocked by:** 02, 03, 04
 
-**Status:** ready-for-human
+**Status:** done
 
 ## What to build
 
@@ -23,9 +23,9 @@ Put the two effects on the showcase cards and decide how they sit with the exist
 - [x] Clicking anywhere on a card, including while it is tilted and while the CTA is displaced, opens the right Case study
 - [x] The entrance animation and the tilt do not interfere (reload with the Section in view and again after scrolling to it)
 - [x] Only one hover motion runs per card (tilt, or the lift fallback), never both
-- [ ] With touch emulation and with reduced motion on, nothing tilts, no light appears, the CTA stays put, and the cards look as in ticket 04
+- [x] With touch emulation and with reduced motion on, nothing tilts, no light appears, the CTA stays put, and the cards look as in ticket 04
 - [x] Keyboard: one tab stop per card, visible focus ring, Enter opens the Case study, and focusing a card does not trigger tilt or magnetic motion
-- [ ] No layout shift and no page-level horizontal scroll while tilting cards at the edges of the grid, at 1440 and 1024px
+- [x] No layout shift and no page-level horizontal scroll while tilting cards at the edges of the grid, at 1440 and 1024px
 - [x] Final tilt and magnetic values are written under Comments
 - [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 

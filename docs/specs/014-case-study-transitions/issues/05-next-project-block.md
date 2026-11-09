@@ -17,11 +17,11 @@ Replace the small text link at the end of the Case study with a large block that
 
 ## Acceptance criteria
 
-- [ ] The block shows the correct next Project for each of the three Case studies, wrapping from the last to the first
-- [ ] The whole block is a single link, keyboard focusable, with a visible focus ring
-- [ ] Hover and focus states work; the arrow motion is off under reduced motion
-- [ ] No horizontal scroll at 375px; the tap target is well over 44px
-- [ ] The cover shares markup or classes with the header cover from ticket 02
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] The block shows the correct next Project for each of the three Case studies, wrapping from the last to the first
+- [x] The whole block is a single link, keyboard focusable, with a visible focus ring
+- [x] Hover and focus states work; the arrow motion is off under reduced motion
+- [x] No horizontal scroll at 375px; the tap target is well over 44px
+- [x] The cover shares markup or classes with the header cover from ticket 02
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments
