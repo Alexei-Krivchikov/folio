@@ -4,7 +4,7 @@ import { AccentText, buttonVariants, cn, MagneticButton, SectionHeading } from "
 import { motion } from "motion/react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, staggerVariants, viewportOnce } from "@/components/motion/variants";
-import { sectionIndex } from "@/lib/navigation";
+import { sectionIndex } from "@/lib/sections";
 
 const links = [
   { label: "Telegram", href: "https://t.me/A1exe1ch", external: true, primary: true },

@@ -1,0 +1,5 @@
+export const HEADER_TOP_GAP = 16;
+
+export const HEADER_PILL_HEIGHT = 56;
+
+export const HEADER_OFFSET = HEADER_TOP_GAP + HEADER_PILL_HEIGHT + 16;

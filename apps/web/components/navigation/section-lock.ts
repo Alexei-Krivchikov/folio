@@ -1,4 +1,4 @@
-import type { NavSectionId } from "@/lib/navigation";
+import type { NavSectionId } from "@/lib/sections";
 
 const ARRIVED_TOLERANCE = 2;
 const RELEASE_DISTANCE = 40;

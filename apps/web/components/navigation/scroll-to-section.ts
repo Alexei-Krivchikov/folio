@@ -1,5 +1,6 @@
 import type Lenis from "lenis";
-import { HEADER_OFFSET, isNavSectionId } from "@/lib/navigation";
+import { isNavSectionId } from "@/lib/sections";
+import { HEADER_OFFSET } from "./header-geometry";
 import { lockSection, releaseSection } from "./section-lock";
 
 const ANCHOR_SCROLL_SKIP_ATTR = "data-anchor-scroll-skip";

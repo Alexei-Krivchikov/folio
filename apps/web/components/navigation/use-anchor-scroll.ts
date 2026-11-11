@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useLenis, useLenisReady } from "@/components/providers/lenis-provider";
-import { isSectionHash } from "@/lib/navigation";
+import { isSectionHash } from "@/lib/sections";
 import { scrollToSection, skipsAnchorScroll } from "./scroll-to-section";
 
 export function useAnchorScroll() {

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ViewTransition } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, liftOnHover, staggerVariants, viewportOnce } from "@/components/motion/variants";
-import { sectionIndex } from "@/lib/navigation";
+import { sectionIndex } from "@/lib/sections";
 import { projectCoverTransitionName } from "@/lib/view-transition";
 
 export type ProjectCard = {

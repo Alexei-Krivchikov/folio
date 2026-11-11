@@ -12,7 +12,7 @@ import {
   viewportOnce,
 } from "@/components/motion/variants";
 import { brandOverrides, groups } from "@/components/stack/tech";
-import { sectionIndex } from "@/lib/navigation";
+import { sectionIndex } from "@/lib/sections";
 
 const INTRODUCTION =
   "At Anthill I work on DominoCRM, a no-code chatbot builder with a shared inbox for messengers. I build the parts users spend their day in: the visual flow editor, where a graph of steps has to stay in sync while it is dragged, edited and validated, and live chats and group chats that update in real time. I'm a frontend developer and go fullstack when the product needs it.";
