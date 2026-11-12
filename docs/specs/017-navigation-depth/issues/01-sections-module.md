@@ -4,7 +4,7 @@
 
 **Blocked by:** none
 
-**Status:** ready-for-agent
+**Status:** done
 
 ## What to build
 
@@ -18,11 +18,11 @@ Why: the order of the Sections is a domain fact (`CONTEXT.md`, Section) and toda
 
 ## Acceptance criteria
 
-- [ ] The order of the Sections exists in exactly one place; `NAV_SECTION_IDS` is derived from it, not retyped
-- [ ] `lib/navigation.ts` is gone and nothing imports it
-- [ ] The values of the three Header constants are unchanged
-- [ ] The Header, the Nav overlay, the HUD indices (`[ 01 / 04 ]` … `[ 04 / 04 ]`) and the anchor links behave as before at 1440px and 375px
-- [ ] `docs/architecture.md` lists the new files instead of `lib/navigation.ts`
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] The order of the Sections exists in exactly one place; `NAV_SECTION_IDS` is derived from it, not retyped
+- [x] `lib/navigation.ts` is gone and nothing imports it
+- [x] The values of the three Header constants are unchanged
+- [x] The Header, the Nav overlay, the HUD indices (`[ 01 / 04 ]` … `[ 04 / 04 ]`) and the anchor links behave as before at 1440px and 375px
+- [x] `docs/architecture.md` lists the new files instead of `lib/navigation.ts`
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
 
 ## Comments

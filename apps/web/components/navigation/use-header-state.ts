@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { HEADER_OFFSET, NAV_SECTION_IDS, type NavSectionId } from "@/lib/navigation";
+import { NAV_SECTION_IDS, type NavSectionId } from "@/lib/sections";
+import { HEADER_OFFSET } from "./header-geometry";
 import { getLockedSection, subscribeToSectionLock } from "./section-lock";
 
 const BOTTOM_EPSILON = 2;

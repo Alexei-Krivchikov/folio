@@ -5,7 +5,7 @@ import { type MotionValue, motion, useScroll, useTransform } from "motion/react"
 import { useRef } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, viewportOnce } from "@/components/motion/variants";
-import { sectionIndex } from "@/lib/navigation";
+import { sectionIndex } from "@/lib/sections";
 
 type Job = { role: string; org: string; period: string; current?: boolean };
 

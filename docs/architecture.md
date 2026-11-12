@@ -37,14 +37,14 @@ app/
 assets/fonts/        # Bricolage Grotesque 700/800 .woff for next/og
 components/
   hero/ about/ stack/ experience/ projects/ contact/ footer/
-  navigation/        # Header, Nav overlay, anchor scroll, Active section
+  navigation/        # Header, header-geometry, Nav overlay, anchor scroll, Active section
   motion/            # in-view, reduced-motion, page-visibility hooks, variants
   providers/         # Lenis
   og/                # shared OG template and colours
 content/projects/*.mdx   # 3 Case studies (static)
 content-collections.ts   # projects collection + zod frontmatter schema
 lib/
-  after-first-paint.ts navigation.ts og-fonts.ts projects.ts site.ts view-transition.ts
+  after-first-paint.ts og-fonts.ts projects.ts sections.ts site.ts view-transition.ts
 ```
 
 Data flow MVP: **Static** — MDX files → Server Components. No DB. Contact via `mailto:` + external links.
