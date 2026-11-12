@@ -30,6 +30,11 @@ export function scrollToSection(lenis: Lenis | null, section: HTMLElement, optio
   scrollToY(lenis, top, options);
 }
 
+export function navigateToSection(lenis: Lenis | null, section: HTMLElement, hash: string) {
+  window.history.pushState(null, "", hash);
+  scrollToSection(lenis, section);
+}
+
 export function scrollToTop(lenis: Lenis | null, { reducedMotion }: { reducedMotion: boolean }) {
   scrollToY(lenis, 0, { immediate: reducedMotion, behavior: reducedMotion ? "auto" : "smooth" });
 }
