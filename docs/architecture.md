@@ -37,7 +37,7 @@ app/
 assets/fonts/        # Bricolage Grotesque 700/800 .woff for next/og
 components/
   hero/ about/ stack/ experience/ projects/ contact/ footer/
-  navigation/        # Header, header-geometry, Nav overlay, anchor scroll, Active section
+  navigation/        # Header, header-geometry, Nav overlay; active-section (lock + Active section), scroll (scroll-to-section/top, anchor skip), use-hero-passed
   motion/            # in-view, reduced-motion, page-visibility hooks, variants
   providers/         # Lenis
   og/                # shared OG template and colours

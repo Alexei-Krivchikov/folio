@@ -4,7 +4,7 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** done
 
 ## What to build
 
@@ -28,15 +28,15 @@ Deletion test, for the record: removing `section-lock.ts` makes its logic reappe
 
 ## Acceptance criteria
 
-- [ ] `getLockedSection` and `subscribeToSectionLock` are not exported
-- [ ] The "Lenis or `window.scrollTo`" branch exists once
-- [ ] The logo click goes through `scrollToTop`; with reduced motion it jumps, without it it scrolls smoothly, with and without Lenis
-- [ ] Following a link to Contact on a page that cannot scroll to put Contact at the top keeps Contact as the Active section until the visitor scrolls away (wheel, touch, a scroll key, or a drag of more than 40px after arriving)
-- [ ] Scrolling by hand moves the Active section as before, and the last Section is active at the bottom of the page
-- [ ] A link in the Nav overlay closes it, scrolls and locks as before; a hash in the URL on load scrolls to its Section as before
-- [ ] No behaviour or markup change at 1440px and 375px
-- [ ] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
-- [ ] `docs/architecture.md` is up to date
+- [x] `getLockedSection` and `subscribeToSectionLock` are not exported
+- [x] The "Lenis or `window.scrollTo`" branch exists once
+- [x] The logo click goes through `scrollToTop`; with reduced motion it jumps, without it it scrolls smoothly, with and without Lenis
+- [x] Following a link to Contact on a page that cannot scroll to put Contact at the top keeps Contact as the Active section until the visitor scrolls away (wheel, touch, a scroll key, or a drag of more than 40px after arriving)
+- [x] Scrolling by hand moves the Active section as before, and the last Section is active at the bottom of the page
+- [x] A link in the Nav overlay closes it, scrolls and locks as before; a hash in the URL on load scrolls to its Section as before
+- [x] No behaviour or markup change at 1440px and 375px
+- [x] `npx biome check .`, `npx tsc --noEmit --project apps/web/tsconfig.json`, `npx turbo run build --filter=@folio/web` pass
+- [x] `docs/architecture.md` is up to date
 
 ## Comments
 

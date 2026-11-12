@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useLenis, useLenisReady } from "@/components/providers/lenis-provider";
 import { isSectionHash } from "@/lib/sections";
-import { scrollToSection, skipsAnchorScroll } from "./scroll-to-section";
+import { scrollToSection, skipsAnchorScroll } from "./scroll";
 
 export function useAnchorScroll() {
   const lenis = useLenis();
