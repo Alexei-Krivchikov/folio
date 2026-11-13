@@ -7,10 +7,12 @@ import { useCallback, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { useLenis } from "@/components/providers/lenis-provider";
 import { NAV_LINKS } from "@/lib/sections";
+import { useActiveSection } from "./active-section";
 import { HEADER_PILL_HEIGHT, HEADER_TOP_GAP } from "./header-geometry";
 import { NavOverlay } from "./nav-overlay";
+import { scrollToTop } from "./scroll";
 import { useCloseOnDesktop } from "./use-close-on-desktop";
-import { useActiveSection, useHeroPassed } from "./use-header-state";
+import { useHeroPassed } from "./use-hero-passed";
 
 const focusRing = "rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
 
@@ -64,11 +66,7 @@ export function Header() {
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       if (pathname !== "/") return;
       event.preventDefault();
-      if (lenis) {
-        lenis.scrollTo(0, { immediate: reducedMotion });
-      } else {
-        window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
-      }
+      scrollToTop(lenis, { reducedMotion });
     },
     [pathname, lenis, reducedMotion],
   );

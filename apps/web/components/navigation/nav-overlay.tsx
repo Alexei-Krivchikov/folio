@@ -5,7 +5,7 @@ import { useId, useRef } from "react";
 import { useLenis } from "@/components/providers/lenis-provider";
 import { NAV_LINKS } from "@/lib/sections";
 import { HEADER_OFFSET } from "./header-geometry";
-import { anchorScrollSkipProps, scrollToSection } from "./scroll-to-section";
+import { anchorScrollSkipProps, navigateToSection } from "./scroll";
 import { useEscapeKey } from "./use-escape-key";
 import { useFocusTrap } from "./use-focus-trap";
 import { useScrollLock } from "./use-scroll-lock";
@@ -47,7 +47,7 @@ export function NavOverlay({ open, onClose }: { open: boolean; onClose: () => vo
 
     const section = document.getElementById(id);
     if (!section) return;
-    requestAnimationFrame(() => scrollToSection(lenis, section));
+    requestAnimationFrame(() => navigateToSection(lenis, section, `#${id}`));
   }
 
   return (
