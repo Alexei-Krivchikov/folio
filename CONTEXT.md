@@ -1,6 +1,6 @@
 # folio
 
-Alexei Krivchikov's personal portfolio and lab: a site that shows recruiters who he is, what he has built, and how to reach him.
+Alexei Krivchikov's personal portfolio and lab: a site that shows recruiters and hiring engineers who he is, what he has built, and how to reach him. Headings are written for a recruiter scanning the page; the text under them for an engineer reading it.
 
 ## Language
 
@@ -29,10 +29,6 @@ _Avoid_: current section, highlighted link
 **Signature moment**:
 The one dominant visual piece of the Hero that a visitor sees in the first seconds and that sets the impression of the whole site.
 _Avoid_: hero effect, hero animation, wow element
-
-**Facts strip**:
-A short row of three or four concrete facts about Alexei shown right under the Hero, so a recruiter gets the essentials without reading.
-_Avoid_: stats bar, counters, KPI row
 
 **Poster**:
 The static gradient behind the Hero's shader. It is hidden while the shader runs and shown only when the shader cannot run (reduced motion, no WebGL2, a weak device, a lost context, a failed load) or when JavaScript is off.
