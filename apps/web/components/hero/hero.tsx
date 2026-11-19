@@ -3,7 +3,7 @@
 import { AccentText, buttonVariants, cn } from "@folio/ui";
 import { motion } from "motion/react";
 import Link from "next/link";
-import { type ComponentType, type ReactNode, useEffect, useState } from "react";
+import { type ComponentType, useEffect, useState } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, staggerVariants } from "@/components/motion/variants";
 import { afterFirstPaint } from "@/lib/after-first-paint";
@@ -15,7 +15,7 @@ const RISE = 28;
 const DURATION = 0.7;
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function Hero({ facts }: { facts: ReactNode }) {
+export function Hero() {
   const reduced = usePrefersReducedMotion();
   const [shader, setShader] = useState<ShaderStatus | null>(null);
   const [Shader, setShaderComponent] = useState<ComponentType<HeroShaderProps> | null>(null);
@@ -46,7 +46,6 @@ export function Hero({ facts }: { facts: ReactNode }) {
   const pill = enter(2);
   const subtitle = enter(3);
   const actions = enter(4);
-  const factsStrip = enter(5);
 
   return (
     <section id="hero" className="relative isolate flex min-h-svh w-full flex-col justify-center overflow-hidden">
@@ -58,9 +57,8 @@ export function Hero({ facts }: { facts: ReactNode }) {
             variants={pill}
             className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-border bg-foreground/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.04em] text-foreground md:text-xs md:tracking-[0.12em]"
           >
-            <span className={cn("h-2 w-2 rounded-full bg-green-500", !reduced && "animate-pulse")} />
-            <span className="md:hidden">Open to opportunities</span>
-            <span className="hidden md:inline">Building at Anthill · open to the right opportunity</span>
+            <span className="h-2 w-2 rounded-full bg-green-500" />
+            <span>Open to offers</span>
           </motion.p>
 
           <motion.h1
@@ -79,20 +77,17 @@ export function Hero({ facts }: { facts: ReactNode }) {
             variants={subtitle}
             className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/80 md:text-2xl"
           >
-            Frontend <AccentText className="text-foreground">developer</AccentText> shipping CRM &amp; chatbot UIs
+            Frontend <AccentText className="text-foreground">developer</AccentText> building a visual chatbot editor and
+            a real-time CRM inbox.
           </motion.p>
 
           <motion.div variants={actions} className="mt-8 flex flex-wrap gap-3">
             <Link href="#contact" className={cn(buttonVariants(), "max-md:h-11")}>
-              Let&apos;s Talk
+              Write to me
             </Link>
             <Link href="#projects" className={cn(buttonVariants({ variant: "outline" }), "max-md:h-11")}>
-              View Projects
+              See projects
             </Link>
-          </motion.div>
-
-          <motion.div variants={factsStrip} className="mt-14 md:mt-20">
-            {facts}
           </motion.div>
         </motion.div>
       </div>

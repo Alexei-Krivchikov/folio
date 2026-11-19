@@ -28,7 +28,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const title = "Alexei Krivchikov — Frontend Developer";
-const description = "Creative frontend developer — folio. Next.js, TypeScript, Motion.";
+const description = "Frontend developer building a visual chatbot editor and a real-time CRM inbox.";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
