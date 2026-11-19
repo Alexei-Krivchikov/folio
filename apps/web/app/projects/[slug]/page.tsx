@@ -79,6 +79,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <SectionHeading as="h1" label={`[ ${formatProjectMeta(project)} ]`}>
             {project.name}
           </SectionHeading>
+          <p className="mt-4 max-w-[68ch] text-base leading-relaxed text-muted md:text-lg">{project.summary}</p>
         </div>
 
         {links.length > 0 && (
