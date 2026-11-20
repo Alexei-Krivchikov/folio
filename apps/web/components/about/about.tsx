@@ -1,6 +1,6 @@
 "use client";
 
-import { HudLabel, Marquee, SectionHeading, WordReveal } from "@folio/ui";
+import { HudLabel, SectionHeading, WordReveal } from "@folio/ui";
 import { motion } from "motion/react";
 import type { CSSProperties } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
@@ -15,25 +15,20 @@ import { brandOverrides, groups } from "@/components/stack/tech";
 import { sectionIndex } from "@/lib/sections";
 
 const INTRODUCTION =
-  "At Anthill I work on DominoCRM, a no-code chatbot builder with a shared inbox for messengers. I build the parts users spend their day in: the visual flow editor, where a graph of steps has to stay in sync while it is dragged, edited and validated, and live chats and group chats that update in real time. I'm a frontend developer and go fullstack when the product needs it.";
+  "At Anthill I work on DominoCRM, a no-code chatbot builder with a shared inbox for messengers. I build the parts people spend their day in: the visual flow editor, where a graph of steps has to stay in sync while it's dragged, edited and validated, and live chats and group chats that update in real time. I'm a frontend developer and go fullstack when the product needs it.";
 
-const PATH_LINE =
-  "Started with Yandex Practicum and its community, kept learning new technologies on my own, and have shipped in production ever since.";
+const PATH_LINE = "I started with Yandex Practicum and its community, and I've kept learning on my own since.";
 
 const practices = [
   {
-    title: "Predictable under real use.",
-    text: "Deep forms, live data and screens people keep open all day. I push for one shared vocabulary for loading, empty and error states instead of each screen inventing its own.",
+    title: "Screens people keep open all day",
+    text: "Deep forms and live data. I push for one shared set of loading, empty and error states, so no screen invents its own.",
   },
   {
-    title: "At home in teams of any size.",
-    text: "I've shipped with a handful of developers and with many, inside a standard review and release flow, and I led a small team on the product's landing site.",
+    title: "Led a small team, shipped in larger ones",
+    text: "I've shipped with a handful of developers and with many, inside a standard review and release flow. On the product's landing site I led a small team.",
   },
 ];
-
-const marqueeItems = groups.flatMap((group) => group.items);
-
-const MARQUEE_SECONDS_PER_ITEM = 3.5;
 
 const CARD = "rounded-xl border border-border bg-foreground/3 p-6 md:p-8";
 
@@ -50,17 +45,6 @@ export function About() {
       <motion.div variants={section} initial="hidden" whileInView="show" viewport={viewportOnce}>
         <motion.div variants={fadeUp} className="mx-auto max-w-5xl px-6">
           <SectionHeading label={sectionIndex("about")}>About</SectionHeading>
-        </motion.div>
-
-        <motion.div variants={fadeUp} aria-hidden="true" className="mt-10">
-          <Marquee duration={marqueeItems.length * MARQUEE_SECONDS_PER_ITEM} itemClassName="px-5">
-            {marqueeItems.map(({ name, Icon, hex }) => (
-              <span key={name} className="flex items-center gap-2.5 text-sm text-foreground/80">
-                <Icon size={20} title="" color={brandOverrides[name] ?? hex} className="shrink-0" />
-                {name}
-              </span>
-            ))}
-          </Marquee>
         </motion.div>
 
         <div className="mx-auto mt-10 grid max-w-5xl gap-4 px-6 md:grid-cols-12">
