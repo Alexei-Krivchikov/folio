@@ -7,7 +7,7 @@ import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced
 import { fadeUpVariants, viewportOnce } from "@/components/motion/variants";
 import { sectionIndex } from "@/lib/sections";
 
-type Job = { role: string; org: string; period: string; current?: boolean };
+type Job = { role: string; org: string; period: string; current?: boolean; points?: string[] };
 
 const jobs: Job[] = [
   {
@@ -15,6 +15,17 @@ const jobs: Job[] = [
     org: "Anthill",
     period: "2023 — Present",
     current: true,
+    points: [
+      "Built the visual flow editor: a graph of steps and connections that stays in sync with the canvas while it's dragged, edited and validated.",
+      "Real-time chats and group chats over SignalR: messages, status changes and bot-to-operator hand-offs land in the right thread, in order, including after a reconnect.",
+      "Broadcasts, automation rules and contact filters: deep conditional forms kept predictable.",
+      "Interface in four languages with i18next: structured translation keys, no hard-coded copy.",
+    ],
+  },
+  {
+    role: "Developer",
+    org: "Yandex Practicum · Workshop",
+    period: "2022 — 2023",
   },
 ];
 
@@ -54,6 +65,13 @@ function Entry({
       <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">{job.period}</p>
       <h3 className="mt-1 text-xl font-semibold text-foreground">{job.role}</h3>
       <p className="mt-0.5 text-sm text-muted">{job.org}</p>
+      {job.points && (
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted">
+          {job.points.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+      )}
     </li>
   );
 }
