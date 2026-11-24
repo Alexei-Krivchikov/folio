@@ -15,7 +15,7 @@ export function Footer() {
           </HudLabel>
         </div>
         <HudLabel as="p" className={`${CAPTION} w-full md:text-left`}>
-          © {new Date().getFullYear()} Alexei Krivchikov. All rights reserved.
+          © {new Date().getFullYear()} Alexei Krivchikov
         </HudLabel>
       </div>
     </footer>

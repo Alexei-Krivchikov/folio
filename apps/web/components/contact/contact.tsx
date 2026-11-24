@@ -27,10 +27,10 @@ export function Contact() {
           className="font-extrabold uppercase leading-[0.92]"
           style={{ fontSize: CLOSING_FONT_SIZE }}
         >
-          Let&apos;s build something <AccentText className="text-accent">together</AccentText>
+          Hiring a frontend or fullstack <AccentText className="text-accent">developer?</AccentText>
         </SectionHeading>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
-          Open for frontend / fullstack opportunities. Fastest way: Telegram or Email.
+          Telegram is the fastest way to reach me. Email works too.
         </p>
       </motion.div>
 
