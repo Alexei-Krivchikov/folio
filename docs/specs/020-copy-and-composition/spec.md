@@ -1,6 +1,6 @@
 # Spec 020 — Copy and composition pass
 
-Status: ready-for-agent
+Status: Done
 
 ## Problem Statement
 
