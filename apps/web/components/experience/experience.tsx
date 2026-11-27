@@ -2,7 +2,7 @@
 
 import { SectionHeading } from "@folio/ui";
 import { type MotionValue, motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "@/components/motion/use-prefers-reduced-motion";
 import { fadeUpVariants, viewportOnce } from "@/components/motion/variants";
 import { sectionIndex } from "@/lib/sections";
@@ -33,23 +33,24 @@ const DOT_FILL_RANGE = 0.04;
 
 function Entry({
   job,
-  index,
-  total,
+  reachedAt,
   progress,
   reduced,
 }: {
   job: Job;
-  index: number;
-  total: number;
+  reachedAt: number;
   progress: MotionValue<number>;
   reduced: boolean;
 }) {
-  const reachedAt = index / total;
   const fill = useTransform(progress, [reachedAt, reachedAt + DOT_FILL_RANGE], [0, 1]);
 
   return (
     <li className="relative">
-      <span aria-hidden="true" className="absolute top-2 -left-[calc(2rem+5px)] size-[11px] rounded-full bg-muted/40">
+      <span
+        aria-hidden="true"
+        data-timeline-dot
+        className="absolute top-2 -left-[calc(2rem+5px)] size-[11px] rounded-full bg-muted/40"
+      >
         <motion.span
           className="absolute inset-0 rounded-full bg-accent motion-reduce:opacity-100!"
           style={{ opacity: reduced ? 1 : fill }}
@@ -81,6 +82,26 @@ export function Experience() {
   const fadeUp = fadeUpVariants(reduced, { y: 24, duration: 0.5 });
   const listRef = useRef<HTMLOListElement>(null);
   const { scrollYProgress } = useScroll({ target: listRef, offset: ["start 85%", "end 60%"] });
+  const [dotPositions, setDotPositions] = useState<number[]>([]);
+
+  useLayoutEffect(() => {
+    const list = listRef.current;
+    if (!list || reduced) return;
+
+    const dots = Array.from(list.querySelectorAll("[data-timeline-dot]"));
+    const measure = () => {
+      const { top, height } = list.getBoundingClientRect();
+      if (height > 0) {
+        setDotPositions(dots.map((dot) => (dot.getBoundingClientRect().top - top) / height));
+      }
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(list);
+    for (const entry of list.children) observer.observe(entry);
+    return () => observer.disconnect();
+  }, [reduced]);
 
   return (
     <section id="experience" className="mx-auto w-full max-w-5xl px-6 py-16">
@@ -99,8 +120,7 @@ export function Experience() {
               <Entry
                 key={job.org}
                 job={job}
-                index={index}
-                total={jobs.length}
+                reachedAt={dotPositions[index] ?? 1}
                 progress={scrollYProgress}
                 reduced={reduced}
               />
