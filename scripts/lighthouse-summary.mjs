@@ -2,7 +2,16 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const dir = process.argv[2] ?? ".lighthouseci";
-const reports = readdirSync(dir)
+const readReportDirectory = () => {
+  try {
+    return readdirSync(dir);
+  } catch (error) {
+    if (error.code === "ENOENT") return [];
+    throw error;
+  }
+};
+
+const reports = readReportDirectory()
   .filter((f) => /^lhr-.*\.json$/.test(f))
   .map((f) => JSON.parse(readFileSync(join(dir, f), "utf8")));
 
@@ -16,12 +25,15 @@ const byUrl = Map.groupBy(reports, (r) => new URL(r.finalDisplayedUrl).pathname)
 const score = (r, id) => Math.round(r.categories[id].score * 100);
 const audit = (r, id) => r.audits[id].numericValue;
 
-const lines = [
-  "## Lighthouse (mobile, simulated slow 4G, median of runs)",
-  "",
-  "| Page | Runs | Perf | A11y | BP | SEO | LCP | CLS | TBT |",
-  "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
-];
+const lines = ["## Lighthouse (mobile, simulated slow 4G, median of runs)", ""];
+if (reports.length === 0) {
+  lines.push("No Lighthouse reports were generated.");
+} else {
+  lines.push(
+    "| Page | Runs | Perf | A11y | BP | SEO | LCP | CLS | TBT |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+  );
+}
 
 for (const [path, runs] of byUrl) {
   const m = (fn) => median(runs.map(fn));
